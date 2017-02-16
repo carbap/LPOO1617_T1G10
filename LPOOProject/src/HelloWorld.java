@@ -8,6 +8,11 @@ public class HelloWorld {
 	public static int heroX = 1;
 	public static int heroY = 1;
 	
+	public static int guardX = 8;
+	public static int guardY = 1;
+	public static int guardMovIndex = 0;
+	public static int[] guardMov = {4,2,2,2,2,4,4,4,4,4,4,2,6,6,6,6,6,6,6,8,8,8,8,8};
+	
 	public static char table[][] = new char[10][10];
 	
 	public static void loadTable(){
@@ -41,19 +46,46 @@ public class HelloWorld {
 	
 	
 	public static boolean checkPosition(){
+		boolean return_value = true;
 		if(table[heroY][heroX] == 'S'){
 			System.out.println("You Win!");
-			return false;
+			return_value =  false;
 		}
-		else if(table[heroY][heroX] == 'k'){
+		if(table[heroY][heroX] == 'k'){
 			openDoors();
-			return true;
 		}
-		else if(table[heroY+1][heroX] == 'G' || table[heroY-1][heroX] == 'G' || table[heroY][heroX+1] == 'G' || table[heroY][heroX-1] == 'G'){
+		if(table[heroY+1][heroX] == 'G' || table[heroY-1][heroX] == 'G' || table[heroY][heroX+1] == 'G' || table[heroY][heroX-1] == 'G'){
 			System.out.println("GameOver");
-			return false;
+			return_value =  false;
 		}
-		return true;
+		return return_value;
+	}
+	
+	public static void GuardMovement(){
+		int direction = guardMov[guardMovIndex];
+		guardMovIndex +=1;
+		guardMovIndex %= 24;
+		if(direction == 2){
+			guardY += 1;
+			table[guardY-1][guardX] = ' ';
+			table[guardY][guardX] = 'G';	
+		}
+		else if(direction == 4){
+			guardX -= 1;
+			table[guardY][guardX+1] = ' ';
+			table[guardY][guardX] = 'G';
+		}
+		else if (direction == 6){
+			guardX += 1;
+			table[guardY][guardX-1] = ' ';
+			table[guardY][guardX] = 'G';
+		}
+		else if(direction == 8){
+			guardY -= 1;
+			table[guardY+1][guardX] = ' ';
+			table[guardY][guardX] = 'G';
+		}
+		checkPosition();
 	}
 	
 	public static boolean checkMovement(int direction){
@@ -130,9 +162,9 @@ public class HelloWorld {
 		int direction;
 		Scanner s = new Scanner(System.in); 
 		direction = s.nextInt();
-		if ( checkMovement(direction) == true){
-			printTable();
-		}
+		checkMovement(direction);
+		GuardMovement();
+		printTable();
 	}
 	
 	public static void main(String[] args)
@@ -142,6 +174,7 @@ public class HelloWorld {
 		printTable();
 		while(true){
 			input();
+			
 		}
 
 	}
