@@ -59,6 +59,18 @@ public abstract class Level {
 				System.out.println("GameOver");
 				return_value =  false;
 			}
+			if(table[heroY+1][heroX] == 'O' || table[heroY-1][heroX] == 'O' || table[heroY][heroX+1] == 'O' || table[heroY][heroX-1] == 'O'){
+				System.out.println("GameOver");
+				return_value =  false;
+			}
+			if(table[heroY+1][heroX] == '*' || table[heroY-1][heroX] == '*' || table[heroY][heroX+1] == '*' || table[heroY][heroX-1] == '*'){
+				System.out.println("GameOver");
+				return_value =  false;
+			}
+			if(table[heroY+1][heroX] == '$' || table[heroY-1][heroX] == '$' || table[heroY][heroX+1] == '$' || table[heroY][heroX-1] == '$'){
+				System.out.println("GameOver");
+				return_value =  false;
+			}
 		}
 		return return_value;
 	}
