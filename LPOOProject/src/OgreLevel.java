@@ -104,9 +104,7 @@ public class OgreLevel extends Level{
 					valid = true;
 				}
 			}
-			
 		}
-		
 		
 		return checkPosition();
 	}
