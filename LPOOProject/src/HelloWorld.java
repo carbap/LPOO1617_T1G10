@@ -10,12 +10,12 @@ public class HelloWorld {
 			{'I',' ',' ',' ',' ',' ',' ',' ',' ','X'},
 			{'I',' ',' ',' ',' ',' ',' ',' ',' ','X'},
 			{'X','X','X',' ','X','X','X','X',' ','X'},
-			{'X',' ','I',' ','I',' ','X','k',' ','X'},
+			{'X',' ','I',' ','I',' ','X',' ',' ','X'},
 			{'X','X','X','X','X','X','X','X','X','X'}
 	};
 	
 	static char table2[][] = { {'X','X','X','X','X','X','X','X','X'},
-			{'I',' ',' ',' ','O',' ',' ','k','X'},
+			{'I',' ',' ',' ','O',' ',' ',' ','X'},
 			{'X',' ',' ',' ','*',' ',' ',' ','X'},
 			{'X',' ',' ',' ',' ',' ',' ',' ','X'},
 			{'X',' ',' ',' ',' ',' ',' ',' ','X'},
@@ -44,13 +44,16 @@ public class HelloWorld {
 	public static int level2endy[] = {1};
 	
 	
-	
+	public static int lvl1keyX = 7;
+	public static int lvl1keyY = 8;
+	public static int lvl2keyX = 7;
+	public static int lvl2keyY = 1;
 	
 
 	
 	public static void main(String[] args)
 	{
-		GuardLevel level1 = new GuardLevel(level1endx, level1endy, false, heroX, heroY, guardX, guardY, guardMov);
+		GuardLevel level1 = new GuardLevel(level1endx, level1endy, false, heroX, heroY, guardX, guardY, guardMov, lvl1keyX, lvl1keyY);
 		level1.loadTable(table1);
 		level1.printTable();
 		while(level1.input() == true);
@@ -58,7 +61,7 @@ public class HelloWorld {
 		heroX = 1;
 		heroY = 7;
 		
-		OgreLevel level2 = new OgreLevel(level2endx, level2endy, true, heroX, heroY, ogreX, ogreY, clubX, clubY);
+		OgreLevel level2 = new OgreLevel(level2endx, level2endy, true, heroX, heroY, ogreX, ogreY, clubX, clubY, lvl2keyX, lvl2keyY);
 		level2.loadTable(table2);
 		level2.printTable();
 		while(level2.input() == true);

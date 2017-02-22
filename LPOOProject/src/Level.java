@@ -8,26 +8,21 @@ public abstract class Level {
 	
 	int heroX = 0;
 	int heroY = 0;
+	
+	int keyX = 0;
+	int keyY = 0;
+	boolean keyEnabled = true;
 
 	boolean lastLevel = false;
 
-	Level(int endLevelX[], int endLevelY[], boolean lastLevel, int heroX, int heroY){
+	Level(int endLevelX[], int endLevelY[], boolean lastLevel, int heroX, int heroY, int keyX, int keyY){
 		this.endLevelX = endLevelX;
 		this.endLevelY = endLevelY;
 		this.lastLevel = lastLevel;
 		this.heroX = heroX;
 		this.heroY = heroY;
-	}
-
-	public void printTable(){
-		for(char[] bloc : table)
-		{
-			for(char i : bloc)
-			{
-				System.out.print(i + " ");
-			}
-			System.out.print("\n");
-		}
+		this.keyX = keyX;
+		this.keyY = keyY;
 	}
 
 	public void loadTable(char table[][]){
@@ -52,7 +47,11 @@ public abstract class Level {
 			return_value =  false;
 		}
 		else{
-			if(table[heroY][heroX] == 'k'){
+			/*if(table[heroY][heroX] == 'k'){
+				openDoors();
+			}*/
+			if(heroX == keyX && heroY == keyY){
+				keyEnabled = false;
 				openDoors();
 			}
 			if(table[heroY+1][heroX] == 'G' || table[heroY-1][heroX] == 'G' || table[heroY][heroX+1] == 'G' || table[heroY][heroX-1] == 'G'){
