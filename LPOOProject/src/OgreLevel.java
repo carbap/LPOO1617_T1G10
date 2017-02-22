@@ -150,10 +150,19 @@ public class OgreLevel extends Level{
 
 
 	public boolean input(){
-		int direction;
+		int direction = 0;
 		boolean keepRunning = true;
+		boolean validInput = false;
 		Scanner s = new Scanner(System.in); 
-		direction = s.nextInt();
+		while(!validInput){
+			direction = s.nextInt();
+			if(direction == 2 || direction == 4 || direction == 6 || direction == 8){
+				validInput = true;
+			}
+			else{
+				System.out.println("Invalid Input. Choose a direction: 2, 4, 6 or 8.");
+			}
+		}
 		keepRunning = checkMovement(direction);
 		if(!keepRunning){
 			printTable();

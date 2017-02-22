@@ -87,10 +87,19 @@ public class GuardLevel extends Level{
 	}
 	
 	public boolean input(){
-		int direction;
+		int direction = 0;
 		boolean keepRunning = true;
-		Scanner s = new Scanner(System.in); 
-		direction = s.nextInt();
+		boolean validInput = false;
+		Scanner s = new Scanner(System.in);
+		while(!validInput){
+			direction = s.nextInt();
+			if(direction == 2 || direction == 4 || direction == 6 || direction == 8){
+				validInput = true;
+			}
+			else{
+				System.out.println("Invalid Input. Choose a direction: 2, 4, 6 or 8.\n");
+			}
+		}
 		keepRunning = checkMovement(direction);
 		if(!keepRunning){
 			printTable();
