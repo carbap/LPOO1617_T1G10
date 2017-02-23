@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+import dkeep.logic.GuardLevel;
+import dkeep.logic.OgreLevel;
+
 public class HelloWorld {
 
 	static char table1[][] = { {'X','X','X','X','X','X','X','X','X','X'},

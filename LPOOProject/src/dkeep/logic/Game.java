@@ -1,40 +1,33 @@
+package dkeep.logic;
 import java.util.Scanner;
 
-public abstract class Level {
-	char table[][];
+public class Game {	
+	
+	Level level;
 
-	int endLevelX[];
-	int endLevelY[];
-	
-	int heroX = 0;
-	int heroY = 0;
-	
-	int keyX = 0;
-	int keyY = 0;
 	boolean keyEnabled = true;
 
 	boolean lastLevel = false;
+	
+	boolean gameOver = false;
 
-	Level(int endLevelX[], int endLevelY[], boolean lastLevel, int heroX, int heroY, int keyX, int keyY){
-		this.endLevelX = endLevelX;
-		this.endLevelY = endLevelY;
-		this.lastLevel = lastLevel;
-		this.heroX = heroX;
-		this.heroY = heroY;
-		this.keyX = keyX;
-		this.keyY = keyY;
+	public Game(Level startingLevel){
+		this.level = startingLevel;
+	}
+	
+	public Level getLevel()
+	{
+		return level;
 	}
 
-	public void loadTable(char table[][]){
-		this.table = new char [table.length][table[0].length];
-		for(int i = 0; i < table.length; i++){
-			this.table[i] = table[i];
-		}
+	public boolean isGameOver()
+	{
+		return gameOver;
 	}
 	
 	public void openDoors(){
-		for(int i = 0; i < endLevelX.length; i++){
-			table[ endLevelY[i] ][ endLevelX[i] ] = 'S';
+		for(int i = 0; i < level.endLevelX.length; i++){
+			level.table[ level.endLevelY[i] ][ level.endLevelX[i] ] = 'S';
 		}
 	}
 	
@@ -128,8 +121,5 @@ public abstract class Level {
 		
 		return keep_running;
 	}
-	
-	
-	public abstract boolean input();
 	
 }

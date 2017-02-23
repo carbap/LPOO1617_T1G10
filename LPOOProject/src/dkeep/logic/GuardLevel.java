@@ -1,19 +1,34 @@
-import java.util.Scanner;
+package dkeep.logic;
 
-public class GuardLevel extends Level{
-
-	int guardX = 0;
-	int guardY = 0;
-	int guardMovIndex = 0;
+public class GuardLevel extends Level {
 	
-	int[] guardMov;
+			/*
+			{'X','X','X','X','X','X','X','X','X','X'};
+			{'X','H',' ',' ','I',' ','X',' ','G','X'},
+			{'X','X','X',' ','X','X','X',' ',' ','X'},
+			{'X',' ','I',' ','I',' ','X',' ',' ','X'},
+			{'X','X','X',' ','X','X','X',' ',' ','X'},
+			{'I',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+			{'I',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+			{'X','X','X',' ','X','X','X','X',' ','X'},
+			{'X',' ','I',' ','I',' ','X',' ',' ','X'},
+			{'X','X','X','X','X','X','X','X','X','X'}};*/
 	
-	
-	GuardLevel(int endLevelX[], int endLevelY[], boolean lastLevel, int heroX, int heroY, int guardX, int guardY, int[] guardMov, int keyX, int keyY){
-		super(endLevelX, endLevelY, lastLevel, heroX, heroY, keyX, keyY);
-		this.guardMov = guardMov;
-		this.guardX = guardX;
-		this.guardY = guardY;
+	public GuardLevel(){
+		char temp[][] ={
+		{'X','X','X','X','X','I','I','X','X','X'},
+		{'X',' ','X',' ','X',' ',' ','X',' ','X'},
+		{'X',' ','X','I','X',' ',' ','X','I','X'},
+		{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+		{'X','I','X','I','X',' ',' ','X','I','X'},
+		{'X',' ','X',' ','X',' ',' ','X',' ','X'},
+		{'X','X','X','X','X',' ',' ','X','X','X'},
+		{'X',' ',' ',' ',' ',' ',' ','X',' ','X'},
+		{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+		{'X','X','X','X','X','X','X','X','X','X'}
+		};
+		
+		table = temp;	
 	}
 	
 	/*public void printTable(){
@@ -25,7 +40,7 @@ public class GuardLevel extends Level{
 			}
 			System.out.print("\n");
 		}
-	}*/
+	}
 	
 	public void printTable(){
 		for(int i = 0; i < table.length; i++)
@@ -112,7 +127,7 @@ public class GuardLevel extends Level{
 		}
 		printTable();
 		return keepRunning;
-	}
+	}*/
 	
 	
 }

@@ -1,21 +1,32 @@
-import java.util.Scanner;
+package dkeep.logic;
 import java.util.Random;
 
 public class OgreLevel extends Level{
-
-	int ogreX = 0;
-	int ogreY = 0;
-	int clubX = 0;
-	int clubY = 0;
-
-
-
-	OgreLevel(int endLevelX[], int endLevelY[], boolean lastLevel, int heroX, int heroY, int ogreX, int ogreY, int clubX, int clubY, int keyX, int keyY){
-		super(endLevelX, endLevelY, lastLevel, heroX, heroY, keyX, keyY);
-		this.ogreX = ogreX;
-		this.ogreY = ogreY;
-		this.clubX = clubX;
-		this.clubY = clubY;
+	/*
+	{   {'X','X','X','X','X','X','X','X','X'},
+		{'I',' ',' ',' ','O',' ',' ',' ','X'},
+		{'X',' ',' ',' ','*',' ',' ',' ','X'},
+		{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+		{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+		{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+		{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+		{'X','H',' ',' ',' ',' ',' ',' ','X'},
+		{'X','X','X','X','X','X','X','X','X'}*/
+	
+	OgreLevel(){
+		char temp[][] ={
+				{'X','I','X','X','X','X','X','X','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X','X','X','X','X','X','X','X','X'}
+				};
+				
+				table = temp;	
 	}
 
 	public void printTable(){
