@@ -16,7 +16,7 @@ public class OgreLevel extends Level{
 	Ogre ogre;
 	
 	OgreLevel(){
-		char temp[][] ={
+		char temp[][] ={ 
 				{'X','I','X','X','X','X','X','X','X'},
 				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
 				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
@@ -61,8 +61,12 @@ public class OgreLevel extends Level{
 			System.out.print("\n");
 		}
 	}
+	
+	public void npc(){
+		ogreMovement();
+	}
 
-	public void OgreMovement(){
+	public void ogreMovement(){
 		Random rand = new Random();
 		boolean valid = false;
 		while(!valid){

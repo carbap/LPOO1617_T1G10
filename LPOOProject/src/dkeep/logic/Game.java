@@ -25,20 +25,8 @@ public class Game {
 	
 	public void draw()
 	{
-		/*
-		char table[][] = this.getLevel().getTable();
-		
-		if()
-		for(int i = 0; i < table[0].length;i++)
-		{
-			for(int j = 0; j < table.length;j++)
-			{
-				System.out.print(table[j][0]+ " ");
-			}
-			System.out.print("\n");
-		}
-		*/
 		level.printTable();
+		level.npc();
 	}
 
 	public void update(int direction)
@@ -87,6 +75,7 @@ public class Game {
 					level.table[level.hero.X][level.hero.Y] = 'H';
 				}
 			}
+			
 	}
 	
 	public void checkGameOver(){

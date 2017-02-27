@@ -17,7 +17,7 @@ public class MainGameLoop
 			direction = input();
 			g.update(direction); 
 		}
-	}
+	} 
 	
 	public static int input()
 	{

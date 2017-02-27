@@ -3,15 +3,15 @@ package dkeep.logic;
 public abstract class Level {
 	char table[][];
 	
-	Hero hero;
+	Hero hero = new Hero();
 	
 	boolean keyEnabled = true;
 	 
 	int endLevelX[];
 	int endLevelY[];
 	
-	int keyX = 0;
-	int keyY = 0;
+	int keyX;
+	int keyY;
 	
 	public boolean isFree(int x, int y)
 	{
@@ -27,11 +27,13 @@ public abstract class Level {
 	
 	public void openDoors(){
 		for(int i = 0; i < this.endLevelX.length; i++){
-			this.table[ this.endLevelY[i] ][ this.endLevelX[i] ] = 'S';
+			this.table[ this.endLevelX[i]][ this.endLevelY[i] ] = 'S';
 		}
 	}
 	
 	public abstract void printTable();
+	
+	public abstract void npc(); 
 	
 	public char[][] getTable() {
 		return table;

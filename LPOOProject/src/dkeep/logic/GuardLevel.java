@@ -1,8 +1,8 @@
 package dkeep.logic;
 
 public class GuardLevel extends Level {
-	
-			/*
+
+	/*
 			{'X','X','X','X','X','X','X','X','X','X'};
 			{'X','H',' ',' ','I',' ','X',' ','G','X'},
 			{'X','X','X',' ','X','X','X',' ',' ','X'},
@@ -13,66 +13,83 @@ public class GuardLevel extends Level {
 			{'X','X','X',' ','X','X','X','X',' ','X'},
 			{'X',' ','I',' ','I',' ','X',' ',' ','X'},
 			{'X','X','X','X','X','X','X','X','X','X'}};*/
-	
+
 	Guard guard = new Guard();
-	
+
 	public GuardLevel(){
 		char temp[][] ={
-		{'X','X','X','X','X','I','I','X','X','X'},
-		{'X',' ','X',' ','X',' ',' ','X',' ','X'},
-		{'X',' ','X','I','X',' ',' ','X','I','X'},
-		{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-		{'X','I','X','I','X',' ',' ','X','I','X'},
-		{'X',' ','X',' ','X',' ',' ','X',' ','X'},
-		{'X','X','X','X','X',' ',' ','X','X','X'},
-		{'X',' ',' ',' ',' ',' ',' ','X',' ','X'},
-		{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-		{'X','X','X','X','X','X','X','X','X','X'}
+				{'X','X','X','X','X','I','I','X','X','X'},
+				{'X',' ','X',' ','X',' ',' ','X',' ','X'},
+				{'X',' ','X','I','X',' ',' ','X','I','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X','I','X','I','X',' ',' ','X','I','X'},
+				{'X',' ','X',' ','X',' ',' ','X',' ','X'},
+				{'X','X','X','X','X',' ',' ','X','X','X'},
+				{'X',' ',' ',' ',' ',' ',' ','X',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X','X','X','X','X','X','X','X','X','X'}
 		};
-		
+
 		table = temp;
-		
+
 		guard.setX(8);
 		guard.setY(1);
+
+		keyX=7;
+		keyY=8;
+
+		hero.setX(1);
+		hero.setY(1); 
+
+		int endLevelX_temp[] = {0,0};
+		endLevelX = endLevelX_temp;
 		
+		int endLevelY_temp[] = {5,6};
+		endLevelY = endLevelY_temp;
+		
+		guard.movIndex = 0;
+		
+		int[] movPattern_temp = {4,2,2,2,2,4,4,4,4,4,4,2,6,6,6,6,6,6,6,8,8,8,8,8};
+		guard.movPattern = movPattern_temp;
+		
+		table[guard.X][guard.Y] = 'G';	
 	}  
-	
-	public void printTable(){
+
+	public void printTable(){ 
 		for(int j = 0; j < table[0].length; j++)
 		{
-			for(int i = 0; i < table.length; i++)
+			for(int i = 0; i < table.length; i++) 
 			{
-				if(keyEnabled == true){
-					if(keyX != guard.X || keyY != guard.Y ){
-						if(i == keyY && j == keyX){
-							System.out.print("k ");
-						}
-						else{
-							System.out.print(table[i][j] + " ");
-						}
-					}
-					else{
-						if( i == keyY && j == keyX){
-							System.out.print("$ ");
-						}
-						else{
-							System.out.print(table[i][j] + " ");
-						}
-					}
+				if(i == keyX && j == keyY && i == hero.X && j== hero.Y)
+				{
+					System.out.print("$ ");
 				}
-				else{
+			    else if(i == keyX && j == keyY)
+				{
+					System.out.print("k ");
+				}
+				else if(i == hero.X && j== hero.Y)
+				{
+					System.out.print("H ");
+				}
+				else
+				{
 					System.out.print(table[i][j] + " ");
 				}
-			}
+			} 
 			System.out.print("\n");
 		}
 	}
-	
-	
-	public void GuardMovement(){
-		int direction = guard.guardMov[guard.guardMovIndex];
-		guard.guardMovIndex +=1; 
-		guard.guardMovIndex %= 24;
+
+	public void npc()
+	{
+		guardMovement();
+	}
+
+	public void guardMovement(){
+		int direction = guard.movPattern[guard.movIndex];
+		guard.movIndex +=1; 
+		guard.movIndex %= 24;
 		if(direction == 2){
 			guard.Y += 1;
 			table[guard.X][guard.Y-1] = ' ';
@@ -123,7 +140,7 @@ public class GuardLevel extends Level {
 		printTable();
 		return keepRunning;
 	}
-	*/
-	
-	
+	 */
+
+
 }
