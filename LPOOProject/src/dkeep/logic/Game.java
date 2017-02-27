@@ -1,11 +1,9 @@
 package dkeep.logic;
 import java.util.Scanner;
 
-public class Game {	
+public class Game {	 
 	
-	Level level;
-
-	boolean keyEnabled = true;
+	Level level; 
 
 	boolean lastLevel = false;
 	
@@ -25,101 +23,111 @@ public class Game {
 		return gameOver;
 	}
 	
-	public void openDoors(){
-		for(int i = 0; i < level.endLevelX.length; i++){
-			level.table[ level.endLevelY[i] ][ level.endLevelX[i] ] = 'S';
+	public void draw()
+	{
+		/*
+		char table[][] = this.getLevel().getTable();
+		
+		if()
+		for(int i = 0; i < table[0].length;i++)
+		{
+			for(int j = 0; j < table.length;j++)
+			{
+				System.out.print(table[j][0]+ " ");
+			}
+			System.out.print("\n");
 		}
+		*/
+		level.printTable();
+	}
+
+	public void update(int direction)
+	{
+			if(direction == 2){
+				if(level.table[level.hero.X][level.hero.Y+1] == 'X' || level.table[level.hero.X][level.hero.Y+1] == 'I'){
+					return;
+				}
+				else{
+					level.hero.Y += 1;
+					checkGameOver();
+					level.table[level.hero.X][level.hero.Y-1] = ' ';
+					level.table[level.hero.X][level.hero.Y] = 'H';
+				}
+			}
+			else if(direction == 4){
+				if(level.table[level.hero.X-1][level.hero.Y] == 'X' || level.table[level.hero.X-1][level.hero.Y] == 'I'){
+					return;
+				}
+				else{
+					level.hero.X -= 1;
+					checkGameOver();
+					level.table[level.hero.X+1][level.hero.Y] = ' ';
+					level.table[level.hero.X][level.hero.Y] = 'H';
+				}
+			}
+			else if (direction == 6){
+				if(level.table[level.hero.X+1][level.hero.Y] == 'X' || level.table[level.hero.X+1][level.hero.Y] == 'I'){
+					return;
+				}
+				else{
+					level.hero.X += 1;
+					checkGameOver();
+					level.table[level.hero.X-1][level.hero.Y] = ' ';
+					level.table[level.hero.X][level.hero.Y] = 'H';
+				}
+			}
+			else if(direction == 8){
+				if(level.table[level.hero.X][level.hero.Y-1] == 'X' || level.table[level.hero.X][level.hero.Y-1] == 'I'){
+					return;
+				}
+				else{
+					level.hero.Y -= 1;
+					checkGameOver();
+					level.table[level.hero.X][level.hero.Y+1] = ' ';
+					level.table[level.hero.X][level.hero.Y] = 'H';
+				}
+			}
 	}
 	
-	public boolean checkPosition(){
-		boolean return_value = true;
-		if(table[heroY][heroX] == 'S'){
+	public void checkGameOver(){
+		if(level.table[level.hero.X][level.hero.Y] == 'S'){
 			if(lastLevel == true){
+				gameOver =  true;
 				System.out.println("You Win!");
 			}
-			return_value =  false;
+			else
+			{
+				lastLevel = true;
+			}
 		}
 		else{
-			/*if(table[heroY][heroX] == 'k'){
+			/*if(table[heroY][level.hero.X] == 'k'){
 				openDoors();
 			}*/
-			if(heroX == keyX && heroY == keyY){
-				keyEnabled = false;
-				openDoors();
+			if(level.hero.X == level.keyX && level.hero.Y == level.keyY){
+				level.keyEnabled = false;
+				level.openDoors();
 			}
-			if(table[heroY+1][heroX] == 'G' || table[heroY-1][heroX] == 'G' || table[heroY][heroX+1] == 'G' || table[heroY][heroX-1] == 'G'){
+			if(level.table[level.hero.X][level.hero.Y+1] == 'G' || level.table[level.hero.X][level.hero.Y-1] == 'G' || level.table[level.hero.X+1][level.hero.Y] == 'G' || level.table[level.hero.X-1][level.hero.Y] == 'G'){
 				System.out.println("GameOver");
-				return_value =  false;
+				gameOver =  true;
 			}
-			if(table[heroY+1][heroX] == 'O' || table[heroY-1][heroX] == 'O' || table[heroY][heroX+1] == 'O' || table[heroY][heroX-1] == 'O'){
+			if(level.table[level.hero.X][level.hero.Y+1] == 'O' || level.table[level.hero.X][level.hero.Y-1] == 'O' || level.table[level.hero.X+1][level.hero.Y] == 'O' || level.table[level.hero.X-1][level.hero.Y] == 'O'){
 				System.out.println("GameOver");
-				return_value =  false;
+				gameOver =  true;
 			}
-			if(table[heroY+1][heroX] == '*' || table[heroY-1][heroX] == '*' || table[heroY][heroX+1] == '*' || table[heroY][heroX-1] == '*'){
+			if(level.table[level.hero.X][level.hero.Y+1] == '*' || level.table[level.hero.X][level.hero.Y-1] == '*' || level.table[level.hero.X+1][level.hero.Y] == '*' || level.table[level.hero.X-1][level.hero.Y] == '*'){
 				System.out.println("GameOver");
-				return_value =  false;
+				gameOver =  true;
 			}
-			if(table[heroY+1][heroX] == '$' || table[heroY-1][heroX] == '$' || table[heroY][heroX+1] == '$' || table[heroY][heroX-1] == '$'){
+			if(level.table[level.hero.X][level.hero.Y+1] == '$' || level.table[level.hero.X][level.hero.Y-1] == '$' || level.table[level.hero.X+1][level.hero.Y] == '$' || level.table[level.hero.X-1][level.hero.Y] == '$'){
 				System.out.println("GameOver");
-				return_value =  false;
+				gameOver =  true;
 			}
 		}
-		return return_value;
 	}
 
 	
-	public boolean checkMovement(int direction){
-		boolean keep_running = true;
-		if(direction == 2){
-			if(table[heroY+1][heroX] == 'X' || table[heroY+1][heroX] == 'I'){
-				return keep_running;
-			}
-			else{
-				heroY += 1;
-				keep_running = checkPosition();
-				table[heroY-1][heroX] = ' ';
-				table[heroY][heroX] = 'H';
-				return keep_running;
-			}
-		}
-		else if(direction == 4){
-			if(table[heroY][heroX-1] == 'X' || table[heroY][heroX-1] == 'I'){
-				return keep_running;
-			}
-			else{
-				heroX -= 1;
-				keep_running = checkPosition();
-				table[heroY][heroX+1] = ' ';
-				table[heroY][heroX] = 'H';
-				return keep_running;
-			}
-		}
-		else if (direction == 6){
-			if(table[heroY][heroX+1] == 'X' || table[heroY][heroX+1] == 'I'){
-				return keep_running;
-			}
-			else{
-				heroX += 1;
-				keep_running = checkPosition();
-				table[heroY][heroX-1] = ' ';
-				table[heroY][heroX] = 'H';
-				return keep_running;
-			}
-		}
-		else if(direction == 8){
-			if(table[heroY-1][heroX] == 'X' || table[heroY-1][heroX] == 'I'){
-				return keep_running;
-			}
-			else{
-				heroY -= 1;
-				keep_running = checkPosition();
-				table[heroY+1][heroX] = ' ';
-				table[heroY][heroX] = 'H';
-				return keep_running;
-			}
-		}
-		
-		return keep_running;
-	}
+
 	
 }

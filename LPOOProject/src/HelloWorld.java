@@ -4,7 +4,7 @@ import dkeep.logic.GuardLevel;
 import dkeep.logic.OgreLevel;
 
 public class HelloWorld {
-
+/*
 	static char table1[][] = { {'X','X','X','X','X','X','X','X','X','X'},
 			{'X','H',' ',' ','I',' ','X',' ','G','X'},
 			{'X','X','X',' ','X','X','X',' ',' ','X'},
@@ -71,5 +71,5 @@ public class HelloWorld {
 		
 		System.exit(0);
 	}
-
+*/
 }

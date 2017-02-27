@@ -14,6 +14,8 @@ public class GuardLevel extends Level {
 			{'X',' ','I',' ','I',' ','X',' ',' ','X'},
 			{'X','X','X','X','X','X','X','X','X','X'}};*/
 	
+	Guard guard = new Guard();
+	
 	public GuardLevel(){
 		char temp[][] ={
 		{'X','X','X','X','X','I','I','X','X','X'},
@@ -28,27 +30,20 @@ public class GuardLevel extends Level {
 		{'X','X','X','X','X','X','X','X','X','X'}
 		};
 		
-		table = temp;	
-	}
-	
-	/*public void printTable(){
-		for(char[] bloc : table)
-		{
-			for(char i : bloc)
-			{
-				System.out.print(i + " ");
-			}
-			System.out.print("\n");
-		}
-	}
+		table = temp;
+		
+		guard.setX(8);
+		guard.setY(1);
+		
+	}  
 	
 	public void printTable(){
-		for(int i = 0; i < table.length; i++)
+		for(int j = 0; j < table[0].length; j++)
 		{
-			for(int j = 0; j < table[i].length; j++)
+			for(int i = 0; i < table.length; i++)
 			{
 				if(keyEnabled == true){
-					if(keyX != guardX || keyY != guardY ){
+					if(keyX != guard.X || keyY != guard.Y ){
 						if(i == keyY && j == keyX){
 							System.out.print("k ");
 						}
@@ -74,33 +69,33 @@ public class GuardLevel extends Level {
 	}
 	
 	
-	public boolean GuardMovement(){
-		int direction = guardMov[guardMovIndex];
-		guardMovIndex +=1;
-		guardMovIndex %= 24;
+	public void GuardMovement(){
+		int direction = guard.guardMov[guard.guardMovIndex];
+		guard.guardMovIndex +=1; 
+		guard.guardMovIndex %= 24;
 		if(direction == 2){
-			guardY += 1;
-			table[guardY-1][guardX] = ' ';
-			table[guardY][guardX] = 'G';	
+			guard.Y += 1;
+			table[guard.X][guard.Y-1] = ' ';
+			table[guard.X][guard.Y] = 'G';	
 		}
 		else if(direction == 4){
-			guardX -= 1;
-			table[guardY][guardX+1] = ' ';
-			table[guardY][guardX] = 'G';
+			guard.X -= 1;
+			table[guard.X+1][guard.Y] = ' ';
+			table[guard.X][guard.Y] = 'G';
 		}
 		else if (direction == 6){
-			guardX += 1;
-			table[guardY][guardX-1] = ' ';
-			table[guardY][guardX] = 'G';
+			guard.X += 1; 
+			table[guard.X-1][guard.Y] = ' ';
+			table[guard.X][guard.Y] = 'G';
 		}
 		else if(direction == 8){
-			guardY -= 1;
-			table[guardY+1][guardX] = ' ';
-			table[guardY][guardX] = 'G';
+			guard.Y -= 1;
+			table[guard.X][guard.Y+1] = ' ';
+			table[guard.X][guard.Y] = 'G';
 		}
-		return checkPosition();
+		//return checkGameOver();
 	}
-	
+	/*
 	public boolean input(){
 		int direction = 0;
 		boolean keepRunning = true;
@@ -127,7 +122,8 @@ public class GuardLevel extends Level {
 		}
 		printTable();
 		return keepRunning;
-	}*/
+	}
+	*/
 	
 	
 }

@@ -13,6 +13,8 @@ public class OgreLevel extends Level{
 		{'X','H',' ',' ',' ',' ',' ',' ','X'},
 		{'X','X','X','X','X','X','X','X','X'}*/
 	
+	Ogre ogre;
+	
 	OgreLevel(){
 		char temp[][] ={
 				{'X','I','X','X','X','X','X','X','X'},
@@ -35,7 +37,7 @@ public class OgreLevel extends Level{
 			for(int j = 0; j < table[i].length; j++)
 			{
 				if(keyEnabled == true){
-					if((keyX != ogreX || keyY != ogreY) && (keyX != clubX || keyY != clubY) ){
+					if((keyX != ogre.X || keyY != ogre.Y) && (keyX != ogre.clubX || keyY != ogre.clubY) ){
 						if(i == keyY && j == keyX){
 							System.out.print("k ");
 						}
@@ -60,106 +62,105 @@ public class OgreLevel extends Level{
 		}
 	}
 
-	public boolean OgreMovement(){
+	public void OgreMovement(){
 		Random rand = new Random();
 		boolean valid = false;
 		while(!valid){
 			int direction = (rand.nextInt(4) + 1)*2;
 			if(direction == 2){
-				if(table[ogreY+1][ogreX] != 'X' && table[ogreY+1][ogreX] != 'I'){
-					ogreY += 1;
-					table[ogreY-1][ogreX] = ' ';
-					table[ogreY][ogreX] = 'O';
+				if(table[ogre.Y+1][ogre.X] != 'X' && table[ogre.Y+1][ogre.X] != 'I'){
+					ogre.Y += 1;
+					table[ogre.Y-1][ogre.X] = ' ';
+					table[ogre.Y][ogre.X] = 'O';
 					valid = true;
 				}
 
 			}
 			else if(direction == 4){
-				if(table[ogreY][ogreX-1] != 'X' && table[ogreY][ogreX-1] != 'I'){
-					ogreX -= 1;
-					table[ogreY][ogreX+1] = ' ';
-					table[ogreY][ogreX] = 'O';
+				if(table[ogre.Y][ogre.X-1] != 'X' && table[ogre.Y][ogre.X-1] != 'I'){
+					ogre.X -= 1;
+					table[ogre.Y][ogre.X+1] = ' ';
+					table[ogre.Y][ogre.X] = 'O';
 					valid = true;
 				}
 			}
 			else if (direction == 6){
-				if(table[ogreY][ogreX+1] != 'X' && table[ogreY][ogreX+1] != 'I'){
-					ogreX += 1;
-					table[ogreY][ogreX-1] = ' ';
-					table[ogreY][ogreX] = 'O';
+				if(table[ogre.Y][ogre.X+1] != 'X' && table[ogre.Y][ogre.X+1] != 'I'){
+					ogre.X += 1;
+					table[ogre.Y][ogre.X-1] = ' ';
+					table[ogre.Y][ogre.X] = 'O';
 					valid = true;
 				}
 			}
 			else if(direction == 8){
-				if(table[ogreY-1][ogreX] != 'X' && table[ogreY-1][ogreX] != 'I'){
-					ogreY -= 1;
-					table[ogreY+1][ogreX] = ' ';
-					table[ogreY][ogreX] = 'O';
+				if(table[ogre.Y-1][ogre.X] != 'X' && table[ogre.Y-1][ogre.X] != 'I'){
+					ogre.Y -= 1;
+					table[ogre.Y+1][ogre.X] = ' ';
+					table[ogre.Y][ogre.X] = 'O';
 					valid = true;
 				}
 			}
 		}
-		return checkPosition();
+		//return checkPosition();
 	}
 
-	public boolean ClubMovement(){
+	public void ClubMovement(){
 		Random rand = new Random();
 		boolean valid = false;
 		while(!valid){
 			int direction = (rand.nextInt(4) + 1)*2;
 
 			if(direction == 2){
-				if(table[ogreY+1][ogreX] != 'X' && table[ogreY+1][ogreX] != 'I' && table[ogreY+1][ogreX] != 'H'){
-					if(clubX != ogreX || clubY != ogreY){
-						table[clubY][clubX] = ' ';	
+				if(table[ogre.Y+1][ogre.X] != 'X' && table[ogre.Y+1][ogre.X] != 'I' && table[ogre.Y+1][ogre.X] != 'H'){
+					if(ogre.clubX != ogre.X || ogre.clubY != ogre.Y){
+						table[ogre.clubY][ogre.clubX] = ' ';	
 					}
-					clubY= ogreY + 1;
-					clubX = ogreX;
-					table[clubY][clubX] = '*';
+					ogre.clubY= ogre.Y + 1;
+					ogre.clubX = ogre.X;
+					table[ogre.clubY][ogre.clubX] = '*';
 					valid = true;
 				}
 
 			}
 			else if(direction == 4){
-				if(table[ogreY][ogreX-1] != 'X' && table[ogreY][ogreX-1] != 'I' && table[ogreY+1][ogreX] != 'H'){
-					if(clubX != ogreX || clubY != ogreY){
-						table[clubY][clubX] = ' ';	
+				if(table[ogre.Y][ogre.X-1] != 'X' && table[ogre.Y][ogre.X-1] != 'I' && table[ogre.Y+1][ogre.X] != 'H'){
+					if(ogre.clubX != ogre.X || ogre.clubY != ogre.Y){
+						table[ogre.clubY][ogre.clubX] = ' ';	
 					}
-					clubX= ogreX - 1;
-					clubY = ogreY;
-					table[clubY][clubX] = '*';
+					ogre.clubX= ogre.X - 1;
+					ogre.clubY = ogre.Y;
+					table[ogre.clubY][ogre.clubX] = '*';
 					valid = true;
 				}
 			}
 			else if (direction == 6){
-				if(table[ogreY][ogreX+1] != 'X' && table[ogreY][ogreX+1] != 'I' && table[ogreY+1][ogreX] != 'H'){
-					if(clubX != ogreX || clubY != ogreY){
-						table[clubY][clubX] = ' ';	
+				if(table[ogre.Y][ogre.X+1] != 'X' && table[ogre.Y][ogre.X+1] != 'I' && table[ogre.Y+1][ogre.X] != 'H'){
+					if(ogre.clubX != ogre.X || ogre.clubY != ogre.Y){
+						table[ogre.clubY][ogre.clubX] = ' ';	
 					}
-					clubX= ogreX + 1;
-					clubY = ogreY;
-					table[clubY][clubX] = '*';
+					ogre.clubX= ogre.X + 1;
+					ogre.clubY = ogre.Y;
+					table[ogre.clubY][ogre.clubX] = '*';
 					valid = true;
 				}
 			}
 			else if(direction == 8){
-				if(table[ogreY-1][ogreX] != 'X' && table[ogreY-1][ogreX] != 'I' && table[ogreY+1][ogreX] != 'H'){
-					if(clubX != ogreX || clubY != ogreY){
-						table[clubY][clubX] = ' ';	
+				if(table[ogre.Y-1][ogre.X] != 'X' && table[ogre.Y-1][ogre.X] != 'I' && table[ogre.Y+1][ogre.X] != 'H'){
+					if(ogre.clubX != ogre.X || ogre.clubY != ogre.Y){
+						table[ogre.clubY][ogre.clubX] = ' ';	
 					}
-					clubY= ogreY - 1;
-					clubX = ogreX;
-					table[clubY][clubX] = '*';
+					ogre.clubY= ogre.Y - 1;
+					ogre.clubX = ogre.X;
+					table[ogre.clubY][ogre.clubX] = '*';
 					valid = true;
 				}
 			}
 		}
 
-		return checkPosition();
+		//return checkPosition();
 	}
-
-
-
+	
+	/*
 	public boolean input(){
 		int direction = 0;
 		boolean keepRunning = true;
@@ -184,5 +185,6 @@ public class OgreLevel extends Level{
 		printTable();
 		return keepRunning;
 	}
+	*/
 
 }

@@ -3,6 +3,10 @@ package dkeep.logic;
 public abstract class Level {
 	char table[][];
 	
+	Hero hero;
+	
+	boolean keyEnabled = true;
+	 
 	int endLevelX[];
 	int endLevelY[];
 	
@@ -13,13 +17,21 @@ public abstract class Level {
 	{
 		if(table[x][y] == ' ')
 		{
-			return true;
+			return true; 
 		}
 		else
 		{
 			return false;
 		}
 	}
+	
+	public void openDoors(){
+		for(int i = 0; i < this.endLevelX.length; i++){
+			this.table[ this.endLevelY[i] ][ this.endLevelX[i] ] = 'S';
+		}
+	}
+	
+	public abstract void printTable();
 	
 	public char[][] getTable() {
 		return table;

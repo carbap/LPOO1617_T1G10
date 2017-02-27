@@ -1,5 +1,6 @@
 package dkeep.logic;
 
-public class Hero {
-
+public class Hero extends Character
+{
+	
 }

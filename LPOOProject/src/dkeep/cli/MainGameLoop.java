@@ -12,10 +12,10 @@ public class MainGameLoop
 		Game g = new Game(new GuardLevel());
 		int direction;
 		while(!g.isGameOver())
-		{
-			//draw();
+		{ 
+			g.draw();
 			direction = input();
-			//g.update(direction);
+			g.update(direction); 
 		}
 	}
 	
@@ -34,11 +34,5 @@ public class MainGameLoop
 			}
 		}
 		return direction;
-	}
-	
-	public static void draw(Game g)
-	{
-		char table[][] = g.getLevel().getTable();
-		
 	}
 }
