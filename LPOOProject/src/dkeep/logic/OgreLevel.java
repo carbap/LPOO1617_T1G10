@@ -13,9 +13,9 @@ public class OgreLevel extends Level{
 		{'X','H',' ',' ',' ',' ',' ',' ','X'},
 		{'X','X','X','X','X','X','X','X','X'}*/
 	
-	Ogre ogre;
+	Ogre ogre = new Ogre();
 	
-	OgreLevel(){
+	public OgreLevel(){
 		char temp[][] ={ 
 				{'X','I','X','X','X','X','X','X','X'},
 				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
@@ -28,33 +28,57 @@ public class OgreLevel extends Level{
 				{'X','X','X','X','X','X','X','X','X'}
 				};
 				
-				table = temp;	
+				table = temp;
+				
+				ogre.setX(4);
+				ogre.setY(1);
+				
+				ogre.clubX = 4;
+				ogre.clubY = 2;
+				
+				keyX=7;
+				keyY=1;
+				
+				hero.setX(1);
+				hero.setY(7);
+				
+				int endLevelX_temp[] = {0};
+				endLevelX = endLevelX_temp;
+				
+				int endLevelY_temp[] = {1};
+				endLevelY = endLevelY_temp;
+				
+				table[ogre.X][ogre.Y] = 'O';
+				table[ogre.clubX][ogre.clubY] = '*'; 
 	}
 
 	public void printTable(){
-		for(int i = 0; i < table.length; i++)
+		for(int j = 0; j < table[0].length; j++)
 		{
-			for(int j = 0; j < table[i].length; j++)
+			for(int i = 0; i < table.length; i++)
 			{
-				if(keyEnabled == true){
-					if((keyX != ogre.X || keyY != ogre.Y) && (keyX != ogre.clubX || keyY != ogre.clubY) ){
-						if(i == keyY && j == keyX){
-							System.out.print("k ");
-						}
-						else{
-							System.out.print(table[i][j] + " ");
-						}
-					}
-					else{
-						if( i == keyY && j == keyX){
-							System.out.print("$ ");
-						}
-						else{
-							System.out.print(table[i][j] + " ");
-						}
-					}
+				if(i == keyX && j == keyY && i == hero.X && j== hero.Y)
+				{
+					System.out.print("$ ");
 				}
-				else{
+				else if(i == keyX && j == keyY && i == ogre.X && j== ogre.Y)
+				{
+					System.out.print("$ ");
+				}
+				else if(i == keyX && j == keyY && i == ogre.clubX && j== ogre.clubY)
+				{
+					System.out.print("$ ");
+				}
+			    else if(i == keyX && j == keyY && keyEnabled == true)
+				{
+					System.out.print("k ");
+				}
+				else if(i == hero.X && j== hero.Y)
+				{
+					System.out.print("H "); 
+				}
+				else
+				{
 					System.out.print(table[i][j] + " ");
 				}
 			}
@@ -62,8 +86,10 @@ public class OgreLevel extends Level{
 		}
 	}
 	
-	public void npc(){
+	public void npc()
+	{
 		ogreMovement();
+		clubMovement();
 	}
 
 	public void ogreMovement(){
@@ -72,35 +98,35 @@ public class OgreLevel extends Level{
 		while(!valid){
 			int direction = (rand.nextInt(4) + 1)*2;
 			if(direction == 2){
-				if(table[ogre.Y+1][ogre.X] != 'X' && table[ogre.Y+1][ogre.X] != 'I'){
+				if(table[ogre.X][ogre.Y+1] != 'X' && table[ogre.X][ogre.Y+1] != 'I'){
 					ogre.Y += 1;
-					table[ogre.Y-1][ogre.X] = ' ';
-					table[ogre.Y][ogre.X] = 'O';
+					table[ogre.X][ogre.Y-1] = ' ';
+					table[ogre.X][ogre.Y] = 'O';  
 					valid = true;
 				}
 
 			}
 			else if(direction == 4){
-				if(table[ogre.Y][ogre.X-1] != 'X' && table[ogre.Y][ogre.X-1] != 'I'){
+				if(table[ogre.X-1][ogre.Y] != 'X' && table[ogre.X-1][ogre.Y] != 'I'){
 					ogre.X -= 1;
-					table[ogre.Y][ogre.X+1] = ' ';
-					table[ogre.Y][ogre.X] = 'O';
+					table[ogre.X+1][ogre.Y] = ' ';
+					table[ogre.X][ogre.Y] = 'O';
 					valid = true;
 				}
 			}
 			else if (direction == 6){
-				if(table[ogre.Y][ogre.X+1] != 'X' && table[ogre.Y][ogre.X+1] != 'I'){
+				if(table[ogre.X+1][ogre.Y] != 'X' && table[ogre.X][ogre.Y+1] != 'I'){
 					ogre.X += 1;
-					table[ogre.Y][ogre.X-1] = ' ';
-					table[ogre.Y][ogre.X] = 'O';
+					table[ogre.X-1][ogre.Y] = ' ';
+					table[ogre.X][ogre.Y] = 'O';
 					valid = true;
 				}
 			}
 			else if(direction == 8){
-				if(table[ogre.Y-1][ogre.X] != 'X' && table[ogre.Y-1][ogre.X] != 'I'){
+				if(table[ogre.X][ogre.Y-1] != 'X' && table[ogre.X][ogre.Y-1] != 'I'){
 					ogre.Y -= 1;
-					table[ogre.Y+1][ogre.X] = ' ';
-					table[ogre.Y][ogre.X] = 'O';
+					table[ogre.X][ogre.Y+1] = ' ';
+					table[ogre.X][ogre.Y] = 'O';
 					valid = true;
 				}
 			}
@@ -108,54 +134,54 @@ public class OgreLevel extends Level{
 		//return checkPosition();
 	}
 
-	public void ClubMovement(){
+	public void clubMovement(){
 		Random rand = new Random();
 		boolean valid = false;
 		while(!valid){
 			int direction = (rand.nextInt(4) + 1)*2;
 
 			if(direction == 2){
-				if(table[ogre.Y+1][ogre.X] != 'X' && table[ogre.Y+1][ogre.X] != 'I' && table[ogre.Y+1][ogre.X] != 'H'){
+				if(table[ogre.X][ogre.Y+1] != 'X' && table[ogre.X][ogre.Y+1] != 'I' && table[ogre.X][ogre.Y+1] != 'H'){
 					if(ogre.clubX != ogre.X || ogre.clubY != ogre.Y){
-						table[ogre.clubY][ogre.clubX] = ' ';	
+						table[ogre.clubX][ogre.clubY] = ' ';	
 					}
 					ogre.clubY= ogre.Y + 1;
 					ogre.clubX = ogre.X;
-					table[ogre.clubY][ogre.clubX] = '*';
-					valid = true;
+					table[ogre.clubX][ogre.clubY] = '*';
+					valid = true; 
 				}
 
 			}
 			else if(direction == 4){
-				if(table[ogre.Y][ogre.X-1] != 'X' && table[ogre.Y][ogre.X-1] != 'I' && table[ogre.Y+1][ogre.X] != 'H'){
+				if(table[ogre.X-1][ogre.Y] != 'X' && table[ogre.X-1][ogre.Y] != 'I' && table[ogre.X][ogre.Y+1] != 'H'){
 					if(ogre.clubX != ogre.X || ogre.clubY != ogre.Y){
-						table[ogre.clubY][ogre.clubX] = ' ';	
+						table[ogre.clubX][ogre.clubY] = ' ';	
 					}
 					ogre.clubX= ogre.X - 1;
 					ogre.clubY = ogre.Y;
-					table[ogre.clubY][ogre.clubX] = '*';
+					table[ogre.clubX][ogre.clubY] = '*';
 					valid = true;
 				}
 			}
 			else if (direction == 6){
-				if(table[ogre.Y][ogre.X+1] != 'X' && table[ogre.Y][ogre.X+1] != 'I' && table[ogre.Y+1][ogre.X] != 'H'){
+				if(table[ogre.X+1][ogre.Y] != 'X' && table[ogre.X+1][ogre.Y] != 'I' && table[ogre.X][ogre.Y+1] != 'H'){
 					if(ogre.clubX != ogre.X || ogre.clubY != ogre.Y){
-						table[ogre.clubY][ogre.clubX] = ' ';	
+						table[ogre.clubX][ogre.clubY] = ' ';	
 					}
 					ogre.clubX= ogre.X + 1;
 					ogre.clubY = ogre.Y;
-					table[ogre.clubY][ogre.clubX] = '*';
+					table[ogre.clubX][ogre.clubY] = '*';
 					valid = true;
 				}
 			}
 			else if(direction == 8){
-				if(table[ogre.Y-1][ogre.X] != 'X' && table[ogre.Y-1][ogre.X] != 'I' && table[ogre.Y+1][ogre.X] != 'H'){
+				if(table[ogre.X][ogre.Y-1] != 'X' && table[ogre.X][ogre.Y-1] != 'I' && table[ogre.X][ogre.Y+1] != 'H'){
 					if(ogre.clubX != ogre.X || ogre.clubY != ogre.Y){
-						table[ogre.clubY][ogre.clubX] = ' ';	
+						table[ogre.clubX][ogre.clubY] = ' ';	
 					}
 					ogre.clubY= ogre.Y - 1;
 					ogre.clubX = ogre.X;
-					table[ogre.clubY][ogre.clubX] = '*';
+					table[ogre.clubX][ogre.clubY] = '*';
 					valid = true;
 				}
 			}

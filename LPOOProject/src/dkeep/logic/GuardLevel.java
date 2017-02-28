@@ -64,11 +64,11 @@ public class GuardLevel extends Level {
 				{
 					System.out.print("$ ");
 				}
-			    else if(i == keyX && j == keyY)
+			    else if(i == keyX && j == keyY && keyEnabled == true)
 				{
 					System.out.print("k ");
 				}
-				else if(i == hero.X && j== hero.Y)
+				else if(i == hero.X && j== hero.Y) 
 				{
 					System.out.print("H ");
 				}

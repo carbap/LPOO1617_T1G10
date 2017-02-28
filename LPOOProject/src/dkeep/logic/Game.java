@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class Game {	 
 	
-	Level level; 
+	public Level level; 
 
-	boolean lastLevel = false;
+	public boolean lastLevel = false;
 	
 	boolean gameOver = false;
 
@@ -29,8 +29,8 @@ public class Game {
 		level.npc();
 	}
 
-	public void update(int direction)
-	{
+	public void update(int direction) 
+	{ 
 			if(direction == 2){
 				if(level.table[level.hero.X][level.hero.Y+1] == 'X' || level.table[level.hero.X][level.hero.Y+1] == 'I'){
 					return;
@@ -41,7 +41,7 @@ public class Game {
 					level.table[level.hero.X][level.hero.Y-1] = ' ';
 					level.table[level.hero.X][level.hero.Y] = 'H';
 				}
-			}
+			} 
 			else if(direction == 4){
 				if(level.table[level.hero.X-1][level.hero.Y] == 'X' || level.table[level.hero.X-1][level.hero.Y] == 'I'){
 					return;
@@ -62,6 +62,7 @@ public class Game {
 					checkGameOver();
 					level.table[level.hero.X-1][level.hero.Y] = ' ';
 					level.table[level.hero.X][level.hero.Y] = 'H';
+					
 				}
 			}
 			else if(direction == 8){
@@ -75,43 +76,58 @@ public class Game {
 					level.table[level.hero.X][level.hero.Y] = 'H';
 				}
 			}
-			
 	}
 	
-	public void checkGameOver(){
+	public void checkGameOver(){  
 		if(level.table[level.hero.X][level.hero.Y] == 'S'){
 			if(lastLevel == true){
 				gameOver =  true;
 				System.out.println("You Win!");
-			}
-			else
-			{
-				lastLevel = true;
+				return;
 			}
 		}
 		else{
-			/*if(table[heroY][level.hero.X] == 'k'){
-				openDoors();
-			}*/
 			if(level.hero.X == level.keyX && level.hero.Y == level.keyY){
 				level.keyEnabled = false;
 				level.openDoors();
 			}
+			if(level.table[level.hero.X][level.hero.Y] == 'G')
+			{
+				System.out.println("GameOver");
+				gameOver =  true;
+				return;
+			}
+			if(level.table[level.hero.X][level.hero.Y] == 'O')
+			{
+				System.out.println("GameOver");
+				gameOver =  true;
+				return;
+			}
+			if(level.table[level.hero.X][level.hero.Y] == '*')
+			{
+				System.out.println("GameOver"); 
+				gameOver =  true;
+				return;
+			}
 			if(level.table[level.hero.X][level.hero.Y+1] == 'G' || level.table[level.hero.X][level.hero.Y-1] == 'G' || level.table[level.hero.X+1][level.hero.Y] == 'G' || level.table[level.hero.X-1][level.hero.Y] == 'G'){
 				System.out.println("GameOver");
 				gameOver =  true;
+				return;
 			}
 			if(level.table[level.hero.X][level.hero.Y+1] == 'O' || level.table[level.hero.X][level.hero.Y-1] == 'O' || level.table[level.hero.X+1][level.hero.Y] == 'O' || level.table[level.hero.X-1][level.hero.Y] == 'O'){
 				System.out.println("GameOver");
 				gameOver =  true;
+				return;
 			}
 			if(level.table[level.hero.X][level.hero.Y+1] == '*' || level.table[level.hero.X][level.hero.Y-1] == '*' || level.table[level.hero.X+1][level.hero.Y] == '*' || level.table[level.hero.X-1][level.hero.Y] == '*'){
 				System.out.println("GameOver");
 				gameOver =  true;
+				return;
 			}
 			if(level.table[level.hero.X][level.hero.Y+1] == '$' || level.table[level.hero.X][level.hero.Y-1] == '$' || level.table[level.hero.X+1][level.hero.Y] == '$' || level.table[level.hero.X-1][level.hero.Y] == '$'){
 				System.out.println("GameOver");
 				gameOver =  true;
+				return; 
 			}
 		}
 	}

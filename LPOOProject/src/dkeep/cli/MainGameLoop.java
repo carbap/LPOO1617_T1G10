@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class MainGameLoop
 {
-	
+
 	public static void main(String[] args)
 	{
 		Game g = new Game(new GuardLevel());
@@ -15,10 +15,27 @@ public class MainGameLoop
 		{ 
 			g.draw();
 			direction = input();
-			g.update(direction); 
+			g.update(direction);
+			if(     g.lastLevel==false
+					&&
+					(
+					(g.level.hero.X == g.level.endLevelX[0] && g.level.hero.Y == g.level.endLevelY[0]) ||
+					(g.level.hero.X == g.level.endLevelX[1] && g.level.hero.Y == g.level.endLevelY[1])
+					)
+					&&
+					g.level.keyEnabled == false
+			  )
+			{ 
+				g = new Game(new OgreLevel());
+				g.lastLevel = true;
+			}
+		}
+		if(g.isGameOver())
+		{
+			g.draw();   
 		}
 	} 
-	
+
 	public static int input()
 	{
 		int direction = 0;

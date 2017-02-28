@@ -3,12 +3,12 @@ package dkeep.logic;
 public abstract class Level {
 	char table[][];
 	
-	Hero hero = new Hero();
+	public Hero hero = new Hero();
 	
-	boolean keyEnabled = true;
+	public boolean keyEnabled = true;
 	 
-	int endLevelX[];
-	int endLevelY[];
+	public int endLevelX[];
+	public int endLevelY[];
 	
 	int keyX;
 	int keyY;
