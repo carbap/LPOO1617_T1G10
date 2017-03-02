@@ -2,32 +2,34 @@ package dkeep.cli;
 
 import dkeep.logic.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainGameLoop
 {
 
+	static public ArrayList <Level> gameLevels = new ArrayList<Level>();
+	
 	public static void main(String[] args)
 	{
-		Game g = new Game(new GuardLevel());
+		loadGameLevels();
+		int levelIndex = 0;
+		Game g = new Game(gameLevels.get(levelIndex));
+		levelIndex++;
 		int direction;
 		while(!g.isGameOver())
 		{ 
 			g.draw();
 			direction = input();
 			g.update(direction);
-			if(     g.lastLevel==false
-					&&
-					(
-					(g.level.hero.X == g.level.endLevelX[0] && g.level.hero.Y == g.level.endLevelY[0]) ||
-					(g.level.hero.X == g.level.endLevelX[1] && g.level.hero.Y == g.level.endLevelY[1])
-					)
-					&&
-					g.level.keyEnabled == false
-			  )
-			{ 
-				g = new Game(new OgreLevel());
-				g.lastLevel = true;
+			if(g.isEndLevel() ){
+				if(levelIndex == gameLevels.size()){
+					g.setGameOver(true);
+				}
+				else{
+					g.changeLevel(gameLevels.get(levelIndex));
+					levelIndex++;
+				}
 			}
 		}
 		if(g.isGameOver())
@@ -51,5 +53,13 @@ public class MainGameLoop
 			}
 		}
 		return direction;
+	}
+	
+	public static void loadGameLevels(){
+		Level level0 = new GuardLevel();
+		Level level1 = new OgreLevel();
+		gameLevels.add(level0);
+		gameLevels.add(level1);
+		
 	}
 }

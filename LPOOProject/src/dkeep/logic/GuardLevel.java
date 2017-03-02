@@ -14,8 +14,6 @@ public class GuardLevel extends Level {
 			{'X',' ','I',' ','I',' ','X',' ',' ','X'},
 			{'X','X','X','X','X','X','X','X','X','X'}};*/
 
-	Guard guard = new Guard();
-
 	public GuardLevel(){
 		char temp[][] ={
 				{'X','X','X','X','X','I','I','X','X','X'},
@@ -32,27 +30,19 @@ public class GuardLevel extends Level {
 
 		table = temp;
 
-		guard.setX(8);
-		guard.setY(1);
+		this.hero.setPosition(1, 1);
+		
+		Guard guard = new Guard(8,1);
+		this.Enemies.add(guard);
 
 		keyX=7;
 		keyY=8;
-
-		hero.setX(1);
-		hero.setY(1); 
 
 		int endLevelX_temp[] = {0,0};
 		endLevelX = endLevelX_temp;
 		
 		int endLevelY_temp[] = {5,6};
 		endLevelY = endLevelY_temp;
-		
-		guard.movIndex = 0;
-		
-		int[] movPattern_temp = {4,2,2,2,2,4,4,4,4,4,4,2,6,6,6,6,6,6,6,8,8,8,8,8};
-		guard.movPattern = movPattern_temp;
-		
-		table[guard.X][guard.Y] = 'G';	
 	}  
 
 	public void printTable(){ 
@@ -81,11 +71,7 @@ public class GuardLevel extends Level {
 		}
 	}
 
-	public void npc()
-	{
-		guardMovement();
-	}
-
+/*
 	public void guardMovement(){
 		int direction = guard.movPattern[guard.movIndex];
 		guard.movIndex +=1; 
@@ -112,35 +98,7 @@ public class GuardLevel extends Level {
 		}
 		//return checkGameOver();
 	}
-	/*
-	public boolean input(){
-		int direction = 0;
-		boolean keepRunning = true;
-		boolean validInput = false;
-		Scanner s = new Scanner(System.in);
-		while(!validInput){
-			direction = s.nextInt();
-			if(direction == 2 || direction == 4 || direction == 6 || direction == 8){
-				validInput = true;
-			}
-			else{
-				System.out.println("Invalid Input. Choose a direction: 2, 4, 6 or 8.\n");
-			}
-		}
-		keepRunning = checkMovement(direction);
-		if(!keepRunning){
-			printTable();
-			return false;
-		}
-		keepRunning = GuardMovement();
-		if(!keepRunning){
-			printTable();
-			return false;
-		}
-		printTable();
-		return keepRunning;
-	}
-	 */
+	*/
 
 
 }

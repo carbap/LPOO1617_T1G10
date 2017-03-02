@@ -1,5 +1,4 @@
 package dkeep.logic;
-import java.util.Random;
 
 public class OgreLevel extends Level{
 	/*
@@ -13,7 +12,6 @@ public class OgreLevel extends Level{
 		{'X','H',' ',' ',' ',' ',' ',' ','X'},
 		{'X','X','X','X','X','X','X','X','X'}*/
 	
-	Ogre ogre = new Ogre();
 	
 	public OgreLevel(){
 		char temp[][] ={ 
@@ -29,27 +27,32 @@ public class OgreLevel extends Level{
 				};
 				
 				table = temp;
+				this.hero.setPosition(1, 7);
+				Ogre ogre0 = new Ogre(4, 1, 4, 2);
+				Ogre ogre1 = new Ogre(4, 1, 4, 2);
+				Ogre ogre2 = new Ogre(4, 1, 4, 2);
+				this.Enemies.add(ogre0);
+				this.Enemies.add(ogre1);
+				this.Enemies.add(ogre2);
 				
-				ogre.setX(4);
+				keyX = 7;
+				keyY = 1;
+				
+				/*ogre.setX(4);
 				ogre.setY(1);
 				
 				ogre.clubX = 4;
 				ogre.clubY = 2;
 				
-				keyX=7;
-				keyY=1;
 				
 				hero.setX(1);
 				hero.setY(7);
-				
+				*/
 				int endLevelX_temp[] = {0};
 				endLevelX = endLevelX_temp;
 				
 				int endLevelY_temp[] = {1};
 				endLevelY = endLevelY_temp;
-				
-				table[ogre.X][ogre.Y] = 'O';
-				table[ogre.clubX][ogre.clubY] = '*'; 
 	}
 
 	public void printTable(){
@@ -61,14 +64,14 @@ public class OgreLevel extends Level{
 				{
 					System.out.print("$ ");
 				}
-				else if(i == keyX && j == keyY && i == ogre.X && j== ogre.Y)
+				/*else if(i == keyX && j == keyY && i == ogre.X && j== ogre.Y)
 				{
 					System.out.print("$ ");
 				}
 				else if(i == keyX && j == keyY && i == ogre.clubX && j== ogre.clubY)
 				{
 					System.out.print("$ ");
-				}
+				}*/
 			    else if(i == keyX && j == keyY && keyEnabled == true)
 				{
 					System.out.print("k ");
@@ -86,12 +89,7 @@ public class OgreLevel extends Level{
 		}
 	}
 	
-	public void npc()
-	{
-		ogreMovement();
-		clubMovement();
-	}
-
+/*
 	public void ogreMovement(){
 		Random rand = new Random();
 		boolean valid = false;
@@ -188,33 +186,6 @@ public class OgreLevel extends Level{
 		}
 
 		//return checkPosition();
-	}
-	
-	/*
-	public boolean input(){
-		int direction = 0;
-		boolean keepRunning = true;
-		boolean validInput = false;
-		Scanner s = new Scanner(System.in); 
-		while(!validInput){
-			direction = s.nextInt();
-			if(direction == 2 || direction == 4 || direction == 6 || direction == 8){
-				validInput = true;
-			}
-			else{
-				System.out.println("Invalid Input. Choose a direction: 2, 4, 6 or 8.");
-			}
-		}
-		keepRunning = checkMovement(direction);
-		if(!keepRunning){
-			printTable();
-			return false;
-		}
-		keepRunning = OgreMovement();
-		keepRunning = ClubMovement();
-		printTable();
-		return keepRunning;
-	}
-	*/
+	}*/
 
 }

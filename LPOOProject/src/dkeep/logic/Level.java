@@ -1,14 +1,19 @@
 package dkeep.logic;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public abstract class Level {
 	char table[][];
-	
-	public Hero hero = new Hero();
 	
 	public boolean keyEnabled = true;
 	 
 	public int endLevelX[];
 	public int endLevelY[];
+	
+	public ArrayList <Character> Enemies = new ArrayList<Character>();
+	
+	public Hero hero = new Hero(0,0);
 	
 	int keyX;
 	int keyY;
@@ -33,26 +38,31 @@ public abstract class Level {
 	
 	public abstract void printTable();
 	
-	public abstract void npc(); 
-	
-	public char[][] getTable() {
-		return table;
+	public void npc(){
+		for(int i = 0; i < this.Enemies.size(); i++){
+			Enemies.get(i).move(table);
+		}
 	}
+	
+	
+	public char[][] getTableCopy() {
+		char[][] map = new char[table.length][];
+		for (int i = 0; i < map.length ; i++)
+			map[i] = Arrays.copyOf(table[i], table[i].length);
+		return map;
+	}
+	
 	public void setTable(char[][] table) {
 		this.table = table;
 	}
 	public int[] getEndLevelX() {
 		return endLevelX;
 	}
-	public void setEndLevelX(int[] endLevelX) {
-		this.endLevelX = endLevelX;
-	}
+
 	public int[] getEndLevelY() {
 		return endLevelY;
 	}
-	public void setEndLevelY(int[] endLevelY) {
-		this.endLevelY = endLevelY;
-	}
+
 	public int getKeyX() {
 		return keyX;
 	}
