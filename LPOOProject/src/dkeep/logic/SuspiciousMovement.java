@@ -11,8 +11,8 @@ public class SuspiciousMovement implements MovementStrategy{
 	public int getDirection(char[][] table, int X, int Y){
 
 		Random rand = new Random();
-		int changesDirection = rand.nextInt(100);
-		if(changesDirection < 66){
+		int moveDirection = rand.nextInt(100);
+		if(moveDirection < 75){
 			moveForward = true;
 		}
 		else{

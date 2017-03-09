@@ -36,7 +36,6 @@ public abstract class Level {
 		}
 	}
 	
-	public abstract void printTable();
 	
 	public void npc(){
 		for(int i = 0; i < this.Enemies.size(); i++){
@@ -76,5 +75,20 @@ public abstract class Level {
 		this.keyY = keyY;
 	}
 	
+	public void setEndLevelX(int[] endLevelX) {
+		this.endLevelX = endLevelX;
+	}
+
+	public void setEndLevelY(int[] endLevelY) {
+		this.endLevelY = endLevelY;
+	}
+	
+	public boolean isKeyEnabled() {
+		return keyEnabled;
+	}
+
+	public void setKeyEnabled(boolean keyEnabled) {
+		this.keyEnabled = keyEnabled;
+	}
 	
 }

@@ -89,7 +89,7 @@ public class Game {
 		boolean valid = false;
 		
 		if(direction == 2){
-			if(level.table[level.hero.X][level.hero.Y+1] != 'X' && level.table[level.hero.X][level.hero.Y+1] != 'I'){
+			if(level.table[level.hero.X][level.hero.Y+1] != 'X' && level.table[level.hero.X][level.hero.Y+1] != 'I' && level.table[level.hero.X][level.hero.Y+1] != '8'){
 				this.level.hero.updatePosition(direction);
 				valid = true;
 			}
@@ -98,7 +98,7 @@ public class Game {
 			}
 		} 
 		else if(direction == 4){
-			if(level.table[level.hero.X-1][level.hero.Y] != 'X' && level.table[level.hero.X-1][level.hero.Y] != 'I'){
+			if(level.table[level.hero.X-1][level.hero.Y] != 'X' && level.table[level.hero.X-1][level.hero.Y] != 'I' && level.table[level.hero.X-1][level.hero.Y] != '8'){
 				this.level.hero.updatePosition(direction);
 				valid = true;
 			}
@@ -107,7 +107,7 @@ public class Game {
 			}
 		}
 		else if (direction == 6){
-			if(level.table[level.hero.X+1][level.hero.Y] != 'X' && level.table[level.hero.X+1][level.hero.Y] != 'I'){
+			if(level.table[level.hero.X+1][level.hero.Y] != 'X' && level.table[level.hero.X+1][level.hero.Y] != 'I' && level.table[level.hero.X+1][level.hero.Y] != '8'){
 				this.level.hero.updatePosition(direction);
 				valid = true;
 			}
@@ -116,7 +116,7 @@ public class Game {
 			}
 		}
 		else if(direction == 8){
-			if(level.table[level.hero.X][level.hero.Y-1] != 'X' && level.table[level.hero.X][level.hero.Y-1] != 'I'){
+			if(level.table[level.hero.X][level.hero.Y-1] != 'X' && level.table[level.hero.X][level.hero.Y-1] != 'I' && level.table[level.hero.X][level.hero.Y-1] != '8'){
 				this.level.hero.updatePosition(direction);
 				valid = true;
 			}
@@ -168,7 +168,7 @@ public class Game {
 	public boolean checkHeroTurn(){
 		boolean flag = false;
 		for(int i = 0; i < level.Enemies.size(); i++){
-			if(level.Enemies.get(i).isAdjacent(level.hero.getX(), level.hero.getY()) ){
+			if(level.hero.isAdjacent(level.Enemies.get(i).getX(), level.Enemies.get(i).getY()) ){
 				if(!level.Enemies.get(i).isStunned() ){
 					if(level.hero.hasWeapon() ){
 						level.Enemies.get(i).setTurnsStunned(3);
@@ -181,6 +181,14 @@ public class Game {
 				}
 								
 			}
+			
+			if(level.Enemies.get(i).isAdjacent(level.hero.getX(), level.hero.getY()) ){
+				if(!level.Enemies.get(i).isStunned() ){
+					flag = true;
+				}
+								
+			}
+			
 		}
 		return flag;
 	}

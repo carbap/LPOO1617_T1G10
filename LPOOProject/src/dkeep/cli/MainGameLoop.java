@@ -29,6 +29,7 @@ public class MainGameLoop
 					g.updateGame();
 					if(g.isEndLevel() ){
 						if(levelIndex == gameLevels.size()){
+							System.out.println("You win!");
 							g.setGameOver(true);
 						}
 						else{

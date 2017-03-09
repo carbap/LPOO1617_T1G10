@@ -67,11 +67,16 @@ public class Ogre extends Character{
 			}
 		}
 		
+		
 		if(this.weaponX == X && (this.weaponY == Y+1 || this.weaponY == Y-1) ){
 			return true;
 		}
 			
 		if(this.weaponY == Y && (this.weaponX == X+1 || this.weaponX == X-1) ){
+			return true;
+		}
+		
+		if(this.weaponX == X && this.weaponY == Y){
 			return true;
 		}
 		
