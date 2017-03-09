@@ -74,5 +74,11 @@ public class Guard extends Character{
 			
 		return false;
 	}
+
+	@Override
+	public void setStunned(boolean value) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

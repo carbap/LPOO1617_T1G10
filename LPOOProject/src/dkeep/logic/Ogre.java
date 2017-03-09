@@ -3,6 +3,8 @@ package dkeep.logic;
 public class Ogre extends Character{
 	
 	
+	
+	
 	//constructor
 	public Ogre(int ogreX, int ogreY, int clubX, int clubY){
 		this.X = ogreX;
@@ -19,8 +21,17 @@ public class Ogre extends Character{
 	//move ogre
 	public void move(char[][] table){
 		int direction = mov.getDirection(table, X, Y);
-		updatePosition(direction);
-		direction = mov.getDirection(table, X, Y);
+		
+		if(!this.isStunned()){
+			updatePosition(direction);
+			direction = mov.getDirection(table, X, Y);
+		}
+		else{
+			this.turnsStunned--;
+			if(this.turnsStunned == 0){
+				this.setStunned(false);
+			}
+		}
 		updateClubPosition(direction);
 	}
 	
@@ -45,12 +56,15 @@ public class Ogre extends Character{
 	}
 	
 	public boolean isAdjacent(int X, int Y){
-		if(this.X == X && (this.Y == Y+1 || this.Y == Y-1) ){
-			return true;
-		}
-			
-		if(this.Y == Y && (this.X == X+1 || this.X == X-1) ){
-			return true;
+		
+		if(!stunned){
+			if(this.X == X && (this.Y == Y+1 || this.Y == Y-1) ){
+				return true;
+			}
+				
+			if(this.Y == Y && (this.X == X+1 || this.X == X-1) ){
+				return true;
+			}
 		}
 		
 		if(this.weaponX == X && (this.weaponY == Y+1 || this.weaponY == Y-1) ){
@@ -63,5 +77,26 @@ public class Ogre extends Character{
 		
 		return false;
 	}
+	
+	public boolean isStunned() {
+		return stunned;
+	}
+	public void setStunned(boolean value) {
+		this.stunned = value;
+		if(value == true){
+			this.setDisplayChar('8');
+		}
+		else{
+			this.setDisplayChar('O');
+		}
+	}
+	public int getTurnsStunned() {
+		return turnsStunned;
+	}
+	public void setTurnsStunned(int turnsStunned) {
+		this.turnsStunned = turnsStunned;
+	}
+	
+	
 	
 }

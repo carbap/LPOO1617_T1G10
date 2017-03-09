@@ -17,41 +17,42 @@ public class MainGameLoop
 		Game g = new Game(gameLevels.get(levelIndex));
 		levelIndex++;
 		int direction;
+		boolean validDirection = false;
 		while(!g.isGameOver())
 		{ 
 			g.draw();
 			direction = input();
-			g.update(direction);
-			if(g.isEndLevel() ){
-				if(levelIndex == gameLevels.size()){
-					g.setGameOver(true);
+			validDirection = g.updateHero(direction);
+			
+			if(validDirection == true){
+				if(!g.isGameOver()){
+					g.updateGame();
+					if(g.isEndLevel() ){
+						if(levelIndex == gameLevels.size()){
+							g.setGameOver(true);
+						}
+						else{
+							g.changeLevel(gameLevels.get(levelIndex));
+							levelIndex++;
+						}
+					}
 				}
-				else{
-					g.changeLevel(gameLevels.get(levelIndex));
-					levelIndex++;
-				}
+				
 			}
+			else{
+				System.out.println("Invalid Input. Choose a new direction(2, 4, 6 or 8).");
+			}
+			
 		}
-		if(g.isGameOver())
-		{
-			g.draw();   
-		}
-	} 
+		g.draw();
+		
+	}
 
 	public static int input()
 	{
 		int direction = 0;
-		boolean validInput = false;
 		Scanner s = new Scanner(System.in); 
-		while(!validInput){
-			direction = s.nextInt();
-			if(direction == 2 || direction == 4 || direction == 6 || direction == 8){
-				validInput = true;
-			}
-			else{
-				System.out.println("Invalid Input. Choose a direction: 2, 4, 6 or 8.");
-			}
-		}
+		direction = s.nextInt();
 		return direction;
 	}
 	

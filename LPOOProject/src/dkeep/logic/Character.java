@@ -7,6 +7,11 @@ public abstract class Character {
 	public int weaponX;
 	public int weaponY;
 	
+	
+	protected boolean stunned = false;
+	protected int turnsStunned = 0;
+	
+	
 	public char displayChar;
 	char weaponDisplayChar;
 	
@@ -24,6 +29,10 @@ public abstract class Character {
 	public boolean hasWeapon() {
 		return weapon;
 	}
+	public void setWeapon(boolean value){
+		this.weapon = value;
+	}
+	
 	public int getX() {
 		return X;
 	}
@@ -38,6 +47,10 @@ public abstract class Character {
 	}
 	public char getDisplayChar(){
 		return displayChar;
+	}
+	
+	public void setDisplayChar(char value){
+		this.displayChar = value;
 	}
 	
 	public abstract void move(char[][] table);
@@ -63,5 +76,19 @@ public abstract class Character {
 	}
 
 	public abstract boolean isAdjacent(int X, int Y);
+	
+	public boolean isStunned() {
+		return stunned;
+	}
+	public abstract void setStunned(boolean value);
+	
+	public int getTurnsStunned() {
+		return turnsStunned;
+	}
+	
+	public void setTurnsStunned(int turnsStunned) {
+		this.turnsStunned = turnsStunned;
+	}
+	
 	
 }

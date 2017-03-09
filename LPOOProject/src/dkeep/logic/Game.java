@@ -82,43 +82,73 @@ public class Game {
 	}
 	
 
-	public void update(int direction) 
+	
+	
+	public boolean updateHero(int direction) 
 	{ 
+		boolean valid = false;
 		
 		if(direction == 2){
 			if(level.table[level.hero.X][level.hero.Y+1] != 'X' && level.table[level.hero.X][level.hero.Y+1] != 'I'){
 				this.level.hero.updatePosition(direction);
+				valid = true;
+			}
+			else{
+				valid = false;
 			}
 		} 
 		else if(direction == 4){
 			if(level.table[level.hero.X-1][level.hero.Y] != 'X' && level.table[level.hero.X-1][level.hero.Y] != 'I'){
 				this.level.hero.updatePosition(direction);
+				valid = true;
+			}
+			else{
+				valid = false;
 			}
 		}
 		else if (direction == 6){
 			if(level.table[level.hero.X+1][level.hero.Y] != 'X' && level.table[level.hero.X+1][level.hero.Y] != 'I'){
 				this.level.hero.updatePosition(direction);
+				valid = true;
+			}
+			else{
+				valid = false;
 			}
 		}
 		else if(direction == 8){
 			if(level.table[level.hero.X][level.hero.Y-1] != 'X' && level.table[level.hero.X][level.hero.Y-1] != 'I'){
 				this.level.hero.updatePosition(direction);
+				valid = true;
+			}
+			else{
+				valid = false;
 			}
 		}
-
-		checkKey();
-		if(checkHero()){
-			System.out.println("Lose0");
+		
+		if(valid){
+			checkKey();
+			if(checkHeroTurn()){
+				System.out.println("Lose");
+				this.setGameOver(true);
+			}
 		}
 		
-		level.npc();
-		
-		if(checkHero()){
-			System.out.println("Lose0");
-		}
-
+		return valid;
 	}
 
+	
+	
+	public void updateGame(){
+		level.npc();
+		
+		if(checkEnemyTurn()){
+			System.out.println("Lose");
+			this.setGameOver(true);
+		}
+	}
+	
+	
+	
 	public void setGameOver(boolean state){
 		this.gameOver = state;
 	}
@@ -135,10 +165,31 @@ public class Game {
 		return flag;
 	}
 	
-	public boolean checkHero(){
+	public boolean checkHeroTurn(){
 		boolean flag = false;
 		for(int i = 0; i < level.Enemies.size(); i++){
-			if( level.Enemies.get(i).isAdjacent(level.hero.getX(), level.hero.getY()) ){
+			if(level.Enemies.get(i).isAdjacent(level.hero.getX(), level.hero.getY()) ){
+				if(!level.Enemies.get(i).isStunned() ){
+					if(level.hero.hasWeapon() ){
+						level.Enemies.get(i).setTurnsStunned(3);
+						level.Enemies.get(i).setStunned(true);
+					}
+					else{
+						flag = true;
+					}
+					
+				}
+								
+			}
+		}
+		return flag;
+	}
+	
+	
+	public boolean checkEnemyTurn(){
+		boolean flag = false;
+		for(int i = 0; i < level.Enemies.size(); i++){
+			if(level.Enemies.get(i).isAdjacent(level.hero.getX(), level.hero.getY()) ){
 				flag = true;
 				break;
 			}
@@ -146,10 +197,12 @@ public class Game {
 		return flag;
 	}
 	
+	
 	public void checkKey(){
 		if(level.hero.getX() == level.keyX && level.hero.getY() == level.keyY){
 			level.keyEnabled = false;
 			level.openDoors();
+			this.level.hero.setDisplayChar('K');
 		}
 	}
 	
