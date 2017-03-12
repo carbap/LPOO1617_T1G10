@@ -3,9 +3,9 @@ package dkeep.logic;
 import java.util.Random;
 
 public class SuspiciousMovement implements MovementStrategy{
-	int[] movPattern = {4,2,2,2,2,4,4,4,4,4,4,2,6,6,6,6,6,6,6,8,8,8,8,8};
-	int movIndex = movPattern.length-1;
-	boolean moveForward = true;
+	private int[] movPattern = {4,2,2,2,2,4,4,4,4,4,4,2,6,6,6,6,6,6,6,8,8,8,8,8};
+	private int movIndex = movPattern.length-1;
+	private boolean moveForward = true;
 
 
 	public int getDirection(char[][] table, int X, int Y){

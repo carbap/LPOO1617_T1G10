@@ -39,10 +39,10 @@ public class GuardLevel extends Level {
 		keyY=8;
 
 		int endLevelX_temp[] = {0,0};
-		endLevelX = endLevelX_temp;
+		this.endLevelX = endLevelX_temp;
 		
 		int endLevelY_temp[] = {5,6};
-		endLevelY = endLevelY_temp;
+		this.endLevelY = endLevelY_temp;
 	}  
 
 	

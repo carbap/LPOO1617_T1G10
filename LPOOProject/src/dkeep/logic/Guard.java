@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class Guard extends Character{
 	
-	public boolean asleep = false;
+	private boolean asleep = false;
 
-	public char asleepDisplayChar = 'g';
+	private char asleepDisplayChar = 'g';
 	
 	//constructor
 	public Guard(int guardX, int guardY){

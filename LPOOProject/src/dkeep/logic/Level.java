@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class Level {
-	char table[][];
+	protected char table[][];
 	
-	public boolean keyEnabled = true;
+	protected boolean keyEnabled = true;
 	 
-	public int endLevelX[];
-	public int endLevelY[];
+	protected int endLevelX[];
+	protected int endLevelY[];
 	
-	public ArrayList <Character> Enemies = new ArrayList<Character>();
+	protected ArrayList <Character> Enemies = new ArrayList<Character>();
 	
-	public Hero hero = new Hero(0,0);
+	protected Hero hero = new Hero(0,0);
 	
-	int keyX;
-	int keyY;
+	protected int keyX;
+	protected int keyY;
 	
 	public boolean isFree(int x, int y)
 	{
@@ -28,6 +28,11 @@ public abstract class Level {
 		{
 			return false;
 		}
+	}
+	
+	public Hero getHero()
+	{
+		return this.hero;
 	}
 	
 	public void openDoors(){
@@ -89,6 +94,10 @@ public abstract class Level {
 
 	public void setKeyEnabled(boolean keyEnabled) {
 		this.keyEnabled = keyEnabled;
+	}
+	
+	public ArrayList<Character> getEnemies() {
+		return Enemies;
 	}
 	
 }

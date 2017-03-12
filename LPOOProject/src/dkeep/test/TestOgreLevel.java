@@ -23,8 +23,8 @@ public class TestOgreLevel extends Level
 			};
 
 	public TestOgreLevel(){
-		this.hero.X = 1;
-		this.hero.Y = 1;
+		this.getHero().setX(1);
+		this.getHero().setY(1);
 		this.setTable(map);
 		this.setEndLevelX(new int[]{0,0});
 		this.setEndLevelY(new int[]{2,3});

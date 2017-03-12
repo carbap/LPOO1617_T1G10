@@ -40,21 +40,12 @@ public class OgreLevel extends Level{
 				keyX = 7;
 				keyY = 1;
 				
-				/*ogre.setX(4);
-				ogre.setY(1);
 				
-				ogre.clubX = 4;
-				ogre.clubY = 2;
-				
-				
-				hero.setX(1);
-				hero.setY(7);
-				*/
 				int endLevelX_temp[] = {0};
-				endLevelX = endLevelX_temp;
+				this.endLevelX = endLevelX_temp;
 				
 				int endLevelY_temp[] = {1};
-				endLevelY = endLevelY_temp;
+				this.endLevelY = endLevelY_temp;
 	}
 
 }

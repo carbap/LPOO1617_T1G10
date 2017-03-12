@@ -1,21 +1,20 @@
 package dkeep.logic;
 
 public abstract class Character {
-	MovementStrategy mov;
-	public int X;
-	public int Y;
-	public int weaponX;
-	public int weaponY;
-	
+	protected MovementStrategy mov;
+	protected int X;
+	protected int Y;
+	protected int weaponX;
+	protected int weaponY;
 	
 	protected boolean stunned = false;
 	protected int turnsStunned = 0;
 	
 	
-	public char displayChar;
-	char weaponDisplayChar;
+	protected char displayChar;
+	protected char weaponDisplayChar;
 	
-	public boolean weapon = false;
+	protected boolean weapon = false;
 	
 	public int getWeaponX() {
 		return weaponX;
@@ -88,6 +87,13 @@ public abstract class Character {
 	
 	public void setTurnsStunned(int turnsStunned) {
 		this.turnsStunned = turnsStunned;
+	}
+	
+	public void setWeaponX(int weaponX) {
+		this.weaponX = weaponX;
+	}
+	public void setWeaponY(int weaponY) {
+		this.weaponY = weaponY;
 	}
 	
 	

@@ -14,8 +14,8 @@ public class TestGame
 	{
 		Game g = new Game(new TestLevel());
 		g.updateHero(2);
-		assertEquals(1, g.level.hero.getX());
-		assertEquals(2, g.level.hero.getY());
+		assertEquals(1, g.getLevel().getHero().getX());
+		assertEquals(2, g.getLevel().getHero().getY());
 		
 	}
 	
@@ -24,8 +24,8 @@ public class TestGame
 	{
 		Game g = new Game(new TestLevel());
 		g.updateHero(4);
-		assertEquals(1, g.level.hero.getX());
-		assertEquals(1, g.level.hero.getY());
+		assertEquals(1, g.getLevel().getHero().getX());
+		assertEquals(1, g.getLevel().getHero().getY());
 		
 	}
 	
@@ -42,11 +42,11 @@ public class TestGame
 	{
 		Game g = new Game(new TestLevel());
 		g.updateHero(2);
-		assertEquals(1, g.level.hero.getX());
-		assertEquals(2, g.level.hero.getY());
+		assertEquals(1, g.getLevel().getHero().getX());
+		assertEquals(2, g.getLevel().getHero().getY());
 		g.updateHero(4);
-		assertEquals(1, g.level.hero.getX());
-		assertEquals(2, g.level.hero.getY());
+		assertEquals(1, g.getLevel().getHero().getX());
+		assertEquals(2, g.getLevel().getHero().getY());
 		
 	}
 	
@@ -56,7 +56,7 @@ public class TestGame
 		Game g = new Game(new TestLevel());
 		g.updateHero(2);
 		g.updateHero(2);
-		assertEquals(false, g.level.isKeyEnabled());
+		assertEquals(false, g.getLevel().isKeyEnabled());
 	}
 	
 	@Test
@@ -84,8 +84,8 @@ public class TestGame
 		Game g = new Game(new TestOgreLevel());
 		g.updateHero(2);
 		g.updateHero(2);
-		assertEquals(false, g.level.isKeyEnabled());
-		assertEquals('K',g.level.hero.getDisplayChar());
+		assertEquals(false, g.getLevel().isKeyEnabled());
+		assertEquals('K',g.getLevel().getHero().getDisplayChar());
 	}
 	
 	@Test
@@ -93,11 +93,11 @@ public class TestGame
 	{
 		Game g = new Game(new TestOgreLevel());
 		g.updateHero(2);
-		assertEquals(1, g.level.hero.getX());
-		assertEquals(2, g.level.hero.getY());
+		assertEquals(1, g.getLevel().getHero().getX());
+		assertEquals(2, g.getLevel().getHero().getY());
 		g.updateHero(4);
-		assertEquals(1, g.level.hero.getX());
-		assertEquals(2, g.level.hero.getY());
+		assertEquals(1, g.getLevel().getHero().getX());
+		assertEquals(2, g.getLevel().getHero().getY());
 		
 	}
 	
@@ -107,7 +107,7 @@ public class TestGame
 		Game g = new Game(new TestOgreLevel());
 		g.updateHero(2);
 		g.updateHero(2);
-		assertEquals(false, g.level.isKeyEnabled());
+		assertEquals(false, g.getLevel().isKeyEnabled());
 	}
 	
 	@Test
@@ -124,22 +124,22 @@ public class TestGame
 	public void testStunOgre()
 	{
 		Game g = new Game(new TestOgreLevel());
-		g.level.hero.setWeapon(true);
+		g.getLevel().getHero().setWeapon(true);
 		g.updateHero(6);
 		assertEquals(false, g.isGameOver());
-		assertEquals('8', g.level.Enemies.get(0).getDisplayChar());
+		assertEquals('8', g.getLevel().getEnemies().get(0).getDisplayChar());
 	}
 	
 	@Test
 	public void testKilledByStunnedOgre()
 	{
 		Game g = new Game(new TestOgreLevel());
-		g.level.hero.setWeapon(true);
+		g.getLevel().getHero().setWeapon(true);
 		g.updateHero(6);
 		assertEquals(false, g.isGameOver());
-		assertEquals('8', g.level.Enemies.get(0).getDisplayChar());
-		g.level.Enemies.get(0).weaponX = 2;
-		g.level.Enemies.get(0).weaponY = 1;
+		assertEquals('8', g.getLevel().getEnemies().get(0).getDisplayChar());
+		g.getLevel().getEnemies().get(0).setWeaponX(2);
+		g.getLevel().getEnemies().get(0).setWeaponY(1);
 		g.setGameOver(g.checkEnemyTurn());
 		assertEquals(true, g.isGameOver());
 	}
@@ -152,77 +152,105 @@ public class TestGame
 		boolean valid = false;
 		while(!outcome1 || !outcome2 || !outcome3 || !outcome4 || !outcome5 || !outcome6 || !outcome7 || !outcome8 || !outcome9 || !outcome10 || !outcome11 || !outcome12 || !outcome13 || !outcome14 || !outcome15 || !outcome16)
 		{
-			g.level.npc();
-			if(g.level.Enemies.get(0).getX() == 4 && g.level.Enemies.get(0).getY() == 3){
-				if(g.level.Enemies.get(0).getWeaponX() == 4 && g.level.Enemies.get(0).getWeaponY() == 2){
+			g.getLevel().npc();
+			if(g.getLevel().getEnemies().get(0).getX() == 4 && g.getLevel().getEnemies().get(0).getY() == 3){
+				if(g.getLevel().getEnemies().get(0).getWeaponX() == 4 && g.getLevel().getEnemies().get(0).getWeaponY() == 2){
 					outcome1 = true;
 				}
-				else if(g.level.Enemies.get(0).getWeaponX() == 5 && g.level.Enemies.get(0).getWeaponY() == 3){
+				else if(g.getLevel().getEnemies().get(0).getWeaponX() == 5 && g.getLevel().getEnemies().get(0).getWeaponY() == 3){
 					outcome2 = true;
 				}
-				else if(g.level.Enemies.get(0).getWeaponX() == 4 && g.level.Enemies.get(0).getWeaponY() == 4){
+				else if(g.getLevel().getEnemies().get(0).getWeaponX() == 4 && g.getLevel().getEnemies().get(0).getWeaponY() == 4){
 					outcome3 = true;
 				}
-				else if(g.level.Enemies.get(0).getWeaponX() == 3 && g.level.Enemies.get(0).getWeaponY() == 3){
+				else if(g.getLevel().getEnemies().get(0).getWeaponX() == 3 && g.getLevel().getEnemies().get(0).getWeaponY() == 3){
 					outcome4 = true;
 				}
 			}
 			
-			if(g.level.Enemies.get(0).getX() == 5 && g.level.Enemies.get(0).getY() == 4){
-				if(g.level.Enemies.get(0).getWeaponX() == 5 && g.level.Enemies.get(0).getWeaponY() == 3){
+			if(g.getLevel().getEnemies().get(0).getX() == 5 && g.getLevel().getEnemies().get(0).getY() == 4){
+				if(g.getLevel().getEnemies().get(0).getWeaponX() == 5 && g.getLevel().getEnemies().get(0).getWeaponY() == 3){
 					outcome5 = true;
 				}
-				else if(g.level.Enemies.get(0).getWeaponX() == 6 && g.level.Enemies.get(0).getWeaponY() == 4){
+				else if(g.getLevel().getEnemies().get(0).getWeaponX() == 6 && g.getLevel().getEnemies().get(0).getWeaponY() == 4){
 					outcome6 = true;
 				}
-				else if(g.level.Enemies.get(0).getWeaponX() == 5 && g.level.Enemies.get(0).getWeaponY() == 5){
+				else if(g.getLevel().getEnemies().get(0).getWeaponX() == 5 && g.getLevel().getEnemies().get(0).getWeaponY() == 5){
 					outcome7 = true;
 				}
-				else if(g.level.Enemies.get(0).getWeaponX() == 4 && g.level.Enemies.get(0).getWeaponY() == 4){
+				else if(g.getLevel().getEnemies().get(0).getWeaponX() == 4 && g.getLevel().getEnemies().get(0).getWeaponY() == 4){
 					outcome8 = true;
 				}
 			}
 			
-			if(g.level.Enemies.get(0).getX() == 4 && g.level.Enemies.get(0).getY() == 5){
-				if(g.level.Enemies.get(0).getWeaponX() == 4 && g.level.Enemies.get(0).getWeaponY() == 4){
+			if(g.getLevel().getEnemies().get(0).getX() == 4 && g.getLevel().getEnemies().get(0).getY() == 5){
+				if(g.getLevel().getEnemies().get(0).getWeaponX() == 4 && g.getLevel().getEnemies().get(0).getWeaponY() == 4){
 					outcome9 = true;
 				}
-				else if(g.level.Enemies.get(0).getWeaponX() == 5 && g.level.Enemies.get(0).getWeaponY() == 5){
+				else if(g.getLevel().getEnemies().get(0).getWeaponX() == 5 && g.getLevel().getEnemies().get(0).getWeaponY() == 5){
 					outcome10 = true;
 				}
-				else if(g.level.Enemies.get(0).getWeaponX() == 4 && g.level.Enemies.get(0).getWeaponY() == 6){
+				else if(g.getLevel().getEnemies().get(0).getWeaponX() == 4 && g.getLevel().getEnemies().get(0).getWeaponY() == 6){
 					outcome11 = true;
 				}
-				else if(g.level.Enemies.get(0).getWeaponX() == 3 && g.level.Enemies.get(0).getWeaponY() == 5){
+				else if(g.getLevel().getEnemies().get(0).getWeaponX() == 3 && g.getLevel().getEnemies().get(0).getWeaponY() == 5){
 					outcome12 = true;
 				}
 			}
 			
-			if(g.level.Enemies.get(0).getX() == 3 && g.level.Enemies.get(0).getY() == 4){
-				if(g.level.Enemies.get(0).getWeaponX() == 3 && g.level.Enemies.get(0).getWeaponY() == 3){
+			if(g.getLevel().getEnemies().get(0).getX() == 3 && g.getLevel().getEnemies().get(0).getY() == 4){
+				if(g.getLevel().getEnemies().get(0).getWeaponX() == 3 && g.getLevel().getEnemies().get(0).getWeaponY() == 3){
 					outcome13 = true;
 				}
-				else if(g.level.Enemies.get(0).getWeaponX() == 4 && g.level.Enemies.get(0).getWeaponY() == 4){
+				else if(g.getLevel().getEnemies().get(0).getWeaponX() == 4 && g.getLevel().getEnemies().get(0).getWeaponY() == 4){
 					outcome14 = true;
 				}
-				else if(g.level.Enemies.get(0).getWeaponX() == 3 && g.level.Enemies.get(0).getWeaponY() == 5){
+				else if(g.getLevel().getEnemies().get(0).getWeaponX() == 3 && g.getLevel().getEnemies().get(0).getWeaponY() == 5){
 					outcome15 = true;
 				}
-				else if(g.level.Enemies.get(0).getWeaponX() == 2 && g.level.Enemies.get(0).getWeaponY() == 4){
+				else if(g.getLevel().getEnemies().get(0).getWeaponX() == 2 && g.getLevel().getEnemies().get(0).getWeaponY() == 4){
 					outcome16 = true;
 				}
 			}
 			
-			g.level.Enemies.get(0).X = 4;
-			g.level.Enemies.get(0).Y = 4;
-			g.level.Enemies.get(0).weaponX = 4;
-			g.level.Enemies.get(0).weaponY = 5;
+			g.getLevel().getEnemies().get(0).setX(4);
+			g.getLevel().getEnemies().get(0).setY(4);
+			g.getLevel().getEnemies().get(0).setWeaponX(4);
+			g.getLevel().getEnemies().get(0).setWeaponY(5);
 			
 		}
 		valid = true;
 		assertEquals(true, valid);
 		
 	}
+	
+	@Test
+	public void testReturnMap()
+	{
+		char[][] map = {{'X','X','I','I','X'},
+				{'X',' ',' ',' ','X'},
+				{'X',' ',' ',' ','X'},
+				{'X',' ',' ',' ','X'},
+				{'X','X','X','X','X'}};
+		
+		Game g = new Game(new TestOgreLevel());
+		assertEquals(map, g.getLevel().getTableCopy());
+	}
+	
+	@Test
+	public void testCharacter()
+	{		
+		Game g = new Game(new TestOgreLevel());
+		g.getLevel().getHero().setY(2);
+		assertEquals(1, g.getLevel().getHero().getX());
+		assertEquals(2, g.getLevel().getHero().getY());
+		g.getLevel().getHero().setX(3);
+		assertEquals(3, g.getLevel().getHero().getX());
+		assertEquals(2, g.getLevel().getHero().getY());
+		
+	}
+	
+	
 	
 	
 }

@@ -3,10 +3,10 @@ package dkeep.logic;
 import java.util.Random;
 
 public class DrunkenMovement implements MovementStrategy{
-	int[] movPattern = {4,2,2,2,2,4,4,4,4,4,4,2,6,6,6,6,6,6,6,8,8,8,8,8};
-	int movIndex = movPattern.length-1;
-	int turnsAsleep = 0;
-	boolean moveForward = true;
+	private int[] movPattern = {4,2,2,2,2,4,4,4,4,4,4,2,6,6,6,6,6,6,6,8,8,8,8,8};
+	private int movIndex = movPattern.length-1;
+	private int turnsAsleep = 0;
+	private boolean moveForward = true;
 
 
 	public int getDirection(char[][] table, int X, int Y){
@@ -38,7 +38,6 @@ public class DrunkenMovement implements MovementStrategy{
 				direction = movPattern[movIndex];
 			}
 			else{
-				//movIndex -=1;
 				if(movIndex < 0){
 					movIndex += 24;
 				}
