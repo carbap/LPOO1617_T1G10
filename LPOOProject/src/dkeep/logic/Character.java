@@ -8,7 +8,7 @@ public abstract class Character {
 	protected int weaponY;
 	
 	protected boolean stunned = false;
-	protected int turnsStunned = 0;
+	protected int turnsStunned = 0; 
 	
 	
 	protected char displayChar;
@@ -95,6 +95,14 @@ public abstract class Character {
 	public void setWeaponY(int weaponY) {
 		this.weaponY = weaponY;
 	}
+	public MovementStrategy getMov() {
+		return mov;
+	}
+	public void setMov(MovementStrategy mov) {
+		this.mov = mov;
+	}
+	
+	
 	
 	
 }

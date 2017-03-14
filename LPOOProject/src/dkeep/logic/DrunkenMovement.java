@@ -23,51 +23,47 @@ public class DrunkenMovement implements MovementStrategy{
 					moveForward = false;
 				}
 			}
-			
-		}
-
-		if(turnsAsleep == 0){
-
-			
-
-			int direction;
-
-			if(moveForward){
-				movIndex +=1;
-				movIndex %= 24;
-				direction = movPattern[movIndex];
-			}
-			else{
-				if(movIndex < 0){
-					movIndex += 24;
-				}
-				else{
-					movIndex %= 24;
-				}
 		
-				direction = movPattern[movIndex];
-				movIndex -=1;
-				
-				if(direction == 2){
-					direction = 8;
-				}
-				else if(direction == 4){
-					direction = 6;
-				}
-				else if(direction == 6){
-					direction = 4;
-				}
-				else if(direction == 8){
-					direction = 2;
-				}
-			}
+		int direction;
 
-			return direction;
-
+		if(moveForward){
+			movIndex +=1;
+			movIndex %= 24;
+			direction = movPattern[movIndex];
 		}
 		else{
-			turnsAsleep -= 1;
-			return 0;
+			if(movIndex < 0){
+				movIndex += 24;
+			}
+			else{
+				movIndex %= 24;
+			}
+
+			direction = movPattern[movIndex];
+			movIndex -=1;
+
+			if(direction == 2){
+				direction = 8;
+			}
+			else if(direction == 4){
+				direction = 6;
+			}
+			else if(direction == 6){
+				direction = 4;
+			}
+			else if(direction == 8){
+				direction = 2;
+			}
 		}
+
+		return direction;
+
 	}
+
+
+	else{
+		turnsAsleep -= 1;
+		return 0;
+	}
+}
 }

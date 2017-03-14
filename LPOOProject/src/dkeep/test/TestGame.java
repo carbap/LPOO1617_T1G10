@@ -12,17 +12,16 @@ public class TestGame
 	@Test
 	public void testMoveHeroIntoFreeCell()
 	{
-		Game g = new Game(new TestLevel());
+		Game g = new Game(new TestGuardLevel());
 		g.updateHero(2);
 		assertEquals(1, g.getLevel().getHero().getX());
 		assertEquals(2, g.getLevel().getHero().getY());
-		
 	}
 	
 	@Test
 	public void testMoveHeroIntoWall()
 	{
-		Game g = new Game(new TestLevel());
+		Game g = new Game(new TestGuardLevel());
 		g.updateHero(4);
 		assertEquals(1, g.getLevel().getHero().getX());
 		assertEquals(1, g.getLevel().getHero().getY());
@@ -32,7 +31,7 @@ public class TestGame
 	@Test
 	public void testMoveHeroIntoGuard()
 	{
-		Game g = new Game(new TestLevel());
+		Game g = new Game(new TestGuardLevel());
 		g.updateHero(6);
 		assertEquals(true, g.isGameOver());	
 	}
@@ -40,7 +39,7 @@ public class TestGame
 	@Test
 	public void testMoveHeroIntoClosedDoor()
 	{
-		Game g = new Game(new TestLevel());
+		Game g = new Game(new TestGuardLevel());
 		g.updateHero(2);
 		assertEquals(1, g.getLevel().getHero().getX());
 		assertEquals(2, g.getLevel().getHero().getY());
@@ -53,7 +52,7 @@ public class TestGame
 	@Test
 	public void testOpenDoors()
 	{
-		Game g = new Game(new TestLevel());
+		Game g = new Game(new TestGuardLevel());
 		g.updateHero(2);
 		g.updateHero(2);
 		assertEquals(false, g.getLevel().isKeyEnabled());
@@ -62,7 +61,7 @@ public class TestGame
 	@Test
 	public void testFinishLevel()
 	{
-		Game g = new Game(new TestLevel());
+		Game g = new Game(new TestGuardLevel());
 		g.updateHero(2);
 		g.updateHero(2);
 		g.updateHero(4);
@@ -113,7 +112,7 @@ public class TestGame
 	@Test
 	public void testFinishOgreLevel()
 	{
-		Game g = new Game(new TestLevel());
+		Game g = new Game(new TestGuardLevel());
 		g.updateHero(2);
 		g.updateHero(2);
 		g.updateHero(4);
@@ -249,6 +248,181 @@ public class TestGame
 		assertEquals(2, g.getLevel().getHero().getY());
 		
 	}
+	
+	@Test
+	public void testDoorChangestToS()
+	{
+		Game g = new Game(new TestOgreLevel());
+		assertEquals('I',g.getLevel().getTableCopy()[0][2]);
+		g.updateHero(2);
+		g.updateHero(2);
+		assertEquals('S',g.getLevel().getTableCopy()[0][2]);
+	}
+	
+	@Test
+	public void testRookie()
+	{
+		Game g = new Game(new TestGuardLevel(1));
+		g.getLevel().getEnemies().get(0).setMov(new RookieMovement());
+		assertEquals(true, g.getLevel().getEnemies().get(0).getMov() instanceof RookieMovement);
+	}
+	
+	@Test
+	public void testDrunken()
+	{
+		Game g = new Game(new TestGuardLevel(1));
+		g.getLevel().getEnemies().get(0).setMov(new DrunkenMovement());
+		assertEquals(true, g.getLevel().getEnemies().get(0).getMov() instanceof DrunkenMovement);
+	}
+	
+	@Test
+	public void testSuspicious()
+	{
+		Game g = new Game(new TestGuardLevel(1));
+		g.getLevel().getEnemies().get(0).setMov(new SuspiciousMovement());
+		assertEquals(true, g.getLevel().getEnemies().get(0).getMov() instanceof SuspiciousMovement);
+	}
+	
+	@Test
+	public void testRookieMovement()
+	{
+		Game g = new Game(new TestGuardLevel(1));
+		g.getLevel().getEnemies().get(0).setMov(new RookieMovement());
+		g.getLevel().npc();
+		assertEquals(6,g.getLevel().getEnemies().get(0).getX()); 
+		assertEquals(1,g.getLevel().getEnemies().get(0).getY());
+		g.getLevel().npc();
+		assertEquals(6,g.getLevel().getEnemies().get(0).getX());
+		assertEquals(2,g.getLevel().getEnemies().get(0).getY());
+		g.getLevel().npc();
+		assertEquals(6,g.getLevel().getEnemies().get(0).getX());
+		assertEquals(3,g.getLevel().getEnemies().get(0).getY());
+	}
+	
+	@Test(timeout = 1000)
+	public void testDrunkenMovement()
+	{
+		Game g = new Game(new TestGuardLevel(1));
+		g.getLevel().getEnemies().get(0).setMov(new DrunkenMovement());
+		g.getLevel().getHero().setX(4);
+		g.getLevel().getHero().setY(4);
+		while(!g.isGameOver())
+		{
+			g.updateGame();
+		}
+		assertEquals(true, g.isGameOver());
+		assertEquals(true, g.getLevel().getHero().isAdjacent(4, 5));
+		assertEquals(4,g.getLevel().getEnemies().get(0).getX());
+		assertEquals(5,g.getLevel().getEnemies().get(0).getY());
+		
+		g.getLevel().getHero().setX(7);
+		g.getLevel().getHero().setY(7); 
+		g.setGameOver(false);
+		while(!g.isGameOver())
+		{
+			g.updateGame();
+		}
+		assertEquals(true, g.isGameOver());
+		assertEquals(true, g.getLevel().getHero().isAdjacent(7, 6));
+		assertEquals(7,g.getLevel().getEnemies().get(0).getX());
+		assertEquals(6,g.getLevel().getEnemies().get(0).getY());	
+	}
+	
+	@Test(timeout = 1000)
+	public void testHasBeenDrunk()
+	{
+		Game g = new Game(new TestGuardLevel(1));
+		g.getLevel().getEnemies().get(0).setMov(new DrunkenMovement());
+		int currentX, currentY;
+		boolean slept = false;
+		int nextX, nextY;
+		while(!g.isGameOver())
+		{
+			currentX = g.getLevel().getEnemies().get(0).getX();
+			currentY = g.getLevel().getEnemies().get(0).getY();
+			g.updateGame();
+			nextX = g.getLevel().getEnemies().get(0).getX();
+			nextY = g.getLevel().getEnemies().get(0).getY();
+			if(currentX == nextX && currentY == nextY)
+			{
+				slept = true;
+			}
+			if(slept = true)
+			{
+				break;
+			}
+		}
+		assertEquals(true,slept);
+	}
+	
+	@Test(timeout = 1000)
+	public void testSuspiciousMovement()
+	{
+		Game g = new Game(new TestGuardLevel(1));
+		g.getLevel().getEnemies().get(0).setMov(new SuspiciousMovement()); 
+		
+		g.getLevel().getHero().setX(4);
+		g.getLevel().getHero().setY(4);
+		while(!g.isGameOver())
+		{
+			g.updateGame(); 
+		}
+		assertEquals(true, g.isGameOver()); 
+		assertEquals(true, g.getLevel().getHero().isAdjacent(4, 5));
+		assertEquals(4,g.getLevel().getEnemies().get(0).getX());
+		assertEquals(5,g.getLevel().getEnemies().get(0).getY());
+		
+		g.getLevel().getHero().setX(7);
+		g.getLevel().getHero().setY(7);
+		g.setGameOver(false);
+		while(!g.isGameOver())
+		{
+			g.updateGame();
+		}
+		assertEquals(true, g.isGameOver());
+		assertEquals(true, g.getLevel().getHero().isAdjacent(7, 6));
+		assertEquals(7,g.getLevel().getEnemies().get(0).getX());
+		assertEquals(6,g.getLevel().getEnemies().get(0).getY());	
+	}  
+	
+	@Test
+	public void testFirstLevel()
+	{
+		Game g = new Game(new GuardLevel());
+		char temp[][] ={
+				{'X','X','X','X','X','I','I','X','X','X'},
+				{'X',' ','X',' ','X',' ',' ','X',' ','X'},
+				{'X',' ','X','I','X',' ',' ','X','I','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X','I','X','I','X',' ',' ','X','I','X'},
+				{'X',' ','X',' ','X',' ',' ','X',' ','X'},
+				{'X','X','X','X','X',' ',' ','X','X','X'},
+				{'X',' ',' ',' ',' ',' ',' ','X',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X','X','X','X','X','X','X','X','X','X'}};
+		assertEquals(temp,g.getLevel().getTableCopy());
+				
+	}
+	
+	@Test
+	public void testSecondLevel()
+	{
+		Game g = new Game(new OgreLevel());
+		char temp[][] ={ 
+				{'X','I','X','X','X','X','X','X','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
+				{'X','X','X','X','X','X','X','X','X'}};
+		assertEquals(temp,g.getLevel().getTableCopy());
+				
+	}
+	
+	
 	
 	
 	

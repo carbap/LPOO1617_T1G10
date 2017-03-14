@@ -18,18 +18,6 @@ public abstract class Level {
 	protected int keyX;
 	protected int keyY;
 	
-	public boolean isFree(int x, int y)
-	{
-		if(table[x][y] == ' ')
-		{
-			return true; 
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
 	public Hero getHero()
 	{
 		return this.hero;
