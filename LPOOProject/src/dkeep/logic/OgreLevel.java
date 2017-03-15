@@ -13,7 +13,7 @@ public class OgreLevel extends Level{
 		{'X','X','X','X','X','X','X','X','X'}*/
 	
 	
-	public OgreLevel(){
+	public OgreLevel(int OgreNr){
 		char temp[][] ={ 
 				{'X','I','X','X','X','X','X','X','X'},
 				{'X',' ',' ',' ',' ',' ',' ',' ','X'},
@@ -30,12 +30,11 @@ public class OgreLevel extends Level{
 				this.hero.setPosition(1, 7);
 				this.hero.setWeapon(true);
 				this.hero.setDisplayChar('A');
-				Ogre ogre0 = new Ogre(4, 1, 4, 2);
-				//Ogre ogre1 = new Ogre(4, 1, 4, 2);
-				//Ogre ogre2 = new Ogre(4, 1, 4, 2);
-				this.Enemies.add(ogre0);
-				//this.Enemies.add(ogre1);
-				//this.Enemies.add(ogre2);
+				for(int i = 0; i < OgreNr; i++){
+					Ogre ogre0 = new Ogre(4, 1, 4, 2);
+					this.Enemies.add(ogre0);
+				}
+				
 				
 				keyX = 7;
 				keyY = 1;

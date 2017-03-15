@@ -30,7 +30,7 @@ public class TestGuardLevel extends Level
 		this.setEndLevelX(new int[]{0,0});
 		this.setEndLevelY(new int[]{2,3});
 		
-		Guard guard = new Guard(3,1);
+		Guard guard = new Guard(3,1,1);
 		
 		this.Enemies.add(guard);
 		
@@ -50,7 +50,7 @@ public class TestGuardLevel extends Level
 		this.setEndLevelX(new int[]{8,8});
 		this.setEndLevelY(new int[]{6,7});
 		
-		Guard guard = new Guard(7,1);
+		Guard guard = new Guard(7,1,1);
 		
 		this.Enemies.add(guard);
 		

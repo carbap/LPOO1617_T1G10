@@ -9,13 +9,13 @@ public class Guard extends Character{
 	private char asleepDisplayChar = 'g';
 	
 	//constructor
-	public Guard(int guardX, int guardY){
+	public Guard(int guardX, int guardY, int guardMov){
 		this.X = guardX;
 		this.Y = guardY;
 		this.displayChar = 'G';
-		Random rand = new Random();
-		int movtype = rand.nextInt(3) + 1;
-		switch(movtype){
+		//Random rand = new Random();
+		//int movtype = rand.nextInt(3) + 1;
+		switch(guardMov){
 		case 1:
 			this.mov = new RookieMovement();
 			break;

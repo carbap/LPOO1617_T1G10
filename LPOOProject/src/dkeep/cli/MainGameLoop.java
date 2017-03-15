@@ -3,6 +3,7 @@ package dkeep.cli;
 import dkeep.logic.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class MainGameLoop
@@ -58,8 +59,10 @@ public class MainGameLoop
 	}
 	
 	public static void loadGameLevels(){
-		Level level0 = new GuardLevel();
-		Level level1 = new OgreLevel();
+		Random rand = new Random();
+		int movtype = rand.nextInt(3) + 1;
+		Level level0 = new GuardLevel(movtype); 
+		Level level1 = new OgreLevel(2);
 		gameLevels.add(level0);
 		gameLevels.add(level1);
 		

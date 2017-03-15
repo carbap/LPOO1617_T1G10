@@ -388,7 +388,7 @@ public class TestGame
 	@Test
 	public void testFirstLevel()
 	{
-		Game g = new Game(new GuardLevel());
+		Game g = new Game(new GuardLevel(1));
 		char temp[][] ={
 				{'X','X','X','X','X','I','I','X','X','X'},
 				{'X',' ','X',' ','X',' ',' ','X',' ','X'},
@@ -407,7 +407,7 @@ public class TestGame
 	@Test
 	public void testSecondLevel()
 	{
-		Game g = new Game(new OgreLevel());
+		Game g = new Game(new OgreLevel(2));
 		char temp[][] ={ 
 				{'X','I','X','X','X','X','X','X','X'},
 				{'X',' ',' ',' ',' ',' ',' ',' ','X'},

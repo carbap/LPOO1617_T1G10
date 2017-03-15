@@ -14,7 +14,7 @@ public class GuardLevel extends Level {
 			{'X',' ','I',' ','I',' ','X',' ',' ','X'},
 			{'X','X','X','X','X','X','X','X','X','X'}};*/
 
-	public GuardLevel(){
+	public GuardLevel(int guardMov){
 		char temp[][] ={
 				{'X','X','X','X','X','I','I','X','X','X'},
 				{'X',' ','X',' ','X',' ',' ','X',' ','X'},
@@ -32,7 +32,7 @@ public class GuardLevel extends Level {
 
 		this.hero.setPosition(1, 1);
 		
-		Guard guard = new Guard(8,1);
+		Guard guard = new Guard(8,1, guardMov);
 		this.Enemies.add(guard);
 
 		keyX=7;
