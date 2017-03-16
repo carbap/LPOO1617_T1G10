@@ -176,10 +176,10 @@ public class Game {
 					if(level.getHero().hasWeapon() ){
 						level.Enemies.get(i).setTurnsStunned(3);
 						level.Enemies.get(i).setStunned(true);
-					}
+					}/*
 					else{
 						flag = true;
-					}
+					}*/
 					
 				}
 								

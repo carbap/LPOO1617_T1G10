@@ -32,7 +32,7 @@ public class GameWindow {
 	private JButton btnRight = new JButton("Right");
 	private JButton btnDown = new JButton("Down");
 	private JButton btnExit = new JButton("Exit");
-	private JLabel lblNewLabel = new JLabel("Game state");
+	private JLabel lblNewLabel = new JLabel("Fill the fields and press new game to start playing!");
 
 	/**
 	 * Launch the application.
@@ -60,27 +60,35 @@ public class GameWindow {
 	public void update(boolean valid){
 		if(valid == true){
 			if(game.isGameOver()){
-				disableMov("GAMEOVER!");
+				disableMov("GAMEOVER! You were caught.");
+				GameConsole.setText(game.getWorktable());
+				return;
 			}
-			else{
-				game.updateGame();
-				if(game.isGameOver()){
-					disableMov("GAMEOVER!");
+
+			game.updateGame();
+			if(game.isGameOver()){
+				disableMov("GAMEOVER! You were caught.");
+				GameConsole.setText(game.getWorktable());
+				return;
+			}
+			if(!game.getLevel().isKeyEnabled()){
+				lblNewLabel.setText("You grabbed the key and the exit doors opened.");
+			}
+
+			if(game.isEndLevel() ){
+				if(game.isLastLevel()){
+					disableMov("Congratulations! You sucessfully escaped the dungeon!");
+					game.setGameOver(true);
 				}
 				else{
-					if(game.isEndLevel() ){
-						if(game.isLastLevel()){
-							disableMov("You Win!");
-							game.setGameOver(true);
-						}
-						else{
-							Integer ogreNr = Integer.parseInt(textField.getText());
-							game.changeLevel(new OgreLevel(ogreNr));
-							game.setLastLevel(true);
-						}
-					}
+					Integer ogreNr = Integer.parseInt(textField.getText());
+					game.changeLevel(new OgreLevel(ogreNr));
+					game.setLastLevel(true);
+					lblNewLabel.setText("You are now armed, so you can stun enemies. Grab the key and escape the dungeon!");
 				}
 			}
+
+
 
 
 		}
@@ -127,19 +135,30 @@ public class GameWindow {
 		//button new game
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Integer ogreNr = Integer.parseInt(textField.getText());
-				if(ogreNr > 0 && ogreNr <= 5){
-					game = new Game(new GuardLevel(comboBox.getSelectedIndex() + 1));
-					GameConsole.setText(game.getWorktable());
-					btnUp.setEnabled(true);
-					btnLeft.setEnabled(true);
-					btnRight.setEnabled(true);
-					btnDown.setEnabled(true);
-					lblNewLabel.setText("Ready To Play!");
+				String text = textField.getText();
+				Integer ogreNr;
+				if(text.equals("")){
+					lblNewLabel.setText("Please fill in the field Number of ogres (1 to 5).");
+					return;
 				}
-				else{
+				try {
+					ogreNr = Integer.parseInt(text);
+				} catch (NumberFormatException e) {
+					lblNewLabel.setText("Please fill in the field Number of ogres (1 to 5).");
+					return;
+				}
+
+				if (!(ogreNr > 0 && ogreNr <= 5)) {
 					lblNewLabel.setText("Invalid number of ogres (1 to 5)");
+					return;
 				}
+				game = new Game(new GuardLevel(comboBox.getSelectedIndex() + 1));
+				GameConsole.setText(game.getWorktable());
+				btnUp.setEnabled(true);
+				btnLeft.setEnabled(true);
+				btnRight.setEnabled(true);
+				btnDown.setEnabled(true);
+				lblNewLabel.setText("Grab the key while avoiding the guard.");
 			}
 		});
 		btnNewGame.setBounds(584, 80, 100, 25);
@@ -196,11 +215,12 @@ public class GameWindow {
 		frame.getContentPane().add(btnExit);
 
 		//label game state
-		lblNewLabel.setBounds(40, 490, 200, 25);
+		lblNewLabel.setBounds(40, 490, 600, 40);
 		frame.getContentPane().add(lblNewLabel);
 
 		//textarea gameconsole
 		GameConsole = new JTextArea();
+		GameConsole.setEditable(false);
 		GameConsole.setFont(new Font("Courier New", Font.BOLD, 30));
 		GameConsole.setBounds(50, 120, 350, 350);
 		frame.getContentPane().add(GameConsole);
