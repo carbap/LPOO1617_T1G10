@@ -14,13 +14,16 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 import dkeep.logic.*;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 
-public class GameWindow extends JPanel implements KeyListener{
+public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 	private static JFrame mainFrame;
 	private static JFrame dialogFrame;
@@ -28,11 +31,11 @@ public class GameWindow extends JPanel implements KeyListener{
 	private static Game game;
 	private boolean keepRunning = true;
 	private static boolean canPress = true;
+	private static int ogreNr = 1;
 
 	//window components
 	private static JTextField textField = new JTextField();
 	private static JComboBox comboBox = new JComboBox();
-	private static JTextArea GameConsole = new JTextArea();
 	private static JButton btnNewGame = new JButton("New Game");
 	private static JButton btnOptions = new JButton("Options");
 	private static JButton btnLeft = new JButton("Left");
@@ -42,6 +45,8 @@ public class GameWindow extends JPanel implements KeyListener{
 	private static JButton btnExit = new JButton("Exit");
 	private static JLabel lblNewLabel = new JLabel("Press Options to decide how you want to play.");
 
+	private static GraphicArea gamegraphics = new GraphicArea(50, 120);
+	
 	/**
 	 * Launch the application.
 	 */
@@ -62,6 +67,7 @@ public class GameWindow extends JPanel implements KeyListener{
 	 */
 	public GameWindow() {
 		this.addKeyListener(this);
+		this.addMouseListener(this);
 		mainFrame = new JFrame();
 		dialogFrame = new JFrame();
 	}
@@ -164,10 +170,13 @@ public class GameWindow extends JPanel implements KeyListener{
 			public void actionPerformed(ActionEvent arg0) {
 				canPress = true;
 
-	
+				ogreNr = Integer.parseInt(textField.getText());
 				game = new Game(new GuardLevel(comboBox.getSelectedIndex() + 1));
 				
-				GameConsole.setText(game.getWorktable());
+				
+				graphicsUpdate();
+				
+				
 				btnUp.setEnabled(true);
 				btnLeft.setEnabled(true);
 				btnRight.setEnabled(true);
@@ -237,26 +246,28 @@ public class GameWindow extends JPanel implements KeyListener{
 		lblNewLabel.setBounds(40, 490, 600, 40);
 		mainFrame.getContentPane().add(lblNewLabel);
 
-		//textarea gameconsole
-		GameConsole = new JTextArea(); 
-		GameConsole.setEditable(false);
-		GameConsole.setFont(new Font("Courier New", Font.BOLD, 30));
-		GameConsole.setBounds(50, 120, 350, 350);
-		mainFrame.getContentPane().add(GameConsole);
+		
+		
+		mainFrame.getContentPane().add(gamegraphics);
+		
 	}
 
 	public static void update(boolean valid){
 		if(valid == true){
 			if(game.isGameOver()){
 				disableMov("GAMEOVER! You were caught.");
-				GameConsole.setText(game.getWorktable());
+				
+				graphicsUpdate();
+				
 				return;
 			}
 
 			game.updateGame();
 			if(game.isGameOver()){
 				disableMov("GAMEOVER! You were caught.");
-				GameConsole.setText(game.getWorktable());
+				
+				graphicsUpdate();
+				
 				return; 
 			}
 			if(!game.getLevel().isKeyEnabled()){
@@ -269,14 +280,24 @@ public class GameWindow extends JPanel implements KeyListener{
 					game.setGameOver(true);
 				}
 				else{
-					Integer ogreNr = Integer.parseInt(textField.getText());
+					
 					game.changeLevel(new OgreLevel(ogreNr));
 					game.setLastLevel(true);
 					lblNewLabel.setText("You are now armed, so you can stun enemies. Grab the key and escape the dungeon!");
 				}
 			}
 		}
-		GameConsole.setText(game.getWorktable());
+		
+		graphicsUpdate();
+		
+	}
+	
+	public static void graphicsUpdate()
+	{
+		char[][] table = game.getWorktable();
+		gamegraphics.setTable(table);
+		gamegraphics.validate();
+		gamegraphics.repaint();
 	}
 
 	public static void disableMov(String msg){
@@ -323,5 +344,35 @@ public class GameWindow extends JPanel implements KeyListener{
 	public void keyTyped(KeyEvent event)
 	{
 
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub 
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

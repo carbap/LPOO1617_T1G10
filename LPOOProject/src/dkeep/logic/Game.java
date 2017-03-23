@@ -70,21 +70,12 @@ public class Game {
 		}
 
 	}
-	
-	public String getWorktable(){
-		String ret = "";
-		this.updateWorkTable();
-		for(int i = 0; i < workTable.length; i++){
-			
-			for(int j = 0; j < workTable[i].length; j++){
-				ret += workTable[j][i] + " ";
-			}
-			ret += "\n";
-		}
-		return ret;
-	}
-	
+		
 
+	public char[][] getWorktable(){
+		this.updateWorkTable();
+		return this.workTable;
+	}
 	
 	
 	public boolean updateHero(int direction) 
