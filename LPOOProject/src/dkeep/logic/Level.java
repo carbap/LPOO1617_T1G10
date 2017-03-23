@@ -47,6 +47,12 @@ public abstract class Level {
 	public void setTable(char[][] table) {
 		this.table = table;
 	}
+	
+	//adicionado agora
+	public void setTableChar(int X, int Y, char c){
+		table[X][Y] = c;
+	}
+	
 	public int[] getEndLevelX() {
 		return endLevelX;
 	}

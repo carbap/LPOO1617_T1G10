@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -22,6 +23,8 @@ import java.awt.event.ActionEvent;
 import dkeep.logic.*;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
+import javax.swing.ImageIcon;
+import javax.swing.JToggleButton;
 
 public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
@@ -33,6 +36,8 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	private boolean keepRunning = true;
 	private static boolean canPress = true;
 	private static int ogreNr = 1;
+	
+	private static char editChar = ' ';
 
 	//window components
 	private static JTextField textField = new JTextField();
@@ -46,10 +51,21 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	private static JButton btnDown = new JButton("Down");
 	private static JButton btnExit = new JButton("Exit");
 	private static JLabel lblNewLabel = new JLabel("Press Options to decide how you want to play.");
-
-	private static GraphicArea gamegraphics = new GraphicArea(50, 120);
 	
-	private static GraphicArea editLevelGraphics = new GraphicArea(50, 120);
+	//edit window components
+	private static JToggleButton btnWall = new JToggleButton("");
+	private static JToggleButton btnDoor = new JToggleButton("");
+	private static JToggleButton btnFloor = new JToggleButton("");
+	private static JToggleButton btnOgre = new JToggleButton("");
+	private static JToggleButton btnHero = new JToggleButton("");
+	private static JToggleButton btnKey = new JToggleButton("");
+	private static JToggleButton btnFinalPos = new JToggleButton("FINAL POS");
+	private static JToggleButton btnReset = new JToggleButton("RESET");
+	
+	
+	private static GraphicArea gamegraphics = new GraphicArea(50, 50);
+	
+	private static GraphicArea editLevelGraphics = new GraphicArea(50, 50);
 	
 	private static OgreLevel editLevel = new OgreLevel(ogreNr);
 	
@@ -73,7 +89,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	 */
 	public GameWindow() {
 		this.addKeyListener(this);
-		this.addMouseListener(this);
+		editLevelGraphics.addMouseListener(this);
 		mainFrame = new JFrame();
 		dialogFrame = new JFrame();
 		editFrame = new JFrame();
@@ -202,7 +218,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						editFrame.getContentPane().add(dialog);
+						editFrame.getContentPane().add(edit);
 						editFrame.pack();
 						editFrame.setVisible(true);
 
@@ -210,10 +226,12 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 						editFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 						editFrame.getContentPane().setLayout(null);
 						
-						
+						editLevelGraphics.setTable(editLevel.getTableCopy());
 						editFrame.getContentPane().add(editLevelGraphics);
 						
-						panel.requestFocusInWindow();
+						
+						
+						edit.requestFocusInWindow();
 					}
 				});
 				btnEdit.setBounds(559, 300, 150, 25);
@@ -281,6 +299,108 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		
 		mainFrame.getContentPane().add(gamegraphics);
 		
+		
+		
+		
+		
+		
+		
+		btnWall.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/wall.png")));
+		btnWall.setBounds(390, 50, 42, 42);
+		btnWall.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnWall.setSelected(true);
+				editChar = 'X';
+			}
+		});
+		editFrame.getContentPane().add(btnWall);
+		
+		
+		btnDoor.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/door_closed.png")));
+		btnDoor.setBounds(450, 50, 42, 42);
+		btnDoor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnDoor.setSelected(true);
+				editChar = 'I';
+			}
+		});
+		editFrame.getContentPane().add(btnDoor);
+		
+		
+		btnFloor.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/white_floor.png")));
+		btnFloor.setBounds(390, 100, 42, 42);
+		btnFloor.setSelected(true);
+		btnFloor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnFloor.setSelected(true);
+				editChar = ' ';
+			}
+		});
+		editFrame.getContentPane().add(btnFloor);
+		
+		
+		btnOgre.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/ogre.png")));
+		btnOgre.setBounds(450, 100, 42, 42);
+		btnOgre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnOgre.setSelected(true);
+				editChar = 'O';
+			}
+		});
+		editFrame.getContentPane().add(btnOgre);
+		
+		
+		btnHero.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/temp.png")));
+		btnHero.setBounds(390, 150, 42, 42);
+		btnHero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnHero.setSelected(true);
+				editChar = 'H';
+			}
+		});
+		editFrame.getContentPane().add(btnHero);
+		
+		
+		btnKey.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/key.png")));
+		btnKey.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnKey.setSelected(true);
+				editChar = 'k';
+			}
+		});
+		btnKey.setBounds(450, 150, 42, 42);
+		editFrame.getContentPane().add(btnKey);
+		
+		
+		btnFinalPos.setBounds(390, 200, 42, 42);
+		btnFinalPos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnFinalPos.setSelected(true);
+				editChar = 'f'; //n existe char f mas para reconhecer q e para indicar pos final
+			}
+		});
+		editFrame.getContentPane().add(btnFinalPos);
+		
+		
+		btnReset.setBounds(450, 200, 42, 42);
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnReset.setSelected(true);
+			}
+		});
+		editFrame.getContentPane().add(btnReset);
+		
+		
+		
+		
 	}
 
 	public static void update(boolean valid){
@@ -330,6 +450,12 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		gamegraphics.validate();
 		gamegraphics.repaint();
 	}
+	
+	public static void editGraphicsUpdate(){
+		editLevelGraphics.setTable(editLevel.getTableCopy());
+		editLevelGraphics.validate();
+		editLevelGraphics.repaint();
+	}
 
 	public static void disableMov(String msg){
 		lblNewLabel.setText(msg);
@@ -340,6 +466,18 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		canPress = false;
 		btnOptions.setEnabled(true);
 	}
+	
+	public static void disableAllEditButtons(){
+		btnWall.setSelected(false);
+		btnDoor.setSelected(false);
+		btnFloor.setSelected(false);
+		btnOgre.setSelected(false);
+		btnHero.setSelected(false);
+		btnKey.setSelected(false);
+		btnFinalPos.setSelected(false);
+		btnReset.setSelected(false);
+	}
+	
 
 	@Override
 	public void keyPressed(KeyEvent event)
@@ -380,7 +518,16 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		int indexX = (e.getX())/32;
+		int indexY = (e.getY())/32;
+		if(indexX >= 10 || indexY >= 10 || indexX < 0 || indexY < 0)
+			return;
 		
+		if(editChar == 'X'){
+			editLevel.setTableChar(indexX, indexY, 'X');
+		}
+		editGraphicsUpdate();
+		System.out.println("mouse");
 	}
 
 	@Override
