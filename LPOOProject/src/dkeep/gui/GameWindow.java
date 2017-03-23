@@ -27,6 +27,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 	private static JFrame mainFrame;
 	private static JFrame dialogFrame;
+	private static JFrame editFrame;
 
 	private static Game game;
 	private boolean keepRunning = true;
@@ -38,6 +39,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	private static JComboBox comboBox = new JComboBox();
 	private static JButton btnNewGame = new JButton("New Game");
 	private static JButton btnOptions = new JButton("Options");
+	private static JButton btnEdit = new JButton("Edit Keep Level");
 	private static JButton btnLeft = new JButton("Left");
 	private static JButton btnUp = new JButton("Up");
 	private static JButton btnRight = new JButton("Right");
@@ -46,6 +48,10 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	private static JLabel lblNewLabel = new JLabel("Press Options to decide how you want to play.");
 
 	private static GraphicArea gamegraphics = new GraphicArea(50, 120);
+	
+	private static GraphicArea editLevelGraphics = new GraphicArea(50, 120);
+	
+	private static OgreLevel editLevel = new OgreLevel(ogreNr);
 	
 	/**
 	 * Launch the application.
@@ -70,6 +76,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		this.addMouseListener(this);
 		mainFrame = new JFrame();
 		dialogFrame = new JFrame();
+		editFrame = new JFrame();
 	}
 
 	/**
@@ -78,6 +85,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	private static void initialize() {
 		JPanel panel = new GameWindow();
 		JPanel dialog = new JPanel();
+		JPanel edit = new JPanel();
 
 		mainFrame.getContentPane().add(panel);
 		mainFrame.pack();
@@ -189,6 +197,29 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		btnNewGame.setBounds(584, 80, 100, 25);
 		mainFrame.getContentPane().add(btnNewGame);
 
+		//button edit
+				btnEdit.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						editFrame.getContentPane().add(dialog);
+						editFrame.pack();
+						editFrame.setVisible(true);
+
+						editFrame.setBounds(100, 100, 600, 600);
+						editFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+						editFrame.getContentPane().setLayout(null);
+						
+						
+						editFrame.getContentPane().add(editLevelGraphics);
+						
+						panel.requestFocusInWindow();
+					}
+				});
+				btnEdit.setBounds(559, 300, 150, 25);
+				btnEdit.setEnabled(true);
+				mainFrame.getContentPane().add(btnEdit);
+		
 		//button left
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
