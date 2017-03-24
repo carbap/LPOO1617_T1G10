@@ -20,7 +20,7 @@ public class TileFactory {
 		tiles.put('O', new ImageIcon(getClass().getResource("/assets/ogre.png")));
 		tiles.put('8', new ImageIcon(getClass().getResource("/assets/ogre_stunned.png")));
 		tiles.put('*', new ImageIcon(getClass().getResource("/assets/temp.png")));
-		tiles.put('k', new ImageIcon(getClass().getResource("/assets/temp.png")));
+		tiles.put('k', new ImageIcon(getClass().getResource("/assets/key.png")));
 		tiles.put(' ', new ImageIcon(getClass().getResource("/assets/white_floor.png")));
 		tiles.put('$', new ImageIcon(getClass().getResource("/assets/temp.png")));
 		

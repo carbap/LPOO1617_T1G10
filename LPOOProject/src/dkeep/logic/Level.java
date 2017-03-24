@@ -29,13 +29,11 @@ public abstract class Level {
 		}
 	}
 	
-	
 	public void npc(){
 		for(int i = 0; i < this.Enemies.size(); i++){
 			Enemies.get(i).move(table);
 		}
 	}
-	
 	
 	public char[][] getTableCopy() {
 		char[][] map = new char[table.length][];
