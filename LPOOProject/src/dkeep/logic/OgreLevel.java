@@ -46,9 +46,9 @@ public class OgreLevel extends Level{
 		int endLevelY_temp[] = {1};
 		this.endLevelY = endLevelY_temp;
 	}
-	public OgreLevel(int width, int height){
+	public OgreLevel(int OgreNr, int ogreX, int ogreY, int width, int height){
 		char temp[][] = new char[width][height];
-
+		
 		for(int i = 0; i < temp.length;i++)
 		{
 			for(int j = 0; j < temp[i].length;j++)
@@ -62,10 +62,21 @@ public class OgreLevel extends Level{
 					temp[i][j] = ' ';
 				}
 			}
-			System.out.println();
 		}
 
 		table = temp;
+		
+		for(int i = 0; i < OgreNr; i++){
+			Ogre ogre0 = new Ogre(ogreX, ogreY, ogreX, ogreY);
+			this.Enemies.add(ogre0);
+		}
+		
+		int endLevelX_temp[] = {0};
+		this.endLevelX = endLevelX_temp;
+
+		int endLevelY_temp[] = {1};
+		this.endLevelY = endLevelY_temp;
+		
 	}
 
 }

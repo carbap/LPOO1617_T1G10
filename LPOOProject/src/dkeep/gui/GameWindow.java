@@ -57,22 +57,23 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	private static JToggleButton btnOgre = new JToggleButton("");
 	private static JToggleButton btnHero = new JToggleButton("");
 	private static JToggleButton btnKey = new JToggleButton("");
-	private static JLabel lblWarning = new JLabel("There must be only one hero and key.");
+	private static JLabel lblWarning = new JLabel("Height and width must be > 5 and < 14");
 	private static JLabel lblWidth = new JLabel("Width: ");
 	private static JTextField width = new JTextField();
 	private static JLabel lblHeight = new JLabel("Height: ");
 	private static JTextField height = new JTextField();
 	private static JButton btnCreate = new JButton("Create Map");
-	private static JToggleButton btnFinalPos = new JToggleButton("finalpos...");
-	private static JToggleButton btnReset = new JToggleButton("RESET");
-	
-	
+	private static JButton btnReset = new JButton("Reset Map");
+	private static JButton btnSave = new JButton("Save Map");
+
+
 
 	private static char editChar = ' ';
 
 	private static GraphicArea gamegraphics = new GraphicArea(50, 50);
-	private static GraphicArea editLevelGraphics = new GraphicArea(50, 50);
+	private static GraphicArea editLevelGraphics = new GraphicArea(10, 10);
 	private static OgreLevel editLevel = new OgreLevel(ogreNr);
+	private static OgreLevel playableEditLevel = new OgreLevel(ogreNr);
 
 	/**
 	 * Launch the application.
@@ -98,6 +99,12 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		mainFrame = new JFrame();
 		dialogFrame = new JFrame();
 		editFrame = new JFrame();
+		editFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				editLevel = new OgreLevel(ogreNr);
+			}
+		});
 	}
 
 	/**
@@ -205,7 +212,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 				graphicsUpdate();
 
-
+				btnEdit.setEnabled(false);
 				btnUp.setEnabled(true);
 				btnLeft.setEnabled(true);
 				btnRight.setEnabled(true);
@@ -231,10 +238,8 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 				editFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 				editFrame.getContentPane().setLayout(null);
 
-				editLevelGraphics.setTable(editLevel.getTableCopy());
+				editLevelGraphics.setTable(editLevel.getWorktable());
 				editFrame.getContentPane().add(editLevelGraphics);
-
-
 
 				edit.requestFocusInWindow();
 			}
@@ -311,7 +316,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 
 		btnWall.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/wall.png")));
-		btnWall.setBounds(390, 50, 42, 42);
+		btnWall.setBounds(460, 50, 42, 42);
 		btnWall.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				disableAllEditButtons();
@@ -323,7 +328,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 
 		btnDoor.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/door_closed.png")));
-		btnDoor.setBounds(450, 50, 42, 42);
+		btnDoor.setBounds(520, 50, 42, 42);
 		btnDoor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				disableAllEditButtons();
@@ -335,7 +340,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 
 		btnFloor.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/white_floor.png")));
-		btnFloor.setBounds(390, 100, 42, 42);
+		btnFloor.setBounds(460, 100, 42, 42);
 		btnFloor.setSelected(true);
 		btnFloor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -348,7 +353,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 
 		btnOgre.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/ogre.png")));
-		btnOgre.setBounds(450, 100, 42, 42);
+		btnOgre.setBounds(520, 100, 42, 42);
 		btnOgre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				disableAllEditButtons();
@@ -360,7 +365,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 
 		btnHero.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/temp.png")));
-		btnHero.setBounds(390, 150, 42, 42);
+		btnHero.setBounds(460, 150, 42, 42);
 		btnHero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				disableAllEditButtons();
@@ -379,62 +384,110 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 				editChar = 'k';
 			}
 		});
-		btnKey.setBounds(450, 150, 42, 42);
+		btnKey.setBounds(520, 150, 42, 42);
 		editFrame.getContentPane().add(btnKey);
 
-
-		btnFinalPos.setBounds(390, 600, 42, 42);
-		btnFinalPos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				disableAllEditButtons();
-				btnFinalPos.setSelected(true);
-				editChar = 'f'; //n existe char f mas para reconhecer q e para indicar pos final
-			}
-		});
-		editFrame.getContentPane().add(btnFinalPos);
-
-
-		btnReset.setBounds(450, 650, 42, 42);
+		btnReset.setBounds(350, 485, 100, 50);
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				disableAllEditButtons();
-				btnReset.setSelected(true);
+				editLevel = new OgreLevel(ogreNr);
+				editGraphicsUpdate();
 			}
 		});
 		editFrame.getContentPane().add(btnReset);
-		
-		
-		lblWarning.setBounds(50, 370, 250, 25);
+
+
+		lblWarning.setBounds(50, 450, 400, 25);
 		editFrame.getContentPane().add(lblWarning);
-		
-		lblWidth.setBounds(50, 420, 50, 25);
+
+		lblWidth.setBounds(50, 480, 50, 25);
 		editFrame.getContentPane().add(lblWidth);
-		
-		width.setBounds(100, 420, 100, 25);
+
+		width.setBounds(100, 480, 100, 25);
 		editFrame.getContentPane().add(width);
-		
-		lblHeight.setBounds(50, 450, 50, 25);
+
+		lblHeight.setBounds(50, 520, 50, 25);
 		editFrame.getContentPane().add(lblHeight);
-		
-		height.setBounds(100, 450, 100, 25);
+
+		height.setBounds(100, 520, 100, 25);
 		editFrame.getContentPane().add(height);
-		
-		btnCreate.setBounds(100, 480, 42, 42);
+
+		btnCreate.setBounds(225, 485, 100, 50);
 		btnCreate.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				Integer w = Integer.parseInt(width.getText());
-				Integer h = Integer.parseInt(height.getText());
+				String stringHeight = height.getText();
+				String stringWidth = width.getText();
+				Integer w, h;
+				if(stringHeight.equals("") || stringWidth.equals("") ){
+					lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
+					return;
+				}
 
-				editLevel = new OgreLevel(w, h);
-				
-				editGraphicsUpdate();
+				try
+				{
+					w = Integer.parseInt(stringWidth);
+					h = Integer.parseInt(stringHeight);
+				}
+				catch (NumberFormatException exception)
+				{
+					lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
+					return;
+				} 
+
+				if(w > 5 && w < 14 && h > 5 && h < 14){
+					editLevel = new OgreLevel(ogreNr, 3, 3, w, h);
+					lblWarning.setText("Map successfully created");
+					editGraphicsUpdate();
+				}
+				else{
+					lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
+				}
+
 			}
 		});
 		editFrame.getContentPane().add(btnCreate);
-		
-		
+
+
+		btnSave.setBounds(475, 485, 100, 50);
+		btnSave.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				boolean validMap = true;
+				boolean foundDoor = false;
+				int X = editLevel.getEnemies().get(0).getX();
+				int Y = editLevel.getEnemies().get(0).getY();
+				char[][] worktablecopy= editLevel.getWorktable();
+				if((worktablecopy[X+1][Y] == 'X' || worktablecopy[X+1][Y] == 'I')
+						&& (worktablecopy[X-1][Y] == 'X' || worktablecopy[X-1][Y] == 'I')
+						&& (worktablecopy[X][Y+1] == 'X' || worktablecopy[X][Y+1] == 'I')
+						&& (worktablecopy[X][Y-1] == 'X' || worktablecopy[X][Y-1] == 'I')){
+					lblWarning.setText("Ogre must have at least one free adjacent tile");
+					validMap = false;
+				}
+				for(int i = 0; i < worktablecopy.length && foundDoor == false; i++){
+					for(int j = 0; j < worktablecopy[i].length && foundDoor == false; j++){
+						if(worktablecopy[i][j] == 'I'){
+							foundDoor = true;
+						}
+					}
+				}
+				if(!foundDoor){
+					lblWarning.setText("There needs to be at least 1 door");
+					validMap = false;
+				}
+
+				if(validMap){
+					editFrame.setVisible(false);
+					panel.requestFocusInWindow();
+				}
+
+			}
+		});
+		editFrame.getContentPane().add(btnSave);
+
 
 
 
@@ -469,8 +522,9 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 					game.setGameOver(true);
 				}
 				else{
-
-					game.changeLevel(new OgreLevel(ogreNr));
+					playableEditLevel = editLevel.getOgreLevelCopy(ogreNr);
+					//game.changeLevel(new OgreLevel(ogreNr));
+					game.changeLevel(playableEditLevel);
 					game.setLastLevel(true);
 					lblHelp.setText("You are now armed, so you can stun enemies. Grab the key and escape the dungeon!");
 				}
@@ -490,7 +544,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	}
 
 	public static void editGraphicsUpdate(){
-		editLevelGraphics.setTable(editLevel.getTableCopy());
+		editLevelGraphics.setTable(editLevel.getWorktable());
 		editLevelGraphics.validate();
 		editLevelGraphics.repaint();
 	}
@@ -503,6 +557,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		btnDown.setEnabled(false);
 		canPress = false;
 		btnOptions.setEnabled(true);
+		btnEdit.setEnabled(true);
 	}
 
 	public static void disableAllEditButtons(){
@@ -512,24 +567,8 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		btnOgre.setSelected(false);
 		btnHero.setSelected(false);
 		btnKey.setSelected(false);
-		btnFinalPos.setSelected(false);
-		btnReset.setSelected(false);
 	} 
-	
-	private static boolean hasChar(char c)
-	{
-		for(int i = 0; i < editLevel.getTableCopy().length;i++)
-		{
-			for(int j = 0; j < editLevel.getTableCopy()[i].length;j++)
-			{
-				if(editLevel.getTableCopy()[i][j] == c)
-				{
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+
 
 
 	@Override
@@ -573,32 +612,49 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	{ 
 		int indexX = (e.getX())/32;
 		int indexY = (e.getY())/32;
-		//tirei condicao em que fazia return quando estava out of bounds porque o tamanho vai ser variavel
+
+		if(indexX >= editLevel.getTableCopy().length || indexY >= editLevel.getTableCopy()[0].length){
+			return;
+		}
+
+		char tableCharCopy = editLevel.getWorktable()[indexX][indexY];
+		int tableWidth =  editLevel.getWorktable().length-1;
+		int tableHeight =  editLevel.getWorktable()[0].length-1;
 		switch(editChar)
 		{
 		case 'X':
-			editLevel.setTableChar(indexX, indexY, 'X');
+			if(tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
+				editLevel.setTableChar(indexX, indexY, 'X');
 			break;
 		case 'I':
-			editLevel.setTableChar(indexX, indexY, 'I');
+			if(tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
+				editLevel.setTableChar(indexX, indexY, 'I');
 			break;
 		case 'H':
-			if(!hasChar('H'))
-			{
-				editLevel.setTableChar(indexX, indexY, 'H');
+			if(indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
+				editLevel.getHero().setPosition(indexX, indexY);
 			}
 			break;
 		case 'O':
-			editLevel.setTableChar(indexX, indexY, 'O');
+			if(indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
+				editLevel.getEnemies().get(0).setPosition(indexX, indexY);
+				editLevel.getEnemies().get(0).setWeaponX(indexX);
+				editLevel.getEnemies().get(0).setWeaponY(indexY);
+			}
+
 			break;
 		case ' ':
-			editLevel.setTableChar(indexX, indexY, ' ');
+			if(indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight){
+				editLevel.setTableChar(indexX, indexY, ' ');
+			}
+
 			break;
 		case 'k':
-			if(!hasChar('k'))
-			{
-				editLevel.setTableChar(indexX, indexY, 'k');
+			if(indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
+				editLevel.setKeyX(indexX);
+				editLevel.setKeyY(indexY);
 			}
+
 			break;
 		}
 		editGraphicsUpdate();

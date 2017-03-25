@@ -6,7 +6,7 @@ public class Game {
 	private  boolean lastLevel = false;
 	private  boolean gameOver = false;
 
-	private  char[][] workTable;
+	//private  char[][] workTable;
 
 	public Game(Level startingLevel){
 		this.level = startingLevel;
@@ -20,7 +20,7 @@ public class Game {
 
 	public void draw()
 	{
-		updateWorkTable();
+		char[][] workTable = getWorktable();
 		for(int i = 0; i < workTable.length; i++){
 			for(int j = 0; j < workTable[i].length; j++){
 				System.out.print( workTable[j][i] + " " );
@@ -29,6 +29,7 @@ public class Game {
 		}
 	}
 	
+	/*
 	public void updateWorkTable()
 	{
 		//reset table
@@ -69,12 +70,13 @@ public class Game {
 			}
 		}
 
-	}
+	}*/
 		
 
 	public char[][] getWorktable(){
-		this.updateWorkTable();
-		return this.workTable;
+		/*this.updateWorkTable();
+		return this.workTable;*/
+		return level.getWorktable();
 	}
 	
 	
@@ -149,14 +151,18 @@ public class Game {
 	
 	
 	public boolean isEndLevel(){
-		boolean flag = false;
+		/*boolean flag = false;
 		for(int i = 0; i < this.level.getEndLevelX().length; i++){
 			if(this.level.getHero().getX() == this.level.getEndLevelX()[i] && this.level.getHero().getY() == this.level.getEndLevelY()[i]){
 				flag = true;
 				break;
 			}
 		}
-		return flag;
+		return flag;*/
+		
+		char[][] tablecopy = level.getTableCopy();
+		return (tablecopy[level.getHero().getX()][level.getHero().getY()] == 'S');
+		
 	}
 	
 	public boolean checkHeroTurn(){
@@ -203,7 +209,10 @@ public class Game {
 	public void checkKey(){
 		if(level.getHero().getX() == level.keyX && level.getHero().getY() == level.keyY){
 			level.keyEnabled = false;
-			level.openDoors();
+			if(lastLevel)
+				level.openAllDoors();
+			else
+				level.openDoors();
 			this.level.getHero().setDisplayChar('K');
 		}
 	}

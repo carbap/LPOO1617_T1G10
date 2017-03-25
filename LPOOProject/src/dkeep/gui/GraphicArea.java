@@ -15,7 +15,7 @@ public class GraphicArea extends JPanel{
 	public GraphicArea(int x, int y){
 		this.x = x;
 		this.y = y;
-		this.setBounds(x, y, 400, 400);
+		this.setBounds(x, y, 416, 416);
 		table = new char[10][10];
 		for(int i = 0; i < 10; i++){
 			for(int j = 0; j < 10; j++){
