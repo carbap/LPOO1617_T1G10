@@ -16,6 +16,9 @@ public class TestGame
 		g.updateHero(2);
 		assertEquals(1, g.getLevel().getHero().getX());
 		assertEquals(2, g.getLevel().getHero().getY());
+		g.updateHero(8);
+		assertEquals(1, g.getLevel().getHero().getX());
+		assertEquals(1, g.getLevel().getHero().getY());
 	}
 	
 	@Test
@@ -422,7 +425,24 @@ public class TestGame
 				
 	}
 	
+	@Test
+	public void testWeaponCharAndStun()
+	{
+		Game g = new Game(new TestOgreLevel());
+		assertEquals('*' , g.getLevel().getEnemies().get(0).getWeaponDisplayChar() );
+		assertEquals(0 , g.getLevel().getEnemies().get(0).getTurnsStunned() );
+		g.getLevel().getEnemies().get(0).setTurnsStunned(3);
+		assertEquals(3 , g.getLevel().getEnemies().get(0).getTurnsStunned() );
+	}
 	
+	@Test
+	public void testLastLevel()
+	{
+		Game g = new Game(new TestOgreLevel());
+		assertEquals(false, g.isLastLevel());
+		g.setLastLevel(true);
+		assertEquals(true, g.isLastLevel());
+	}
 	
 	
 	

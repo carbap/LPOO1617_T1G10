@@ -30,7 +30,7 @@ public abstract class Level {
 			this.table[ this.endLevelX[i]][ this.endLevelY[i] ] = 'S';
 		}
 	}
-	
+
 	public void openAllDoors(){
 		for(int i = 0; i < table.length; i++){
 			for(int j = 0; j < table[i].length; j++){
@@ -104,37 +104,35 @@ public abstract class Level {
 		return Enemies;
 	}
 
-
-	public void updateWorkTable()
-	{
-		//reset table
-		workTable = this.getTableCopy();
-
-		//draw key
+	public void drawKey(){
 		if(keyEnabled)
 		{
 			workTable[keyX][keyY] = 'k';
 		}
+	}
 
-		//draw hero
+	public void drawHero(){
 		if(workTable[hero.getX()][hero.getY()] == ' ' || workTable[hero.getX()][hero.getY()] == 'S'){
 			workTable[hero.getX()][hero.getY()] = hero.getDisplayChar();
 		}
 		else{
 			workTable[hero.getX()][hero.getY()] = '$';
 		}
+	}
 
-		//draw enemies and weapons
+	public void drawEnemies(){
 		for(int i = 0; i < Enemies.size(); i++){
-			//draw enemies
 			if(workTable[Enemies.get(i).getX()][Enemies.get(i).getY()] == ' '){
 				workTable[Enemies.get(i).getX()][Enemies.get(i).getY()] = Enemies.get(i).getDisplayChar();
 			}
 			else if(workTable[Enemies.get(i).getX()][Enemies.get(i).getY()] == 'k'){
 				workTable[Enemies.get(i).getX()][Enemies.get(i).getY()] = '$';
 			}
+		}
+	}
 
-			//draw respective weapons if they exist
+	public void drawWeapons(){
+		for(int i = 0; i < Enemies.size(); i++){
 			if(Enemies.get(i).hasWeapon()){
 				if(workTable[Enemies.get(i).getWeaponX()][Enemies.get(i).getWeaponY()] == ' '){
 					workTable[Enemies.get(i).getWeaponX()][Enemies.get(i).getWeaponY()] = Enemies.get(i).getWeaponDisplayChar();
@@ -144,8 +142,18 @@ public abstract class Level {
 				}
 			}
 		}
-
 	}
+
+
+	public void updateWorkTable()
+	{
+		workTable = this.getTableCopy();
+		drawKey();
+		drawHero();
+		drawEnemies();
+		drawWeapons();
+	}
+
 
 	public char[][] getWorktable(){
 		this.updateWorkTable();

@@ -3,29 +3,24 @@ package dkeep.logic;
 import java.util.Random;
 
 public class Guard extends Character{
-	
+
 	private boolean asleep = false;
 
 	private char asleepDisplayChar = 'g';
-	
+
 	//constructor
 	public Guard(int guardX, int guardY, int guardMov){
 		this.X = guardX;
 		this.Y = guardY;
 		this.displayChar = 'G';
-		switch(guardMov){
-		case 1:
+		if(guardMov == 1)
 			this.mov = new RookieMovement();
-			break;
-		case 2:
+		else if(guardMov == 2)
 			this.mov = new DrunkenMovement();
-			break;
-		case 3:
+		else if(guardMov == 3)
 			this.mov = new SuspiciousMovement();
-			break;
-		}
 	}
-	
+
 	//move guard
 	public void move(char[][] table){
 		int direction = mov.getDirection(table, X, Y);
@@ -47,7 +42,7 @@ public class Guard extends Character{
 	public void setAsleep(boolean asleep) {
 		this.asleep = asleep;
 	}
-	
+
 	//return the char to be displayed
 	public char getDisplayChar(){
 		if(!asleep){
@@ -57,24 +52,24 @@ public class Guard extends Character{
 			return this.asleepDisplayChar;
 		}
 	}
-	
+
 	public boolean isAdjacent(int X, int Y){
 		if(!this.asleep){
 			if(this.X == X && (this.Y == Y+1 || this.Y == Y-1) ){
 				return true;
 			}
-				
+
 			if(this.Y == Y && (this.X == X+1 || this.X == X-1) ){
 				return true;
 			}
 		}
-			
+
 		return false;
 	}
 
 	@Override
 	public void setStunned(boolean value) {
-				
+
 	}
-	
+
 }
