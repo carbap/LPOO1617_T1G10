@@ -325,7 +325,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		initializeBtnExit();
 	}
 
-	
+
 	public static void initializeBtnWall(){
 		btnWall.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/wall.png")));
 		btnWall.setBounds(460, 50, 42, 42);
@@ -338,166 +338,166 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		});
 		editFrame.getContentPane().add(btnWall);
 	}
-	
-public static void initializeBtnDoor(){
-	btnDoor.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/door_closed.png")));
-	btnDoor.setBounds(520, 50, 42, 42);
-	btnDoor.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			disableAllEditButtons();
-			btnDoor.setSelected(true);
-			editChar = 'I';
-		}
-	});
-	editFrame.getContentPane().add(btnDoor);
+
+	public static void initializeBtnDoor(){
+		btnDoor.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/door_closed.png")));
+		btnDoor.setBounds(520, 50, 42, 42);
+		btnDoor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnDoor.setSelected(true);
+				editChar = 'I';
+			}
+		});
+		editFrame.getContentPane().add(btnDoor);
 	}
 
-public static void initializeBtnFloor(){
-	btnFloor.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/white_floor.png")));
-	btnFloor.setBounds(460, 100, 42, 42);
-	btnFloor.setSelected(true);
-	btnFloor.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			disableAllEditButtons();
-			btnFloor.setSelected(true);
-			editChar = ' ';
-		}
-	});
-	editFrame.getContentPane().add(btnFloor);
-}
-
-public static void initializeBtnOgre(){
-	btnOgre.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/ogre.png")));
-	btnOgre.setBounds(520, 100, 42, 42);
-	btnOgre.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			disableAllEditButtons();
-			btnOgre.setSelected(true);
-			editChar = 'O';
-		}
-	});
-	editFrame.getContentPane().add(btnOgre);
-}
-
-public static void initializeBtnHero(){
-	btnHero.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/hero_armed.png")));
-	btnHero.setBounds(460, 150, 42, 42);
-	btnHero.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			disableAllEditButtons();
-			btnHero.setSelected(true);
-			editChar = 'H';
-		}
-	});
-	editFrame.getContentPane().add(btnHero);
-}
-
-public static void initializeBtnKey(){
-	btnKey.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/key.png")));
-	btnKey.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			disableAllEditButtons();
-			btnKey.setSelected(true);
-			editChar = 'k';
-		}
-	});
-	btnKey.setBounds(520, 150, 42, 42);
-	editFrame.getContentPane().add(btnKey);
-}
-
-public static void initializeBtnReset(){
-	btnReset.setBounds(350, 485, 100, 50);
-	btnReset.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			editLevel = new OgreLevel(ogreNr);
-			editGraphicsUpdate();
-		}
-	});
-	editFrame.getContentPane().add(btnReset);
-}
-
-public static void initializeBtnCreate(){
-	btnCreate.setBounds(225, 485, 100, 50);
-	btnCreate.addActionListener(new ActionListener()
-	{
-		public void actionPerformed(ActionEvent arg0)
-		{
-			String stringHeight = height.getText();
-			String stringWidth = width.getText();
-			Integer w, h;
-			if(stringHeight.equals("") || stringWidth.equals("") ){
-				lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
-				return;
+	public static void initializeBtnFloor(){
+		btnFloor.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/white_floor.png")));
+		btnFloor.setBounds(460, 100, 42, 42);
+		btnFloor.setSelected(true);
+		btnFloor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnFloor.setSelected(true);
+				editChar = ' ';
 			}
+		});
+		editFrame.getContentPane().add(btnFloor);
+	}
 
-			try
-			{
-				w = Integer.parseInt(stringWidth);
-				h = Integer.parseInt(stringHeight);
+	public static void initializeBtnOgre(){
+		btnOgre.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/ogre.png")));
+		btnOgre.setBounds(520, 100, 42, 42);
+		btnOgre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnOgre.setSelected(true);
+				editChar = 'O';
 			}
-			catch (NumberFormatException exception)
-			{
-				lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
-				return;
-			} 
+		});
+		editFrame.getContentPane().add(btnOgre);
+	}
 
-			if(w > 5 && w < 14 && h > 5 && h < 14){
-				editLevel = new OgreLevel(ogreNr, 3, 3, w, h);
-				lblWarning.setText("Map successfully created");
+	public static void initializeBtnHero(){
+		btnHero.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/hero_armed.png")));
+		btnHero.setBounds(460, 150, 42, 42);
+		btnHero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnHero.setSelected(true);
+				editChar = 'H';
+			}
+		});
+		editFrame.getContentPane().add(btnHero);
+	}
+
+	public static void initializeBtnKey(){
+		btnKey.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/key.png")));
+		btnKey.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				disableAllEditButtons();
+				btnKey.setSelected(true);
+				editChar = 'k';
+			}
+		});
+		btnKey.setBounds(520, 150, 42, 42);
+		editFrame.getContentPane().add(btnKey);
+	}
+
+	public static void initializeBtnReset(){
+		btnReset.setBounds(350, 485, 100, 50);
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				editLevel = new OgreLevel(ogreNr);
 				editGraphicsUpdate();
 			}
-			else{
-				lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
-			}
+		});
+		editFrame.getContentPane().add(btnReset);
+	}
 
-		}
-	});
-	editFrame.getContentPane().add(btnCreate);
-}
-
-public static void initializeBtnSave(){
-	btnSave.setBounds(475, 485, 100, 50);
-	btnSave.addActionListener(new ActionListener()
-	{
-		public void actionPerformed(ActionEvent arg0)
+	public static void initializeBtnCreate(){
+		btnCreate.setBounds(225, 485, 100, 50);
+		btnCreate.addActionListener(new ActionListener()
 		{
-			boolean validMap = true;
-			boolean foundDoor = false;
-			int X = editLevel.getEnemies().get(0).getX();
-			int Y = editLevel.getEnemies().get(0).getY();
-			char[][] worktablecopy= editLevel.getWorktable();
-			if((worktablecopy[X+1][Y] == 'X' || worktablecopy[X+1][Y] == 'I')
-					&& (worktablecopy[X-1][Y] == 'X' || worktablecopy[X-1][Y] == 'I')
-					&& (worktablecopy[X][Y+1] == 'X' || worktablecopy[X][Y+1] == 'I')
-					&& (worktablecopy[X][Y-1] == 'X' || worktablecopy[X][Y-1] == 'I')){
-				lblWarning.setText("Ogre must have at least one free adjacent tile");
-				validMap = false;
+			public void actionPerformed(ActionEvent arg0)
+			{
+				String stringHeight = height.getText();
+				String stringWidth = width.getText();
+				Integer w, h;
+				if(stringHeight.equals("") || stringWidth.equals("") ){
+					lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
+					return;
+				}
+
+				try
+				{
+					w = Integer.parseInt(stringWidth);
+					h = Integer.parseInt(stringHeight);
+				}
+				catch (NumberFormatException exception)
+				{
+					lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
+					return;
+				} 
+
+				if(w > 5 && w < 14 && h > 5 && h < 14){
+					editLevel = new OgreLevel(ogreNr, 3, 3, w, h);
+					lblWarning.setText("Map successfully created");
+					editGraphicsUpdate();
+				}
+				else{
+					lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
+				}
+
 			}
-			for(int i = 0; i < worktablecopy.length && foundDoor == false; i++){
-				for(int j = 0; j < worktablecopy[i].length && foundDoor == false; j++){
-					if(worktablecopy[i][j] == 'I'){
-						foundDoor = true;
+		});
+		editFrame.getContentPane().add(btnCreate);
+	}
+
+	public static void initializeBtnSave(){
+		btnSave.setBounds(475, 485, 100, 50);
+		btnSave.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				boolean validMap = true;
+				boolean foundDoor = false;
+				int X = editLevel.getEnemies().get(0).getX();
+				int Y = editLevel.getEnemies().get(0).getY();
+				char[][] worktablecopy= editLevel.getWorktable();
+				if((worktablecopy[X+1][Y] == 'X' || worktablecopy[X+1][Y] == 'I')
+						&& (worktablecopy[X-1][Y] == 'X' || worktablecopy[X-1][Y] == 'I')
+						&& (worktablecopy[X][Y+1] == 'X' || worktablecopy[X][Y+1] == 'I')
+						&& (worktablecopy[X][Y-1] == 'X' || worktablecopy[X][Y-1] == 'I')){
+					lblWarning.setText("Ogre must have at least one free adjacent tile");
+					validMap = false;
+				}
+				for(int i = 0; i < worktablecopy.length && foundDoor == false; i++){
+					for(int j = 0; j < worktablecopy[i].length && foundDoor == false; j++){
+						if(worktablecopy[i][j] == 'I'){
+							foundDoor = true;
+						}
 					}
 				}
-			}
-			if(!foundDoor){
-				lblWarning.setText("There needs to be at least 1 door");
-				validMap = false;
-			}
+				if(!foundDoor){
+					lblWarning.setText("There needs to be at least 1 door");
+					validMap = false;
+				}
 
-			if(validMap){
-				editFrame.setVisible(false);
-				panel.requestFocusInWindow();
-			}
+				if(validMap){
+					editFrame.setVisible(false);
+					panel.requestFocusInWindow();
+				}
 
-		}
-	});
-	editFrame.getContentPane().add(btnSave);
-}
-	
-	
-	
-	
+			}
+		});
+		editFrame.getContentPane().add(btnSave);
+	}
+
+
+
+
 	public static void initializeEditButtons(){
 		initializeBtnWall();
 		initializeBtnDoor();
@@ -546,24 +546,24 @@ public static void initializeBtnSave(){
 
 		initializeEditButtons();
 
-		
 
 
-		
 
 
-		
 
 
-		
 
 
-		
 
 
-		
 
-		
+
+
+
+
+
+
+
 
 
 		lblWarning.setBounds(50, 450, 400, 25);
@@ -581,10 +581,10 @@ public static void initializeBtnSave(){
 		height.setBounds(100, 520, 100, 25);
 		editFrame.getContentPane().add(height);
 
-		
 
 
-		
+
+
 
 
 
@@ -704,6 +704,12 @@ public static void initializeBtnSave(){
 
 	}
 
+
+	public void editTile(char editChar){
+
+	}
+
+
 	@Override 
 	public void mouseClicked(MouseEvent e)
 	{ 
@@ -717,43 +723,30 @@ public static void initializeBtnSave(){
 		char tableCharCopy = editLevel.getWorktable()[indexX][indexY];
 		int tableWidth =  editLevel.getWorktable().length-1;
 		int tableHeight =  editLevel.getWorktable()[0].length-1;
-		switch(editChar)
-		{
-		case 'X':
-			if(tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
-				editLevel.setTableChar(indexX, indexY, 'X');
-			break;
-		case 'I':
-			if(tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
-				editLevel.setTableChar(indexX, indexY, 'I');
-			break;
-		case 'H':
-			if(indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
-				editLevel.getHero().setPosition(indexX, indexY);
-			}
-			break;
-		case 'O':
-			if(indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
-				editLevel.getEnemies().get(0).setPosition(indexX, indexY);
-				editLevel.getEnemies().get(0).setWeaponX(indexX);
-				editLevel.getEnemies().get(0).setWeaponY(indexY);
-			}
 
-			break;
-		case ' ':
-			if(indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight){
-				editLevel.setTableChar(indexX, indexY, ' ');
-			}
-
-			break;
-		case 'k':
-			if(indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
-				editLevel.setKeyX(indexX);
-				editLevel.setKeyY(indexY);
-			}
-
-			break;
+		if(editChar == 'X' && tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
+			editLevel.setTableChar(indexX, indexY, 'X');
+		if(editChar == 'I' && tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
+			editLevel.setTableChar(indexX, indexY, 'I');
+		if(editChar == 'H' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
+			editLevel.getHero().setPosition(indexX, indexY);
 		}
+		if(editChar == 'O' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
+			editLevel.getEnemies().get(0).setPosition(indexX, indexY);
+			editLevel.getEnemies().get(0).setWeaponX(indexX);
+			editLevel.getEnemies().get(0).setWeaponY(indexY);
+		}
+
+		if(editChar == ' ' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight){
+			editLevel.setTableChar(indexX, indexY, ' ');
+		}
+
+		if(editChar == 'k' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
+			editLevel.setKeyX(indexX);
+			editLevel.setKeyY(indexY);
+		}
+
+
 		editGraphicsUpdate();
 	}
 
