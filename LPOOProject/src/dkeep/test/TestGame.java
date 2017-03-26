@@ -3,6 +3,7 @@ package dkeep.test;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import dkeep.gui.GameWindow;
 import dkeep.logic.*;
 
 public class TestGame
@@ -442,6 +443,57 @@ public class TestGame
 		assertEquals(false, g.isLastLevel());
 		g.setLastLevel(true);
 		assertEquals(true, g.isLastLevel());
+	}
+	
+	@Test
+	public void testOgreLevel() 
+	{
+		int width = 8;
+		int height = 8;
+		int ogreNr = 3;
+		OgreLevel o = new OgreLevel(ogreNr,7,7,width,height);
+		char[][] table = o.getTableCopy();
+		boolean flag = true;
+		for(int i = 0; i < table.length;i++)
+		{
+			for(int j = 0;j < table[i].length;j++)
+			{
+				if(i == 0 || i == (8-1) || j == 0 || j == (8-1))
+				{
+					if(table[i][j] != 'X')
+						flag = false;
+				}
+				else
+				{
+					if(table[i][j] != ' ')
+						flag = false;
+
+				}
+			}
+		}
+		assertEquals(true,flag); 
+		
+		assertEquals(ogreNr, o.getEnemies().size());
+		
+		assertEquals(true,o.isKeyEnabled());
+		
+		assertEquals('X',o.getTableCopy()[5][0]);
+		
+		o.setTableChar(5, 0, 'I');
+		assertEquals('I',o.getTableCopy()[5][0]);
+		
+		o.getHero().setX(5);
+		o.getHero().setY(2);
+		assertEquals(5,o.getHero().getX());
+		assertEquals(2,o.getHero().getY());
+		
+		o.setKeyX(5);
+		o.setKeyY(1); 
+		assertEquals('k',o.getWorktable()[5][1]);
+		
+		o.openAllDoors();
+		assertEquals('S',o.getTableCopy()[5][0]);
+		 
 	}
 	
 	

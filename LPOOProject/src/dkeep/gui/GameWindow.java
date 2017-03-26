@@ -539,32 +539,9 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		lblHelp.setBounds(40, 490, 600, 40);
 		mainFrame.getContentPane().add(lblHelp);
 
-
-
 		mainFrame.getContentPane().add(gamegraphics);
 
-
 		initializeEditButtons();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		lblWarning.setBounds(50, 450, 400, 25);
 		editFrame.getContentPane().add(lblWarning);
@@ -580,15 +557,6 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 		height.setBounds(100, 520, 100, 25);
 		editFrame.getContentPane().add(height);
-
-
-
-
-
-
-
-
-
 
 	}
 
