@@ -77,6 +77,9 @@ public class OgreLevel extends Level{
 		int endLevelY_temp[] = {1};
 		this.endLevelY = endLevelY_temp;
 		
+		this.hero.setWeapon(true);
+		this.hero.setDisplayChar('A');
+		
 	}
 
 }
