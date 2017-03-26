@@ -101,8 +101,5 @@ public abstract class Character {
 	public void setMov(MovementStrategy mov) {
 		this.mov = mov;
 	}
-	
-	
-	
-	
+		
 }
