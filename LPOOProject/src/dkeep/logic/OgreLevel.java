@@ -1,6 +1,13 @@
 package dkeep.logic;
 
 public class OgreLevel extends Level{
+	/**
+	 * Constructs a default OgreLevel that will be used for
+	 * the game's second and last level.
+	 * The OgreNr parameter will indicate the number of ogres in the level.
+	 * 
+	 * @param OgreNr
+	 */
 	public OgreLevel(int OgreNr){
 		char temp[][] ={ 
 				{'X','I','X','X','X','X','X','X','X'},
@@ -34,6 +41,20 @@ public class OgreLevel extends Level{
 		int endLevelY_temp[] = {1};
 		this.endLevelY = endLevelY_temp;
 	}
+	
+	/**
+	 * Constructs an OgreLevel that will be used for
+	 * the game's level editor functionality.
+	 * The table's dimensions will be set using the parameters
+	 * width and height. The OgreNr parameter will indicate the amount
+	 * of ogres and their initial position will be set using ogreX and ogreY.
+	 * 
+	 * @param OgreNr
+	 * @param ogreX
+	 * @param ogreY
+	 * @param width
+	 * @param height
+	 */
 	public OgreLevel(int OgreNr, int ogreX, int ogreY, int width, int height){
 		char temp[][] = new char[width][height];
 		

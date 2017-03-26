@@ -8,7 +8,12 @@ public class DrunkenMovement implements MovementStrategy{
 	private int turnsAsleep = 0;
 	private boolean moveForward = true;
 
-
+	/**
+	 * If the guard is currently asleep, this method does nothing.
+	 * Otherwise, has a chance of about 20% to make the guard 
+	 * fall asleep for 3 turns. In this case, there will be a 50% chance
+	 * of setting moveForward as true or false.
+	 */
 	public void RandFallsAsleep(){
 		if(turnsAsleep == 0){
 			Random rand = new Random();
@@ -25,6 +30,12 @@ public class DrunkenMovement implements MovementStrategy{
 		}
 	}
 
+	/**
+	 * Given the 'direction' parameter, returns the opposite direction.
+	 * 
+	 * @param direction
+	 * @return the opposite direction of the parameter
+	 */
 	public int invertMovement(int direction){
 		int dir = 0;
 		if(direction == 2){
@@ -42,7 +53,10 @@ public class DrunkenMovement implements MovementStrategy{
 		return dir;
 	}
 
-	public void updateMovIndex(){
+	/**
+	 * Updates the movIndex according to the moveForward value.
+	 */
+	public void updateMovIndex(){ 
 		if(moveForward){
 			movIndex +=1;
 			movIndex %= 24;
@@ -55,6 +69,12 @@ public class DrunkenMovement implements MovementStrategy{
 		}
 	}
 
+	/**
+	 * Returns the direction of movement if the guard is awake.
+	 * If the guard is asleep decrements turnsAsleep by 1 and returns 0.
+	 * 
+	 * @return direction of movement if guard is awake and 0 otherwise
+	 */
 	public int getDirection(char[][] table, int X, int Y){
 		RandFallsAsleep();
 		if(turnsAsleep == 0){

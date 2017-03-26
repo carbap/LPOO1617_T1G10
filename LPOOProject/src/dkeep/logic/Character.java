@@ -62,7 +62,6 @@ public abstract class Character {
 	 * Sets the character's 'weapon' attribute to 'value'. 
 	 * The 'weapon' attribute indicates if the character owns a weapon.
 	 * 
-	 * 
 	 * @param value the boolean value that 'weapon' will be set to
 	 */
 	public void setWeapon(boolean value){
@@ -128,7 +127,7 @@ public abstract class Character {
 	public abstract void move(char[][] table);
 	
 	/**
-	 * Method to update the character's position in the level's table.
+	 * Method to update the character's position.
 	 * The direction parameter has four possible values:
 	 * 2 means down, 4 means left, 6 means right and 8 means up.
 	 * 

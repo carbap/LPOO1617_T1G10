@@ -8,7 +8,16 @@ public class Guard extends Character{
 
 	private char asleepDisplayChar = 'g';
 
-	//constructor
+	/**
+	 * Constructs a new Guard given its X and Y coordinates and also
+	 * an integer value to indicate its movement strategy.
+	 * A guardMov value of 1 means the guard's movement will be Rookie, 
+	 * 2 means Drunken and 3 means Suspicious.
+	 * 
+	 * @param guardX guard's x coordinate
+	 * @param guardY guards's y coordinate
+	 * @param guardMov indicates the guard's movement strategy
+	 */
 	public Guard(int guardX, int guardY, int guardMov){
 		this.X = guardX;
 		this.Y = guardY;
@@ -21,7 +30,14 @@ public class Guard extends Character{
 			this.mov = new SuspiciousMovement();
 	}
 
-	//move guard
+	/**
+	 * Gets the direction the guard should move in according to its
+	 * movement strategy and updates its position using that direction.
+	 * This function is also responsible for making the guard asleep.
+	 * When this happens, the guard will remain in its place.
+	 * 
+	 * @param table char matrix that represents the level's table.
+	 */
 	public void move(char[][] table){
 		int direction = mov.getDirection(table, X, Y);
 		if(direction == 0){
@@ -33,17 +49,31 @@ public class Guard extends Character{
 		updatePosition(direction);
 	}
 
-	//return if guard is asleep or not
+	/**
+	 * Returns true if the guard is asleep and false otherwise.
+	 * 
+	 * @return boolean value that indicates if the guard is asleep
+	 */
 	public boolean isAsleep() {
 		return asleep;
 	}
 
-	//sets guard asleep/awake
+	/**
+	 * Sets the guard's 'asleep' attribute to the parameter. 
+	 * The 'asleep' attribute indicates if the guard is asleep.
+	 * 
+	 * @param asleep the boolean value that 'asleep' will be set to
+	 */
 	public void setAsleep(boolean asleep) {
 		this.asleep = asleep;
 	}
 
-	//return the char to be displayed
+	/**
+	 * Returns the char that is used to represent the guard.
+	 * This char has two possible values because the guard may be awake or asleep.
+	 * 
+	 * @return the guards's display char
+	 */
 	public char getDisplayChar(){
 		if(!asleep){
 			return this.displayChar;
@@ -53,6 +83,12 @@ public class Guard extends Character{
 		}
 	}
 
+	/**
+	 * Returns true if the Guard is adjacent to the (X,Y) position while 
+	 * also being awake. Returns false otherwise. 
+	 * 
+	 * @return boolean value that indicates if the Guard is awake and adjacent to the (X,Y) position
+	 */
 	public boolean isAdjacent(int X, int Y){
 		if(!this.asleep){
 			if(this.X == X && (this.Y == Y+1 || this.Y == Y-1) ){

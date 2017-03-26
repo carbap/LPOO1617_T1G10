@@ -7,6 +7,13 @@ package dkeep.logic;
  */
 public class Hero extends Character
 {	
+	
+	/**
+	 * Constructs a new Hero given its X and Y coordinates.
+	 * 
+	 * @param heroX hero's x coordinate
+	 * @param heroY hero's y coordinate
+	 */
 	public Hero(int heroX, int heroY){
 		this.X = heroX;
 		this.Y = heroY;
@@ -15,8 +22,14 @@ public class Hero extends Character
 
 	public void move(char[][] table){
 
-	}
+	} 
 
+	/**
+	 * Returns true if the Hero is adjacent to the (X,Y) position
+	 * and returns false otherwise. 
+	 * 
+	 * @return boolean value that indicates if the Hero is adjacent to the (X,Y) position
+	 */
 	public boolean isAdjacent(int X, int Y){
 		if(this.X == X && (this.Y == Y+1 || this.Y == Y-1) ){
 			return true; 

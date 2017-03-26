@@ -1,19 +1,15 @@
 package dkeep.logic;
-
+/**
+ * This class is a Level whose enemies are guards.
+ *
+ */
 public class GuardLevel extends Level {
-
-	/*
-			{'X','X','X','X','X','X','X','X','X','X'};
-			{'X','H',' ',' ','I',' ','X',' ','G','X'},
-			{'X','X','X',' ','X','X','X',' ',' ','X'},
-			{'X',' ','I',' ','I',' ','X',' ',' ','X'},
-			{'X','X','X',' ','X','X','X',' ',' ','X'},
-			{'I',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-			{'I',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-			{'X','X','X',' ','X','X','X','X',' ','X'},
-			{'X',' ','I',' ','I',' ','X',' ',' ','X'},
-			{'X','X','X','X','X','X','X','X','X','X'}};*/
-
+	/**
+	 * Constructs a default GuardLevel that will be used for
+	 * the game's first level.
+	 * The guardMov parameter will indicate the guards movement strategy
+	 * @param guardMov
+	 */
 	public GuardLevel(int guardMov){
 		char temp[][] ={
 				{'X','X','X','X','X','I','I','X','X','X'},
