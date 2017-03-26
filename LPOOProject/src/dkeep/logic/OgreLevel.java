@@ -1,18 +1,6 @@
 package dkeep.logic;
 
 public class OgreLevel extends Level{
-	/*
-	{   {'X','X','X','X','X','X','X','X','X'},
-		{'I',' ',' ',' ','O',' ',' ',' ','X'},
-		{'X',' ',' ',' ','*',' ',' ',' ','X'},
-		{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-		{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-		{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-		{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-		{'X','H',' ',' ',' ',' ',' ',' ','X'},
-		{'X','X','X','X','X','X','X','X','X'}*/
-
-
 	public OgreLevel(int OgreNr){
 		char temp[][] ={ 
 				{'X','I','X','X','X','X','X','X','X'},
@@ -31,7 +19,7 @@ public class OgreLevel extends Level{
 		this.hero.setWeapon(true);
 		this.hero.setDisplayChar('A');
 		for(int i = 0; i < OgreNr; i++){
-			Ogre ogre0 = new Ogre(4, 1, 4, 2);
+			Ogre ogre0 = new Ogre(4, 1, 4, 1);
 			this.Enemies.add(ogre0);
 		}
 

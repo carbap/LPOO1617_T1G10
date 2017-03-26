@@ -22,9 +22,7 @@ public class TileFactory {
 		tiles.put('*', new ImageIcon(getClass().getResource("/assets/club.png")));
 		tiles.put('k', new ImageIcon(getClass().getResource("/assets/key.png")));
 		tiles.put(' ', new ImageIcon(getClass().getResource("/assets/white_floor.png")));
-		tiles.put('$', new ImageIcon(getClass().getResource("/assets/unknown.png")));
-		
-		
+		tiles.put('$', new ImageIcon(getClass().getResource("/assets/unknown.png")));		
 	}
 	
 	public ImageIcon getImageIcon(char c){

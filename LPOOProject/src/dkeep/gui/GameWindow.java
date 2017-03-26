@@ -364,7 +364,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		editFrame.getContentPane().add(btnOgre);
 
 
-		btnHero.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/temp.png")));
+		btnHero.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/hero_armed.png")));
 		btnHero.setBounds(460, 150, 42, 42);
 		btnHero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

@@ -23,8 +23,7 @@ public class Guard extends Character{
 		case 3:
 			this.mov = new SuspiciousMovement();
 			break;
-		}		
-		
+		}
 	}
 	
 	//move guard
