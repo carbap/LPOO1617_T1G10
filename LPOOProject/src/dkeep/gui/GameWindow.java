@@ -710,6 +710,44 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	}
 
 
+	public void addTileX(char tableCharCopy, int indexX, int indexY){
+		if(tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
+			editLevel.setTableChar(indexX, indexY, 'X');
+	}
+
+	public void addTileI(char tableCharCopy, int indexX, int indexY){
+		if(tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
+			editLevel.setTableChar(indexX, indexY, 'I');
+	}
+
+	public void addTileH(char tableCharCopy, int indexX, int indexY, int tableWidth, int tableHeight){
+		if(editChar == 'H' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
+			editLevel.getHero().setPosition(indexX, indexY);
+		}
+	}
+
+	public void addTileO(char tableCharCopy, int indexX, int indexY, int tableWidth, int tableHeight){
+		if(indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
+			editLevel.getEnemies().get(0).setPosition(indexX, indexY);
+			editLevel.getEnemies().get(0).setWeaponX(indexX);
+			editLevel.getEnemies().get(0).setWeaponY(indexY);
+		}
+	}
+
+	public void addTileSpace(char tableCharCopy, int indexX, int indexY, int tableWidth, int tableHeight){
+		if(editChar == ' ' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight){
+			editLevel.setTableChar(indexX, indexY, ' ');
+		}
+	}
+
+	public void addTileKey(char tableCharCopy, int indexX, int indexY, int tableWidth, int tableHeight){
+		if(indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
+			editLevel.setKeyX(indexX);
+			editLevel.setKeyY(indexY);
+		}
+	}
+
+
 	@Override 
 	public void mouseClicked(MouseEvent e)
 	{ 
@@ -724,27 +762,18 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		int tableWidth =  editLevel.getWorktable().length-1;
 		int tableHeight =  editLevel.getWorktable()[0].length-1;
 
-		if(editChar == 'X' && tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
-			editLevel.setTableChar(indexX, indexY, 'X');
-		else if(editChar == 'I' && tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
-			editLevel.setTableChar(indexX, indexY, 'I');
-		else if(editChar == 'H' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
-			editLevel.getHero().setPosition(indexX, indexY);
-		}
-		else if(editChar == 'O' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
-			editLevel.getEnemies().get(0).setPosition(indexX, indexY);
-			editLevel.getEnemies().get(0).setWeaponX(indexX);
-			editLevel.getEnemies().get(0).setWeaponY(indexY);
-		}
-
-		else if(editChar == ' ' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight){
-			editLevel.setTableChar(indexX, indexY, ' ');
-		}
-
-		else if(editChar == 'k' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
-			editLevel.setKeyX(indexX);
-			editLevel.setKeyY(indexY);
-		}
+		if(editChar == 'X')
+			addTileX(tableCharCopy, indexX, indexY);
+		else if(editChar == 'I')
+			addTileI(tableCharCopy, indexX, indexY);
+		else if(editChar == 'H')
+			addTileH(tableCharCopy, indexX, indexY, tableWidth, tableHeight);
+		else if(editChar == 'O')
+			addTileO(tableCharCopy, indexX, indexY, tableWidth, tableHeight);
+		else if(editChar == ' ')
+			addTileSpace(tableCharCopy, indexX, indexY, tableWidth, tableHeight);
+		else if(editChar == 'k')
+			addTileKey(tableCharCopy, indexX, indexY, tableWidth, tableHeight);
 
 
 		editGraphicsUpdate();
