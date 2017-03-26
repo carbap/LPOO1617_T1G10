@@ -6,6 +6,6 @@
 
 ![Alt text](/pit.png?raw=true "PIT")
 
-André Carlos Almeida Baptista, up201505375, up201505375@fe.up.pt
+André Carlos Almeida Baptista, up201505375, up201505375@fe.up.pt<br />
 José Luís Oliveira Cunha, up201504880, up201504880@fe.up.pt
 
