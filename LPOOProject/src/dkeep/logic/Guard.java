@@ -13,8 +13,6 @@ public class Guard extends Character{
 		this.X = guardX;
 		this.Y = guardY;
 		this.displayChar = 'G';
-		//Random rand = new Random();
-		//int movtype = rand.nextInt(3) + 1;
 		switch(guardMov){
 		case 1:
 			this.mov = new RookieMovement();
@@ -77,8 +75,7 @@ public class Guard extends Character{
 
 	@Override
 	public void setStunned(boolean value) {
-		// TODO Auto-generated method stub
-		
+				
 	}
 	
 }

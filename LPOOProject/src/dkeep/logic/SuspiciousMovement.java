@@ -27,7 +27,6 @@ public class SuspiciousMovement implements MovementStrategy{
 			direction = movPattern[movIndex];
 		}
 		else{
-			//movIndex -=1;
 			if(movIndex < 0){
 				movIndex += 24;
 			}

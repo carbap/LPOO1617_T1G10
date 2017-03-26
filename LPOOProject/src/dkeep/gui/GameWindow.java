@@ -523,7 +523,6 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 				}
 				else{
 					playableEditLevel = editLevel.getOgreLevelCopy(ogreNr);
-					//game.changeLevel(new OgreLevel(ogreNr));
 					game.changeLevel(playableEditLevel);
 					game.setLastLevel(true);
 					lblHelp.setText("You are now armed, so you can stun enemies. Grab the key and escape the dungeon!");
@@ -662,14 +661,12 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -679,7 +676,6 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
+		
 	}
 }

@@ -6,11 +6,10 @@ public class Game {
 	private  boolean lastLevel = false;
 	private  boolean gameOver = false;
 
-	//private  char[][] workTable;
+	
 
 	public Game(Level startingLevel){
 		this.level = startingLevel;
-		//workTable = startingLevel.getTable();
 	}
 
 	public boolean isGameOver()
@@ -29,53 +28,8 @@ public class Game {
 		}
 	}
 	
-	/*
-	public void updateWorkTable()
-	{
-		//reset table
-		workTable = level.getTableCopy();
-		
-		//draw key
-		if(level.keyEnabled)
-		{
-			workTable[level.keyX][level.keyY] = 'k';
-		}
-		
-		//draw hero
-		if(workTable[level.getHero().getX()][level.getHero().getY()] == ' ' || workTable[level.getHero().getX()][level.getHero().getY()] == 'S'){
-			workTable[level.getHero().getX()][level.getHero().getY()] = level.getHero().getDisplayChar();
-		}
-		else{
-			workTable[level.getHero().getX()][level.getHero().getY()] = '$';
-		}
-			
-		//draw enemies and weapons
-		for(int i = 0; i < level.Enemies.size(); i++){
-			//draw enemies
-			if(workTable[level.Enemies.get(i).getX()][level.Enemies.get(i).getY()] == ' '){
-				workTable[level.Enemies.get(i).getX()][level.Enemies.get(i).getY()] = level.Enemies.get(i).getDisplayChar();
-			}
-			else if(workTable[level.Enemies.get(i).getX()][level.Enemies.get(i).getY()] == 'k'){
-				workTable[level.Enemies.get(i).getX()][level.Enemies.get(i).getY()] = '$';
-			}
-			
-			//draw respective weapons if they exist
-			if(level.Enemies.get(i).hasWeapon()){
-				if(workTable[level.Enemies.get(i).getWeaponX()][level.Enemies.get(i).getWeaponY()] == ' '){
-					workTable[level.Enemies.get(i).getWeaponX()][level.Enemies.get(i).getWeaponY()] = level.Enemies.get(i).getWeaponDisplayChar();
-				}
-				else if(workTable[level.Enemies.get(i).getWeaponX()][level.Enemies.get(i).getWeaponY()] == 'k'){
-					workTable[level.Enemies.get(i).getWeaponX()][level.Enemies.get(i).getWeaponY()] = '$';
-				}
-			}
-		}
-
-	}*/
-		
-
+	
 	public char[][] getWorktable(){
-		/*this.updateWorkTable();
-		return this.workTable;*/
 		return level.getWorktable();
 	}
 	
@@ -151,15 +105,6 @@ public class Game {
 	
 	
 	public boolean isEndLevel(){
-		/*boolean flag = false;
-		for(int i = 0; i < this.level.getEndLevelX().length; i++){
-			if(this.level.getHero().getX() == this.level.getEndLevelX()[i] && this.level.getHero().getY() == this.level.getEndLevelY()[i]){
-				flag = true;
-				break;
-			}
-		}
-		return flag;*/
-		
 		char[][] tablecopy = level.getTableCopy();
 		return (tablecopy[level.getHero().getX()][level.getHero().getY()] == 'S');
 		
@@ -173,11 +118,7 @@ public class Game {
 					if(level.getHero().hasWeapon() ){
 						level.Enemies.get(i).setTurnsStunned(3);
 						level.Enemies.get(i).setStunned(true);
-					}/*
-					else{
-						flag = true;
-					}*/
-					
+					}					
 				}
 								
 			}
@@ -232,66 +173,6 @@ public class Game {
 
 	public void changeLevel(Level newLevel){
 		this.level = newLevel;
-		//workTable = newLevel.getTable();
 	}
 	
-	
-	/*
-	public void checkGameOver(){  
-		if(level.table[level.getHero().X][level.getHero().Y] == 'S'){
-			if(lastLevel == true){
-				gameOver =  true;
-				System.out.println("You Win!");
-				return;
-			}
-		}
-		else{
-			if(level.getHero().X == level.keyX && level.getHero().Y == level.keyY){
-				level.keyEnabled = false;
-				level.openDoors();
-			}
-			if(level.table[level.getHero().X][level.getHero().Y] == 'G')
-			{
-				System.out.println("GameOver");
-				gameOver =  true;
-				return;
-			}
-			if(level.table[level.getHero().X][level.getHero().Y] == 'O')
-			{
-				System.out.println("GameOver");
-				gameOver =  true;
-				return;
-			}
-			if(level.table[level.getHero().X][level.getHero().Y] == '*')
-			{
-				System.out.println("GameOver"); 
-				gameOver =  true;
-				return;
-			}
-			if(level.table[level.getHero().X][level.getHero().Y+1] == 'G' || level.table[level.getHero().X][level.getHero().Y-1] == 'G' || level.table[level.getHero().X+1][level.getHero().Y] == 'G' || level.table[level.getHero().X-1][level.getHero().Y] == 'G'){
-				System.out.println("GameOver");
-				gameOver =  true;
-				return;
-			}
-			if(level.table[level.getHero().X][level.getHero().Y+1] == 'O' || level.table[level.getHero().X][level.getHero().Y-1] == 'O' || level.table[level.getHero().X+1][level.getHero().Y] == 'O' || level.table[level.getHero().X-1][level.getHero().Y] == 'O'){
-				System.out.println("GameOver");
-				gameOver =  true;
-				return;
-			}
-			if(level.table[level.getHero().X][level.getHero().Y+1] == '*' || level.table[level.getHero().X][level.getHero().Y-1] == '*' || level.table[level.getHero().X+1][level.getHero().Y] == '*' || level.table[level.getHero().X-1][level.getHero().Y] == '*'){
-				System.out.println("GameOver");
-				gameOver =  true;
-				return;
-			}
-			if(level.table[level.getHero().X][level.getHero().Y+1] == '$' || level.table[level.getHero().X][level.getHero().Y-1] == '$' || level.table[level.getHero().X+1][level.getHero().Y] == '$' || level.table[level.getHero().X-1][level.getHero().Y] == '$'){
-				System.out.println("GameOver");
-				gameOver =  true;
-				return; 
-			}
-		}
-	}*/
-
-
-
-
 }
