@@ -1,5 +1,11 @@
 package dkeep.logic;
 
+
+/**
+ * Ogre extends the Character class and implements a few of its abstract methods.
+ * One of the game's enemy types.
+ * 
+ */
 public class Ogre extends Character{
 	
 	/**

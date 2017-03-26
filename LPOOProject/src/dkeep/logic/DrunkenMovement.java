@@ -2,6 +2,11 @@ package dkeep.logic;
 
 import java.util.Random;
 
+
+/**
+ * Implements the movement strategy of a drunken guard.
+ *
+ */
 public class DrunkenMovement implements MovementStrategy{
 	private int[] movPattern = {4,2,2,2,2,4,4,4,4,4,4,2,6,6,6,6,6,6,6,8,8,8,8,8};
 	private int movIndex = movPattern.length-1;

@@ -263,7 +263,7 @@ public abstract class Level {
 	}
 
 	/** 
-	 * Returns a copy of the
+	 * Creates a copy of itself (new object OgreLevel) with the specified number of ogres and returns it
 	 * @param ogreNr
 	 * @return a copy of the OgreLevel
 	 */

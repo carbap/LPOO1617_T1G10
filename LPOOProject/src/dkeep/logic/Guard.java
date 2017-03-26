@@ -2,6 +2,12 @@ package dkeep.logic;
 
 import java.util.Random;
 
+
+/**
+ * Guard extends the Character class and implements a few of its abstract methods.
+ * One of the game's enemy types.
+ * 
+ */
 public class Guard extends Character{
 
 	private boolean asleep = false;

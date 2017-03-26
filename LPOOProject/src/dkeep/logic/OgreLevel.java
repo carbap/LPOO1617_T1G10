@@ -1,5 +1,10 @@
 package dkeep.logic;
 
+
+/**
+ * This class is a Level whose enemies are ogres.
+ *
+ */
 public class OgreLevel extends Level{
 	/**
 	 * Constructs a default OgreLevel that will be used for
