@@ -726,22 +726,22 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 		if(editChar == 'X' && tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
 			editLevel.setTableChar(indexX, indexY, 'X');
-		if(editChar == 'I' && tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
+		else if(editChar == 'I' && tableCharCopy != 'H' && tableCharCopy != 'O' && tableCharCopy != 'k' && tableCharCopy != 'A')
 			editLevel.setTableChar(indexX, indexY, 'I');
-		if(editChar == 'H' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
+		else if(editChar == 'H' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
 			editLevel.getHero().setPosition(indexX, indexY);
 		}
-		if(editChar == 'O' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
+		else if(editChar == 'O' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
 			editLevel.getEnemies().get(0).setPosition(indexX, indexY);
 			editLevel.getEnemies().get(0).setWeaponX(indexX);
 			editLevel.getEnemies().get(0).setWeaponY(indexY);
 		}
 
-		if(editChar == ' ' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight){
+		else if(editChar == ' ' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight){
 			editLevel.setTableChar(indexX, indexY, ' ');
 		}
 
-		if(editChar == 'k' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
+		else if(editChar == 'k' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
 			editLevel.setKeyX(indexX);
 			editLevel.setKeyY(indexY);
 		}
