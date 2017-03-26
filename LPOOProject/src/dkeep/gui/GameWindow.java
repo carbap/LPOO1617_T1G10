@@ -720,30 +720,30 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 			editLevel.setTableChar(indexX, indexY, 'I');
 	}
 
-	public void addTileH(char tableCharCopy, int indexX, int indexY, int tableWidth, int tableHeight){
-		if(editChar == 'H' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
-			editLevel.getHero().setPosition(indexX, indexY);
+	public void addTileH(AddTileKeyParam param){
+		if(editChar == 'H' && param.indexX != 0 && param.indexX != param.tableWidth && param.indexY != 0 && param.indexY != param.tableHeight && param.tableCharCopy != 'X' && param.tableCharCopy != 'I'){
+			editLevel.getHero().setPosition(param.indexX, param.indexY);
 		}
 	}
 
-	public void addTileO(char tableCharCopy, int indexX, int indexY, int tableWidth, int tableHeight){
-		if(indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
-			editLevel.getEnemies().get(0).setPosition(indexX, indexY);
-			editLevel.getEnemies().get(0).setWeaponX(indexX);
-			editLevel.getEnemies().get(0).setWeaponY(indexY);
+	public void addTileO(AddTileKeyParam param){
+		if(param.indexX != 0 && param.indexX != param.tableWidth && param.indexY != 0 && param.indexY != param.tableHeight && param.tableCharCopy != 'X' && param.tableCharCopy != 'I'){
+			editLevel.getEnemies().get(0).setPosition(param.indexX, param.indexY);
+			editLevel.getEnemies().get(0).setWeaponX(param.indexX);
+			editLevel.getEnemies().get(0).setWeaponY(param.indexY);
 		}
 	}
 
-	public void addTileSpace(char tableCharCopy, int indexX, int indexY, int tableWidth, int tableHeight){
-		if(editChar == ' ' && indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight){
-			editLevel.setTableChar(indexX, indexY, ' ');
+	public void addTileSpace(AddTileKeyParam param){
+		if(editChar == ' ' && param.indexX != 0 && param.indexX != param.tableWidth && param.indexY != 0 && param.indexY != param.tableHeight){
+			editLevel.setTableChar(param.indexX, param.indexY, ' ');
 		}
 	}
 
-	public void addTileKey(char tableCharCopy, int indexX, int indexY, int tableWidth, int tableHeight){
-		if(indexX != 0 && indexX != tableWidth && indexY != 0 && indexY != tableHeight && tableCharCopy != 'X' && tableCharCopy != 'I'){
-			editLevel.setKeyX(indexX);
-			editLevel.setKeyY(indexY);
+	public void addTileKey(AddTileKeyParam param){
+		if(param.indexX != 0 && param.indexX != param.tableWidth && param.indexY != 0 && param.indexY != param.tableHeight && param.tableCharCopy != 'X' && param.tableCharCopy != 'I'){
+			editLevel.setKeyX(param.indexX);
+			editLevel.setKeyY(param.indexY);
 		}
 	}
 
@@ -762,18 +762,20 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		int tableWidth =  editLevel.getWorktable().length-1;
 		int tableHeight =  editLevel.getWorktable()[0].length-1;
 
+		AddTileKeyParam param = new AddTileKeyParam(tableCharCopy, indexX, indexY, tableWidth, tableHeight);
+		
 		if(editChar == 'X')
 			addTileX(tableCharCopy, indexX, indexY);
 		else if(editChar == 'I')
 			addTileI(tableCharCopy, indexX, indexY);
 		else if(editChar == 'H')
-			addTileH(tableCharCopy, indexX, indexY, tableWidth, tableHeight);
+			addTileH(param);
 		else if(editChar == 'O')
-			addTileO(tableCharCopy, indexX, indexY, tableWidth, tableHeight);
+			addTileO(param);
 		else if(editChar == ' ')
-			addTileSpace(tableCharCopy, indexX, indexY, tableWidth, tableHeight);
+			addTileSpace(param);
 		else if(editChar == 'k')
-			addTileKey(tableCharCopy, indexX, indexY, tableWidth, tableHeight);
+			addTileKey(param);
 
 
 		editGraphicsUpdate();

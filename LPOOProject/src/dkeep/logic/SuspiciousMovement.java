@@ -7,9 +7,7 @@ public class SuspiciousMovement implements MovementStrategy{
 	private int movIndex = movPattern.length-1;
 	private boolean moveForward = true;
 
-
-	public int getDirection(char[][] table, int X, int Y){
-
+	public void changeDirection(){
 		Random rand = new Random();
 		int moveDirection = rand.nextInt(100);
 		if(moveDirection < 75){
@@ -17,39 +15,49 @@ public class SuspiciousMovement implements MovementStrategy{
 		}
 		else{
 			moveForward = false;
-		}						
-
-		int direction;
-		
+		}	
+	}
+	
+	public int invertMovement(int direction){
+		int dir = 0;
+		if(direction == 2){
+			dir = 8;
+		}
+		else if(direction == 4){
+			dir = 6;
+		}
+		else if(direction == 6){
+			dir = 4;
+		}
+		else if(direction == 8){
+			dir = 2;
+		}
+		return dir;
+	}
+	
+	
+	public void updateMovIndex(){
 		if(moveForward){
 			movIndex +=1;
 			movIndex %= 24;
-			direction = movPattern[movIndex];
 		}
 		else{
-			if(movIndex < 0){
+			if(movIndex < 0)
 				movIndex += 24;
-			}
-			else{
+			else
 				movIndex %= 24;
-			}
-			
-			direction = movPattern[movIndex];
-			movIndex -=1;
-			
-			if(direction == 2){
-				direction = 8;
-			}
-			else if(direction == 4){
-				direction = 6;
-			}
-			else if(direction == 6){
-				direction = 4;
-			}
-			else if(direction == 8){
-				direction = 2;
-			}
 		}
+	}
+	
+	public int getDirection(char[][] table, int X, int Y){
+
+		changeDirection();
+		updateMovIndex();
+		int direction = movPattern[movIndex];
+		if(!moveForward){
+			movIndex -=1;
+			direction = invertMovement(direction);
+		}				
 		return direction;
 	}
 }
