@@ -8,7 +8,7 @@ public class DrunkenMovement implements MovementStrategy{
 	private int turnsAsleep = 0;
 	private boolean moveForward = true;
 
-	
+
 	public void RandFallsAsleep(){
 		if(turnsAsleep == 0){
 			Random rand = new Random();
@@ -24,7 +24,7 @@ public class DrunkenMovement implements MovementStrategy{
 			}
 		}
 	}
-	
+
 	public int invertMovement(int direction){
 		int dir = 0;
 		if(direction == 2){
@@ -41,29 +41,32 @@ public class DrunkenMovement implements MovementStrategy{
 		}
 		return dir;
 	}
-	
+
 	public void updateMovIndex(){
 		if(moveForward){
 			movIndex +=1;
 			movIndex %= 24;
 		}
 		else{
-			
+			if(movIndex < 0)
+				movIndex += 24;
+			else
+				movIndex %= 24;
 		}
 	}
-	
+
 	public int getDirection(char[][] table, int X, int Y){
+		RandFallsAsleep();
 		if(turnsAsleep == 0){
 			updateMovIndex();
 			int direction = movPattern[movIndex];
-			movIndex -=1;
-			if(!moveForward)
+			if(!moveForward){
+				movIndex -=1;
 				direction = invertMovement(direction);
+			}				
 			return direction;
-	}
-		else{
-			turnsAsleep -= 1;
-			return 0;
 		}
+		turnsAsleep -= 1;
+		return 0;
 	}
 }
