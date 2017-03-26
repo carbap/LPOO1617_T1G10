@@ -78,9 +78,9 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	private static JPanel panel = new GameWindow();
 	private static JPanel dialog = new JPanel();
 	private static JPanel edit = new JPanel();
-	
-	
-	
+
+
+
 	/**
 	 * Launch the application.
 	 */
@@ -189,7 +189,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		btnOptions.setBounds(584, 105, 100, 25);
 		mainFrame.getContentPane().add(btnOptions);
 	}
-	
+
 	public static void initializeBtnNewGame(){
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -214,7 +214,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		btnNewGame.setBounds(584, 80, 100, 25);
 		mainFrame.getContentPane().add(btnNewGame);
 	}
-	
+
 	public static void initializeBtnEdit(){
 		btnEdit.addActionListener(new ActionListener()
 		{
@@ -238,7 +238,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		btnEdit.setEnabled(true);
 		mainFrame.getContentPane().add(btnEdit);
 	}
-	
+
 	public static void initializeBtnLeft(){
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -250,7 +250,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		btnLeft.setEnabled(false);
 		mainFrame.getContentPane().add(btnLeft);
 	}
-	
+
 	public static void initializeBtnUp(){
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -262,37 +262,44 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		btnUp.setEnabled(false);
 		mainFrame.getContentPane().add(btnUp);
 	}
-	
-	
-	
-	
-	
-	public static void initializeButtons(){
-		
+
+	public static void initializeBtnRight(){
+		btnRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				update(game.updateHero(6));
+				panel.requestFocusInWindow();
+			}
+		});
+		btnRight.setBounds(641, 166, 89, 23);
+		btnRight.setEnabled(false);
+		mainFrame.getContentPane().add(btnRight);
 	}
-	
-	
-	
-	
-	
-	
-	
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private static void initialize() {
-		
 
-		mainFrame.getContentPane().add(panel);
-		mainFrame.pack();
-		mainFrame.setVisible(true);
+	public static void initializeBtnDown(){
+		btnDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				update(game.updateHero(2));
+				panel.requestFocusInWindow();
+			}
+		});
+		btnDown.setBounds(584, 208, 89, 23);
+		btnDown.setEnabled(false);
+		mainFrame.getContentPane().add(btnDown);
+	}
 
-		mainFrame.setBounds(100, 100, 800, 600);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.getContentPane().setLayout(null);
+	public static void initializeBtnExit(){
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnExit.setBounds(615, 381, 89, 23);
+		mainFrame.getContentPane().add(btnExit);
+	}
 
-		btnNewGame.setEnabled(false);
 
+
+	public static void initializeButtons(){
 		//button options
 		initializeBtnOptions();
 
@@ -309,50 +316,17 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		initializeBtnUp();
 
 		//button right
-		btnRight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				update(game.updateHero(6));
-				panel.requestFocusInWindow();
-			}
-		});
-		btnRight.setBounds(641, 166, 89, 23);
-		btnRight.setEnabled(false);
-		mainFrame.getContentPane().add(btnRight);
+		initializeBtnRight();
 
 		//button down
-		btnDown.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				update(game.updateHero(2));
-				panel.requestFocusInWindow();
-			}
-		});
-		btnDown.setBounds(584, 208, 89, 23);
-		btnDown.setEnabled(false);
-		mainFrame.getContentPane().add(btnDown);
+		initializeBtnDown();
 
 		//button exit
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		btnExit.setBounds(615, 381, 89, 23);
-		mainFrame.getContentPane().add(btnExit);
+		initializeBtnExit();
+	}
 
-		//label game state
-		lblHelp.setBounds(40, 490, 600, 40);
-		mainFrame.getContentPane().add(lblHelp);
-
-
-
-		mainFrame.getContentPane().add(gamegraphics);
-
-
-
-
-
-
-
+	
+	public static void initializeBtnWall(){
 		btnWall.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/wall.png")));
 		btnWall.setBounds(460, 50, 42, 42);
 		btnWall.addActionListener(new ActionListener() {
@@ -363,76 +337,233 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 			}
 		});
 		editFrame.getContentPane().add(btnWall);
+	}
+	
+public static void initializeBtnDoor(){
+	btnDoor.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/door_closed.png")));
+	btnDoor.setBounds(520, 50, 42, 42);
+	btnDoor.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			disableAllEditButtons();
+			btnDoor.setSelected(true);
+			editChar = 'I';
+		}
+	});
+	editFrame.getContentPane().add(btnDoor);
+	}
 
+public static void initializeBtnFloor(){
+	btnFloor.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/white_floor.png")));
+	btnFloor.setBounds(460, 100, 42, 42);
+	btnFloor.setSelected(true);
+	btnFloor.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			disableAllEditButtons();
+			btnFloor.setSelected(true);
+			editChar = ' ';
+		}
+	});
+	editFrame.getContentPane().add(btnFloor);
+}
 
-		btnDoor.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/door_closed.png")));
-		btnDoor.setBounds(520, 50, 42, 42);
-		btnDoor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				disableAllEditButtons();
-				btnDoor.setSelected(true);
-				editChar = 'I';
+public static void initializeBtnOgre(){
+	btnOgre.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/ogre.png")));
+	btnOgre.setBounds(520, 100, 42, 42);
+	btnOgre.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			disableAllEditButtons();
+			btnOgre.setSelected(true);
+			editChar = 'O';
+		}
+	});
+	editFrame.getContentPane().add(btnOgre);
+}
+
+public static void initializeBtnHero(){
+	btnHero.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/hero_armed.png")));
+	btnHero.setBounds(460, 150, 42, 42);
+	btnHero.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			disableAllEditButtons();
+			btnHero.setSelected(true);
+			editChar = 'H';
+		}
+	});
+	editFrame.getContentPane().add(btnHero);
+}
+
+public static void initializeBtnKey(){
+	btnKey.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/key.png")));
+	btnKey.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			disableAllEditButtons();
+			btnKey.setSelected(true);
+			editChar = 'k';
+		}
+	});
+	btnKey.setBounds(520, 150, 42, 42);
+	editFrame.getContentPane().add(btnKey);
+}
+
+public static void initializeBtnReset(){
+	btnReset.setBounds(350, 485, 100, 50);
+	btnReset.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			editLevel = new OgreLevel(ogreNr);
+			editGraphicsUpdate();
+		}
+	});
+	editFrame.getContentPane().add(btnReset);
+}
+
+public static void initializeBtnCreate(){
+	btnCreate.setBounds(225, 485, 100, 50);
+	btnCreate.addActionListener(new ActionListener()
+	{
+		public void actionPerformed(ActionEvent arg0)
+		{
+			String stringHeight = height.getText();
+			String stringWidth = width.getText();
+			Integer w, h;
+			if(stringHeight.equals("") || stringWidth.equals("") ){
+				lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
+				return;
 			}
-		});
-		editFrame.getContentPane().add(btnDoor);
 
-
-		btnFloor.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/white_floor.png")));
-		btnFloor.setBounds(460, 100, 42, 42);
-		btnFloor.setSelected(true);
-		btnFloor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				disableAllEditButtons();
-				btnFloor.setSelected(true);
-				editChar = ' ';
+			try
+			{
+				w = Integer.parseInt(stringWidth);
+				h = Integer.parseInt(stringHeight);
 			}
-		});
-		editFrame.getContentPane().add(btnFloor);
+			catch (NumberFormatException exception)
+			{
+				lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
+				return;
+			} 
 
-
-		btnOgre.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/ogre.png")));
-		btnOgre.setBounds(520, 100, 42, 42);
-		btnOgre.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				disableAllEditButtons();
-				btnOgre.setSelected(true);
-				editChar = 'O';
-			}
-		});
-		editFrame.getContentPane().add(btnOgre);
-
-
-		btnHero.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/hero_armed.png")));
-		btnHero.setBounds(460, 150, 42, 42);
-		btnHero.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				disableAllEditButtons();
-				btnHero.setSelected(true);
-				editChar = 'H';
-			}
-		});
-		editFrame.getContentPane().add(btnHero);
-
-
-		btnKey.setIcon(new ImageIcon(GameWindow.class.getResource("/assets/key.png")));
-		btnKey.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				disableAllEditButtons();
-				btnKey.setSelected(true);
-				editChar = 'k';
-			}
-		});
-		btnKey.setBounds(520, 150, 42, 42);
-		editFrame.getContentPane().add(btnKey);
-
-		btnReset.setBounds(350, 485, 100, 50);
-		btnReset.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				editLevel = new OgreLevel(ogreNr);
+			if(w > 5 && w < 14 && h > 5 && h < 14){
+				editLevel = new OgreLevel(ogreNr, 3, 3, w, h);
+				lblWarning.setText("Map successfully created");
 				editGraphicsUpdate();
 			}
-		});
-		editFrame.getContentPane().add(btnReset);
+			else{
+				lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
+			}
+
+		}
+	});
+	editFrame.getContentPane().add(btnCreate);
+}
+
+public static void initializeBtnSave(){
+	btnSave.setBounds(475, 485, 100, 50);
+	btnSave.addActionListener(new ActionListener()
+	{
+		public void actionPerformed(ActionEvent arg0)
+		{
+			boolean validMap = true;
+			boolean foundDoor = false;
+			int X = editLevel.getEnemies().get(0).getX();
+			int Y = editLevel.getEnemies().get(0).getY();
+			char[][] worktablecopy= editLevel.getWorktable();
+			if((worktablecopy[X+1][Y] == 'X' || worktablecopy[X+1][Y] == 'I')
+					&& (worktablecopy[X-1][Y] == 'X' || worktablecopy[X-1][Y] == 'I')
+					&& (worktablecopy[X][Y+1] == 'X' || worktablecopy[X][Y+1] == 'I')
+					&& (worktablecopy[X][Y-1] == 'X' || worktablecopy[X][Y-1] == 'I')){
+				lblWarning.setText("Ogre must have at least one free adjacent tile");
+				validMap = false;
+			}
+			for(int i = 0; i < worktablecopy.length && foundDoor == false; i++){
+				for(int j = 0; j < worktablecopy[i].length && foundDoor == false; j++){
+					if(worktablecopy[i][j] == 'I'){
+						foundDoor = true;
+					}
+				}
+			}
+			if(!foundDoor){
+				lblWarning.setText("There needs to be at least 1 door");
+				validMap = false;
+			}
+
+			if(validMap){
+				editFrame.setVisible(false);
+				panel.requestFocusInWindow();
+			}
+
+		}
+	});
+	editFrame.getContentPane().add(btnSave);
+}
+	
+	
+	
+	
+	public static void initializeEditButtons(){
+		initializeBtnWall();
+		initializeBtnDoor();
+		initializeBtnFloor();
+		initializeBtnOgre();
+		initializeBtnHero();
+		initializeBtnKey();
+		initializeBtnReset();
+
+		initializeBtnCreate();
+		initializeBtnSave();
+	}
+
+
+	public static void initializeMainFrame(){
+		mainFrame.getContentPane().add(panel);
+		mainFrame.pack();
+		mainFrame.setVisible(true);
+
+		mainFrame.setBounds(100, 100, 800, 600);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.getContentPane().setLayout(null);
+
+		btnNewGame.setEnabled(false);
+	}
+
+
+
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private static void initialize() {
+		initializeMainFrame();
+
+		initializeButtons();
+
+		//label game state
+		lblHelp.setBounds(40, 490, 600, 40);
+		mainFrame.getContentPane().add(lblHelp);
+
+
+
+		mainFrame.getContentPane().add(gamegraphics);
+
+
+		initializeEditButtons();
+
+		
+
+
+		
+
+
+		
+
+
+		
+
+
+		
+
+
+		
+
+		
 
 
 		lblWarning.setBounds(50, 450, 400, 25);
@@ -450,81 +581,10 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		height.setBounds(100, 520, 100, 25);
 		editFrame.getContentPane().add(height);
 
-		btnCreate.setBounds(225, 485, 100, 50);
-		btnCreate.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				String stringHeight = height.getText();
-				String stringWidth = width.getText();
-				Integer w, h;
-				if(stringHeight.equals("") || stringWidth.equals("") ){
-					lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
-					return;
-				}
-
-				try
-				{
-					w = Integer.parseInt(stringWidth);
-					h = Integer.parseInt(stringHeight);
-				}
-				catch (NumberFormatException exception)
-				{
-					lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
-					return;
-				} 
-
-				if(w > 5 && w < 14 && h > 5 && h < 14){
-					editLevel = new OgreLevel(ogreNr, 3, 3, w, h);
-					lblWarning.setText("Map successfully created");
-					editGraphicsUpdate();
-				}
-				else{
-					lblWarning.setText("Invalid dimensions. Height and width must be > 5 and < 14");
-				}
-
-			}
-		});
-		editFrame.getContentPane().add(btnCreate);
+		
 
 
-		btnSave.setBounds(475, 485, 100, 50);
-		btnSave.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				boolean validMap = true;
-				boolean foundDoor = false;
-				int X = editLevel.getEnemies().get(0).getX();
-				int Y = editLevel.getEnemies().get(0).getY();
-				char[][] worktablecopy= editLevel.getWorktable();
-				if((worktablecopy[X+1][Y] == 'X' || worktablecopy[X+1][Y] == 'I')
-						&& (worktablecopy[X-1][Y] == 'X' || worktablecopy[X-1][Y] == 'I')
-						&& (worktablecopy[X][Y+1] == 'X' || worktablecopy[X][Y+1] == 'I')
-						&& (worktablecopy[X][Y-1] == 'X' || worktablecopy[X][Y-1] == 'I')){
-					lblWarning.setText("Ogre must have at least one free adjacent tile");
-					validMap = false;
-				}
-				for(int i = 0; i < worktablecopy.length && foundDoor == false; i++){
-					for(int j = 0; j < worktablecopy[i].length && foundDoor == false; j++){
-						if(worktablecopy[i][j] == 'I'){
-							foundDoor = true;
-						}
-					}
-				}
-				if(!foundDoor){
-					lblWarning.setText("There needs to be at least 1 door");
-					validMap = false;
-				}
-
-				if(validMap){
-					editFrame.setVisible(false);
-					panel.requestFocusInWindow();
-				}
-
-			}
-		});
-		editFrame.getContentPane().add(btnSave);
+		
 
 
 
@@ -699,12 +759,12 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		
+
 	}
 
 	@Override
@@ -714,6 +774,6 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
+
 	}
 }
