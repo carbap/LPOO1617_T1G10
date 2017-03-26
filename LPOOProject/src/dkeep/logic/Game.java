@@ -33,56 +33,69 @@ public class Game {
 		return level.getWorktable();
 	}
 	
+	public boolean updateHero2(){
+		if(level.table[level.getHero().X][level.getHero().Y+1] != 'X' && level.table[level.getHero().X][level.getHero().Y+1] != 'I' && level.table[level.getHero().X][level.getHero().Y+1] != '8'){
+			this.level.getHero().updatePosition(2);
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	
+public boolean updateHero4(){
+	if(level.table[level.getHero().X-1][level.getHero().Y] != 'X' && level.table[level.getHero().X-1][level.getHero().Y] != 'I' && level.table[level.getHero().X-1][level.getHero().Y] != '8'){
+		this.level.getHero().updatePosition(4);
+		return true;
+	}
+	else{
+		return false;
+	}
+	}
+
+public boolean updateHero6(){
+	if(level.table[level.getHero().X+1][level.getHero().Y] != 'X' && level.table[level.getHero().X+1][level.getHero().Y] != 'I' && level.table[level.getHero().X+1][level.getHero().Y] != '8'){
+		this.level.getHero().updatePosition(6);
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+public boolean updateHero8(){
+	if(level.table[level.getHero().X][level.getHero().Y-1] != 'X' && level.table[level.getHero().X][level.getHero().Y-1] != 'I' && level.table[level.getHero().X][level.getHero().Y-1] != '8'){
+		this.level.getHero().updatePosition(8);
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+	
+public void EndOfTurnCheckin(){
+	checkKey();
+	if(checkHeroTurn()){
+		System.out.println("Lose");
+		this.setGameOver(true);
+	}
+}
+
 	public boolean updateHero(int direction) 
 	{ 
 		boolean valid = false;
 		
-		if(direction == 2){
-			if(level.table[level.getHero().X][level.getHero().Y+1] != 'X' && level.table[level.getHero().X][level.getHero().Y+1] != 'I' && level.table[level.getHero().X][level.getHero().Y+1] != '8'){
-				this.level.getHero().updatePosition(direction);
-				valid = true;
-			}
-			else{
-				valid = false;
-			}
-		} 
-		else if(direction == 4){
-			if(level.table[level.getHero().X-1][level.getHero().Y] != 'X' && level.table[level.getHero().X-1][level.getHero().Y] != 'I' && level.table[level.getHero().X-1][level.getHero().Y] != '8'){
-				this.level.getHero().updatePosition(direction);
-				valid = true;
-			}
-			else{
-				valid = false;
-			}
-		}
-		else if (direction == 6){
-			if(level.table[level.getHero().X+1][level.getHero().Y] != 'X' && level.table[level.getHero().X+1][level.getHero().Y] != 'I' && level.table[level.getHero().X+1][level.getHero().Y] != '8'){
-				this.level.getHero().updatePosition(direction);
-				valid = true;
-			}
-			else{
-				valid = false;
-			}
-		}
-		else if(direction == 8){
-			if(level.table[level.getHero().X][level.getHero().Y-1] != 'X' && level.table[level.getHero().X][level.getHero().Y-1] != 'I' && level.table[level.getHero().X][level.getHero().Y-1] != '8'){
-				this.level.getHero().updatePosition(direction);
-				valid = true;
-			}
-			else{
-				valid = false;
-			}
-		}
+		if(direction == 2)
+			valid = updateHero2();
+		else if(direction == 4)
+			valid = updateHero4();
+		else if (direction == 6)
+			valid = updateHero6();
+		else if(direction == 8)
+			valid = updateHero8();
 		
-		if(valid){
-			checkKey();
-			if(checkHeroTurn()){
-				System.out.println("Lose");
-				this.setGameOver(true);
-			}
-		}
-		
+		if(valid)
+			EndOfTurnCheckin();		
 		return valid;
 	}
 
