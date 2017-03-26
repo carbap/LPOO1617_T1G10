@@ -55,32 +55,30 @@ public class Ogre extends Character{
 		}
 	}
 	
-	public boolean isAdjacent(int X, int Y){
-		
+	public boolean checkAdjacentOgre(int X, int Y){
 		if(!stunned){
 			if(this.X == X && (this.Y == Y+1 || this.Y == Y-1) ){
 				return true;
-			}
-				
+			}	
 			if(this.Y == Y && (this.X == X+1 || this.X == X-1) ){
 				return true;
 			}
 		}
-		
-		
-		if(this.weaponX == X && (this.weaponY == Y+1 || this.weaponY == Y-1) ){
-			return true;
-		}
-			
-		if(this.weaponY == Y && (this.weaponX == X+1 || this.weaponX == X-1) ){
-			return true;
-		}
-		
-		if(this.weaponX == X && this.weaponY == Y){
-			return true;
-		}
-		
 		return false;
+	}
+		
+	public boolean isAdjacent(int X, int Y){
+		boolean ret = false;
+		ret = checkAdjacentOgre(X, Y);
+		if(this.weaponX == X && (this.weaponY == Y+1 || this.weaponY == Y-1) )
+			ret =  true;
+			
+		if(this.weaponY == Y && (this.weaponX == X+1 || this.weaponX == X-1) )
+			ret =  true;
+		
+		if(this.weaponX == X && this.weaponY == Y)
+			ret =  true;
+		return ret;
 	}
 	
 	public boolean isStunned() {
