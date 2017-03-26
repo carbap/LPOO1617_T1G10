@@ -75,6 +75,12 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 	private static OgreLevel editLevel = new OgreLevel(ogreNr);
 	private static OgreLevel playableEditLevel = new OgreLevel(ogreNr);
 
+	private static JPanel panel = new GameWindow();
+	private static JPanel dialog = new JPanel();
+	private static JPanel edit = new JPanel();
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -107,25 +113,7 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		});
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private static void initialize() {
-		JPanel panel = new GameWindow();
-		JPanel dialog = new JPanel();
-		JPanel edit = new JPanel();
-
-		mainFrame.getContentPane().add(panel);
-		mainFrame.pack();
-		mainFrame.setVisible(true);
-
-		mainFrame.setBounds(100, 100, 800, 600);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.getContentPane().setLayout(null);
-
-		btnNewGame.setEnabled(false);
-
-		//button options
+	public static void initializeBtnOptions(){
 		JLabel info = new JLabel();
 		btnOptions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
@@ -200,8 +188,9 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		});
 		btnOptions.setBounds(584, 105, 100, 25);
 		mainFrame.getContentPane().add(btnOptions);
-
-		//button new game
+	}
+	
+	public static void initializeBtnNewGame(){
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				canPress = true;
@@ -224,8 +213,9 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		});
 		btnNewGame.setBounds(584, 80, 100, 25);
 		mainFrame.getContentPane().add(btnNewGame);
-
-		//button edit
+	}
+	
+	public static void initializeBtnEdit(){
 		btnEdit.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -247,8 +237,9 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		btnEdit.setBounds(559, 300, 150, 25);
 		btnEdit.setEnabled(true);
 		mainFrame.getContentPane().add(btnEdit);
-
-		//button left
+	}
+	
+	public static void initializeBtnLeft(){
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				update(game.updateHero(4));
@@ -258,8 +249,9 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		btnLeft.setBounds(526, 166, 89, 23);
 		btnLeft.setEnabled(false);
 		mainFrame.getContentPane().add(btnLeft);
-
-		//button up
+	}
+	
+	public static void initializeBtnUp(){
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				update(game.updateHero(8));
@@ -269,6 +261,52 @@ public class GameWindow extends JPanel implements KeyListener, MouseListener{
 		btnUp.setBounds(584, 135, 89, 23);
 		btnUp.setEnabled(false);
 		mainFrame.getContentPane().add(btnUp);
+	}
+	
+	
+	
+	
+	
+	public static void initializeButtons(){
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private static void initialize() {
+		
+
+		mainFrame.getContentPane().add(panel);
+		mainFrame.pack();
+		mainFrame.setVisible(true);
+
+		mainFrame.setBounds(100, 100, 800, 600);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.getContentPane().setLayout(null);
+
+		btnNewGame.setEnabled(false);
+
+		//button options
+		initializeBtnOptions();
+
+		//button new game
+		initializeBtnNewGame();
+
+		//button edit
+		initializeBtnEdit();
+
+		//button left
+		initializeBtnLeft();
+
+		//button up
+		initializeBtnUp();
 
 		//button right
 		btnRight.addActionListener(new ActionListener() {
