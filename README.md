@@ -15,3 +15,27 @@ O ecrã de troca apresentará todos os pokémons da party com as suas informaç�
 
 O ecrã de edição da party do utilizador, acedido através do menu principal, apresenta a party atual, os stats e o moveset do pokémon atualmente selecionado. Este ecrã permitirá trocar o pokémon selecionado por outro escolhido de uma lista drop-down. Ao selecionar um dos moves do pokémon será apresentada uma nova janela com os moves que o podem susbtituir. Quando terminada a edição o jogo regressa ao ecrã do menu principal.
 
+
+
+
+
+Casos a testar:
+
+Criação de objectos Pokémon e Move através dos ficheiros respetivos.
+Fórmulas de cálculo dos stats dos pokémons.
+Substituição de moves dos pokémons.
+Obtenção e alteração dos valores e modifiers da classe StatStages.
+Dano esperado, dentro dos intervalos possíveis, devido ao fator random, hit chance e modificadores de dano.
+Eficácia dos moves atendendo ao seu tipo e ao do alvo.
+Chance de critical hit, tendo em conta que certos moves têm maior critical chance.
+Adição, remoção, substituição e reordenação de pokémons na party.
+Escolha por parte da AI de moves que maximizem o dano causado/ chance de atingir o adversário.
+AI trocar de pokémon quando se encontra numa situação desfavorável (HP muito baixo).
+AI troca, se possível, para um pokémon que tenha vantagem sobre o adversário.
+AI prioriza a melhor jogada, mas não a efetua sempre (tem pequeno fator de aleatoriedade).
+
+
+
+
+
+
