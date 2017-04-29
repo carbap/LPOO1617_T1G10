@@ -21,10 +21,8 @@ O ecrã de edição da party do utilizador, acedido através do menu principal, 
 
 Casos a testar:
 
-Criação de objectos Pokémon e Move através dos ficheiros respetivos.
-
-Fórmulas de cálculo dos stats dos pokémons.
-
+Criação de objectos Pokémon e Move através dos ficheiros respetivos.<br />
+Fórmulas de cálculo dos stats dos pokémons.<br />
 Substituição de moves dos pokémons.<br />
 Obtenção e alteração dos valores e modifiers da classe StatStages.<br />
 Dano esperado, dentro dos intervalos possíveis, devido ao fator random, hit chance e modificadores de dano.<br />
