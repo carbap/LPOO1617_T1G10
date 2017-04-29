@@ -22,17 +22,19 @@ O ecrã de edição da party do utilizador, acedido através do menu principal, 
 Casos a testar:
 
 Criação de objectos Pokémon e Move através dos ficheiros respetivos.
+
 Fórmulas de cálculo dos stats dos pokémons.
-Substituição de moves dos pokémons.
-Obtenção e alteração dos valores e modifiers da classe StatStages.
-Dano esperado, dentro dos intervalos possíveis, devido ao fator random, hit chance e modificadores de dano.
-Eficácia dos moves atendendo ao seu tipo e ao do alvo.
-Chance de critical hit, tendo em conta que certos moves têm maior critical chance.
-Adição, remoção, substituição e reordenação de pokémons na party.
-Escolha por parte da AI de moves que maximizem o dano causado/ chance de atingir o adversário.
-AI trocar de pokémon quando se encontra numa situação desfavorável (HP muito baixo).
-AI troca, se possível, para um pokémon que tenha vantagem sobre o adversário.
-AI prioriza a melhor jogada, mas não a efetua sempre (tem pequeno fator de aleatoriedade).
+
+Substituição de moves dos pokémons.<br />
+Obtenção e alteração dos valores e modifiers da classe StatStages.<br />
+Dano esperado, dentro dos intervalos possíveis, devido ao fator random, hit chance e modificadores de dano.<br />
+Eficácia dos moves atendendo ao seu tipo e ao do alvo.<br />
+Chance de critical hit, tendo em conta que certos moves têm maior critical chance.<br />
+Adição, remoção, substituição e reordenação de pokémons na party.<br />
+Escolha por parte da AI de moves que maximizem o dano causado/ chance de atingir o adversário.<br />
+AI trocar de pokémon quando se encontra numa situação desfavorável (HP muito baixo).<br />
+AI troca, se possível, para um pokémon que tenha vantagem sobre o adversário.<br />
+AI prioriza a melhor jogada, mas não a efetua sempre (tem pequeno fator de aleatoriedade).<br />
 
 
 
