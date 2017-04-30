@@ -140,7 +140,7 @@ Descrição:<br />
 Deriva da classe Trainer e possui uma mensagem que é mostrada durante a apresentação do NPC adversário.
 
 
-
+**Design Patterns**:
 
 
 
