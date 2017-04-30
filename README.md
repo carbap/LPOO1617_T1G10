@@ -15,6 +15,7 @@ O ecrã de troca apresentará todos os pokémons da party com as suas informaç�
 
 O ecrã de edição da party do utilizador, acedido através do menu principal, apresenta a party atual, os stats e o moveset do pokémon atualmente selecionado. Este ecrã permitirá trocar o pokémon selecionado por outro escolhido de uma lista drop-down. Ao selecionar um dos moves do pokémon será apresentada uma nova janela com os moves que o podem susbtituir. Quando terminada a edição o jogo regressa ao ecrã do menu principal.
 
+![Alt text](/mainMenu.png?raw=true "Main Menu")
 
 
 
