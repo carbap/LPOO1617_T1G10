@@ -22,9 +22,7 @@ O ecrã de edição da party do utilizador, acedido através do menu principal, 
 ![Alt text](/switch.png?raw=true "Switch Pokémon")
 ![Alt text](/editParty.png?raw=true "Edit Party")
 
-
-
-
+--------------------------------------------------
 
 **Casos a testar**:
 
@@ -40,6 +38,8 @@ Escolha por parte da AI de moves que maximizem o dano causado/ chance de atingir
 AI trocar de pokémon quando se encontra numa situação desfavorável (HP muito baixo).<br />
 AI troca, se possível, para um pokémon que tenha vantagem sobre o adversário.<br />
 AI prioriza a melhor jogada, mas não a efetua sempre (tem pequeno fator de aleatoriedade).<br />
+
+--------------------------------------------------
 
 **Descrição das classes**:
 
@@ -139,8 +139,17 @@ String introMessage;<br />
 Descrição:<br />
 Deriva da classe Trainer e possui uma mensagem que é mostrada durante a apresentação do NPC adversário.
 
+--------------------------------------------------
 
 **Design Patterns**:
+
+Planeamos utilizar o design pattern State e Factory. 
+O padrão State servirá para modelar a navegação nos vários menus e também para distinguir as fases de uma batalha tais como a escolha de ataque, troca de pokémons, primeiro turno de ataque, apresentação de texto entre outros.
+O padrão Factory será utilizado para guardar apenas uma instância dos sprites, evitando assim o loading excessivo de imagens para memória, melhorando o desempenho e diminuindo o uso de memória.
+
+--------------------------------------------------
+
+
 
 
 
