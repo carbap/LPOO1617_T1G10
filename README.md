@@ -43,6 +43,8 @@ AI prioriza a melhor jogada, mas não a efetua sempre (tem pequeno fator de alea
 
 **Descrição das classes**:
 
+![Alt text](/UML.jpg?raw=true "Diagrama de Classes")
+
 __Battle__:<br />
 
 double[][] typeChart;<br />
