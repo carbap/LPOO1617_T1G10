@@ -36,14 +36,27 @@ AI prioriza a melhor jogada, mas não a efetua sempre (tem pequeno fator de alea
 
 **Descrição das classes**:
 
-Atributos das classes:
-
 __Battle__:<br />
+
+Atributos das classes:<br />
 double[][] typeChart;<br />
 Trainer player;<br />
+Move chosenMove;
+Move enemyChosenMove;
+bool playerSwitch;
+short playerSwitchIndex;
+bool enemySwitch;
+short enemySwitchIndex;
+
+Descrição:<br />
+Responsável por calcular quem ataca primeiro, se ataque atinge o adversário e os efeitos causados
+pelo ataque, tais como o dano e mudanças de stats. Também se encarrega de trocar de pokémons quando o treinador assim desejar.
 
 __BattleAI__:<br />
 TrainerNPC opponent;<br />
+
+Descrição:<br />
+Deriva da classe Battle. É responsável por determinar a jogada do adversário face à situação em que se encontra (algoritmo de inteligência artifical).
 
 __BattleOnline__:<br />
 Trainer onlineOpponent;<br />
@@ -52,6 +65,9 @@ ObjectInputStream input;<br />
 ServerSocket server;<br />
 Socket connection;<br />
 
+Descrição:<br />
+Deriva da classe Battle. É responsável pela ligação entre dois jogadores através de sockets, permitindo uma batalha multijogador.
+
 __Move__:<br />
 short type;<br />
 boolean special;<br />
@@ -59,16 +75,16 @@ String name;<br />
 short accuracy;<br />
 short power;<br />
 short id;<br />
-short basePP;<br />
-short currentPP;<br />
 StatStages selfStatStages;<br />
 StatStages enemyStatStages;<br />
 boolean highCritChance;<br />
 boolean canMiss;<br />
 
+Descrição:<br />
+Contém a informação sobre um ataque, nomeadamente o nome, id, tipo, power, precisão, modificadores de stats para o utilizador e para o alvo e flags que indicam se o ataque pode falhar e/ou se têm uma probabilidade elevada de critical hit.
+
 __Pokemon__:<br />
 String name;<br />
-boolean male;<br />
 short id;<br />
 short level;<br />
 short type1;<br />
@@ -81,6 +97,9 @@ short evHP, evATK, evDEF, evSPATK, evSPDEF, evSPD;<br />
 short ivHP, ivATK, ivDEF, ivSPATK, ivSPDEF, ivSPD;<br />
 short baseHP, baseATK, baseDEF, baseSPATK, baseSPDEF, baseSPD;<br />
 
+Descrição:<br />
+Contém as informações sobre um pokémon, tais como o nome, id, nível, tipo(s), modificadores de stats, moveset, dano recebido, EVs, IVs e base stats. A partir dos base stats, EVs, IVs e os StatStages são calculados os stats efetivos do Pokémon.
+
 __StatStages__:<br />
 short atk;<br />
 short def;<br />
@@ -90,11 +109,20 @@ short spd;<br />
 short accuracy;<br />
 short evasion;<br />
 
+Descrição:<br />
+Classe que contém o estado de um stat e, conforme estes estados, calcula as percentagens de moficação dos respetivos stats.
+
 __Trainer__:<br />
 ArrayList<Pokemon> party;<br />
 
+Descrição:<br />
+Contém a party (conjunto de pokémons) de um treinador e possui métodos para adicionar, remover, substituir e reordenar pokémons da party.
+
 __TrainerNPC__:<br />
 String introMessage;
+
+Descrição:<br />
+Deriva da classe Trainer e possui uma mensagem que é mostrada durante a apresentação do NPC adversário.
 
 
 
