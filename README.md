@@ -19,6 +19,7 @@ O ecrã de edição da party do utilizador, acedido através do menu principal, 
 ![Alt text](/battleAI.png?raw=true "Battle AI")
 ![Alt text](/battleOnline.png?raw=true "Battle Online")
 ![Alt text](/battle.png?raw=true "Battle")
+![Alt text](/switch.png?raw=true "Switch Pokémon")
 ![Alt text](/editParty.png?raw=true "Edit Party")
 
 
