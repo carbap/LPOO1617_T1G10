@@ -19,7 +19,7 @@ O ecrã de edição da party do utilizador, acedido através do menu principal, 
 ![Alt text](/battleAI.png?raw=true "Battle AI")
 ![Alt text](/battleOnline.png?raw=true "Battle Online")
 ![Alt text](/battle.png?raw=true "Battle")
-![Alt text](/battle.png?raw=true "Edit Party")
+![Alt text](/editParty.png?raw=true "Edit Party")
 
 
 
