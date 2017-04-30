@@ -38,7 +38,6 @@ AI prioriza a melhor jogada, mas não a efetua sempre (tem pequeno fator de alea
 
 __Battle__:<br />
 
-Atributos das classes:<br />
 double[][] typeChart;<br />
 Trainer player;<br />
 Move chosenMove;
@@ -53,12 +52,14 @@ Responsável por calcular quem ataca primeiro, se ataque atinge o adversário e 
 pelo ataque, tais como o dano e mudanças de stats. Também se encarrega de trocar de pokémons quando o treinador assim desejar.
 
 __BattleAI__:<br />
+
 TrainerNPC opponent;<br />
 
 Descrição:<br />
 Deriva da classe Battle. É responsável por determinar a jogada do adversário face à situação em que se encontra (algoritmo de inteligência artifical).
 
 __BattleOnline__:<br />
+
 Trainer onlineOpponent;<br />
 ObjectOutputStream output;<br />
 ObjectInputStream input;<br />
@@ -69,6 +70,7 @@ Descrição:<br />
 Deriva da classe Battle. É responsável pela ligação entre dois jogadores através de sockets, permitindo uma batalha multijogador.
 
 __Move__:<br />
+
 short type;<br />
 boolean special;<br />
 String name;<br />
@@ -84,6 +86,7 @@ Descrição:<br />
 Contém a informação sobre um ataque, nomeadamente o nome, id, tipo, power, precisão, modificadores de stats para o utilizador e para o alvo e flags que indicam se o ataque pode falhar e/ou se têm uma probabilidade elevada de critical hit.
 
 __Pokemon__:<br />
+
 String name;<br />
 short id;<br />
 short level;<br />
@@ -101,6 +104,7 @@ Descrição:<br />
 Contém as informações sobre um pokémon, tais como o nome, id, nível, tipo(s), modificadores de stats, moveset, dano recebido, EVs, IVs e base stats. A partir dos base stats, EVs, IVs e os StatStages são calculados os stats efetivos do Pokémon.
 
 __StatStages__:<br />
+
 short atk;<br />
 short def;<br />
 short spatk;<br />
@@ -113,12 +117,14 @@ Descrição:<br />
 Classe que contém o estado de um stat e, conforme estes estados, calcula as percentagens de moficação dos respetivos stats.
 
 __Trainer__:<br />
+
 ArrayList<Pokemon> party;<br />
 
 Descrição:<br />
 Contém a party (conjunto de pokémons) de um treinador e possui métodos para adicionar, remover, substituir e reordenar pokémons da party.
 
 __TrainerNPC__:<br />
+
 String introMessage;
 
 Descrição:<br />
