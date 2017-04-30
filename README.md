@@ -149,6 +149,10 @@ O padrão Factory será utilizado para guardar apenas uma instância dos sprites
 
 --------------------------------------------------
 
+**Navegação nos screens do jogo**:
+
+![Alt text](/menuStages.png?raw=true "Estados do jogo")
+
 
 
 
