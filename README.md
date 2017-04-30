@@ -1,6 +1,6 @@
 # LPOO1617_T1G10
 
-Descrição da GUI:
+**Descrição da GUI**:
 
 A Graphical User Interface terá um menu principal em que o utilizador escolhe se quer jogar contra AI, online ou se deseja editar a party atual de pokémons, que também é apresentada neste ecrã principal. O menu possui ainda um botão para encerrar o jogo.
 
@@ -19,7 +19,7 @@ O ecrã de edição da party do utilizador, acedido através do menu principal, 
 
 
 
-Casos a testar:
+**Casos a testar**:
 
 Criação de objectos Pokémon e Move através dos ficheiros respetivos.<br />
 Fórmulas de cálculo dos stats dos pokémons.<br />
@@ -33,6 +33,68 @@ Escolha por parte da AI de moves que maximizem o dano causado/ chance de atingir
 AI trocar de pokémon quando se encontra numa situação desfavorável (HP muito baixo).<br />
 AI troca, se possível, para um pokémon que tenha vantagem sobre o adversário.<br />
 AI prioriza a melhor jogada, mas não a efetua sempre (tem pequeno fator de aleatoriedade).<br />
+
+**Descrição das classes**:
+
+Atributos das classes:
+
+__Battle__:<br />
+double[][] typeChart;<br />
+Trainer player;<br />
+
+__BattleAI__:<br />
+TrainerNPC opponent;<br />
+
+__BattleOnline__:<br />
+Trainer onlineOpponent;<br />
+ObjectOutputStream output;<br />
+ObjectInputStream input;<br />
+ServerSocket server;<br />
+Socket connection;<br />
+
+__Move__:<br />
+short type;<br />
+boolean special;<br />
+String name;<br />
+short accuracy;<br />
+short power;<br />
+short id;<br />
+short basePP;<br />
+short currentPP;<br />
+StatStages selfStatStages;<br />
+StatStages enemyStatStages;<br />
+boolean highCritChance;<br />
+boolean canMiss;<br />
+
+__Pokemon__:<br />
+String name;<br />
+boolean male;<br />
+short id;<br />
+short level;<br />
+short type1;<br />
+short type2;<br />
+boolean twoTypes;<br />
+StatStages statStages;<br />
+ArrayList<Move> moveSet;<br />
+short damageTaken;<br />
+short evHP, evATK, evDEF, evSPATK, evSPDEF, evSPD;<br />
+short ivHP, ivATK, ivDEF, ivSPATK, ivSPDEF, ivSPD;<br />
+short baseHP, baseATK, baseDEF, baseSPATK, baseSPDEF, baseSPD;<br />
+
+__StatStages__:<br />
+short atk;<br />
+short def;<br />
+short spatk;<br />
+short spdef;<br />
+short spd;<br />
+short accuracy;<br />
+short evasion;<br />
+
+__Trainer__:<br />
+ArrayList<Pokemon> party;<br />
+
+__TrainerNPC__:<br />
+String introMessage;
 
 
 
