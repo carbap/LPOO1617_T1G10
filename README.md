@@ -40,12 +40,12 @@ __Battle__:<br />
 
 double[][] typeChart;<br />
 Trainer player;<br />
-Move chosenMove;
-Move enemyChosenMove;
-bool playerSwitch;
-short playerSwitchIndex;
-bool enemySwitch;
-short enemySwitchIndex;
+Move chosenMove;<br />
+Move enemyChosenMove;<br />
+bool playerSwitch;<br />
+short playerSwitchIndex;<br />
+bool enemySwitch;<br />
+short enemySwitchIndex;<br />
 
 Descrição:<br />
 Responsável por calcular quem ataca primeiro, se ataque atinge o adversário e os efeitos causados
@@ -125,7 +125,7 @@ Contém a party (conjunto de pokémons) de um treinador e possui métodos para a
 
 __TrainerNPC__:<br />
 
-String introMessage;
+String introMessage;<br />
 
 Descrição:<br />
 Deriva da classe Trainer e possui uma mensagem que é mostrada durante a apresentação do NPC adversário.
