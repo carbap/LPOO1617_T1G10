@@ -11,7 +11,7 @@
 O menu inicial contém os 3 botões principais, o botão de exit, o slider do volume
 e ainda a equipa atual de pokémons, que ao iniciar o jogo será uma equipa pré-definida.
 
-![Alt text](/mainMenu.png?raw=true "Main Menu")
+![Alt text](/mainMenu.PNG?raw=true "Main Menu")
 
 O menu Edit Party permitirá escolher e customizar essa mesma equipa, que será posteriormente usada para
 defrontar uma série de 4 adversários. 
