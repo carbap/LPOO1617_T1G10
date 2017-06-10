@@ -60,7 +60,8 @@ novos pokémons no menu Edit Party.
 **Design Patterns**
 
   Durante o desenvolvimento deste projeto fizemos uso de pelo menos dois design patterns, sendo eles os padrões Singleton e Factory.
-Analisando o package graphics, para garantir que existe apenas uma instância da classe Engine a que todos os objetos podem aceder, utilizámos o padrão Singleton. Deve existir apenas um objeto desta classe durante toda a execução do jogo pois só é necessário
+  
+  Analisando o package graphics, para garantir que existe apenas uma instância da classe Engine a que todos os objetos podem aceder, utilizámos o padrão Singleton. Deve existir apenas um objeto desta classe durante toda a execução do jogo pois só é necessário
 haver um objeto que trate de gerir os sound effects, músicas de fundo e volume do jogo.
 
   A classe Engine possui ainda duas váriaveis privadas, uma da classe Trainer que representa o jogador em si (utilizador) e outra de InfoBattleAI, que contém informações sobre as equipas dos adversários e um índice que indica o adversário atual. No desenvolvimento do projeto, começámos por considerar que estas classes usariam também o padrão Singleton, isto porque existe um único jogador e as informações sobre os adversários são sempre as mesmas, necessitanto apenas de um objeto. No entanto, apercebemo-nos das complicações que essa opção traria ao efetuar testes unitários à lógica. Assim, decicimos associar estas classes ao Engine como variáveis privadas mas com
