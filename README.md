@@ -106,4 +106,6 @@ atrasaram os progressos no desenvolvimento. Tivemos frequentemente problemas com
 do libgdx para o eclipse e ao exportar, no fim, o jogo para um formato executável, por não sabermos onde incluir os ficheiros dos assets e 
 termos de alterar no código o caminho da localizacao dos mesmos.
 
+A alocação das tarefas ao longo do trabalho foi distribuída equitativamente e de forma justa pelos dois elementos, sendo que por vezes desenvolvemos código simultaneamente e em outras ocasiões dividimos as tarefas.
+
 
