@@ -55,8 +55,8 @@ Se o jogador conseguir derrotar a série de 4 treinadores será mostrado um ecr�
 
 O botão update do menu principal permite atualizar a lista de pokémons e moves disponíveis, descarregando a informação necessária bem como
 os sprites dos novos pokémons através de URLs diretos para estes ficheiros.
-O update demora cerca de 1 a 3 segundos (a música de fundo pára durante o processo) e posteriormente estarão disponíveis para se escolher os
-novos pokémons no menu Edit Party.
+O update demora cerca de 1 a 3 segundos (a música de fundo pára durante o processo) e posteriormente estarão disponíveis para escolha os
+novos pokémons no menu Edit Party. Não é necessário reiniciar o jogo para que as mudanças tenham efeito, mas caso se reinicie o jogo continuará atualizado.
 
 ---------------------------------------------------
 
@@ -74,8 +74,7 @@ ter apenas, na prática, 2 objetos durante a execução do jogo.
 
 Em relação ao package logic, a classe MoveFactory faz uso, simultaneamente, dos design patterns Singleton e Factory.
 Esta solução foi adotada pois permite ter uma única "fábrica" de moves, contendo um ArrayList com todos os moves
-já carregados, que é acessível de forma global. Assim torna-se mais fácil as classes Battle e Pokemon, por exemplo,
-acederem aos moves que necessitam através da instância de MoveFactory.
+já carregados, que é acessível de forma global. Desta forma não é preciso estar sempre a criar novos Move, o que evita ter vários objetos de igual conteúdo em memória, sendo o mesmo objeto partilhado por vários pokémons. Assim torna-se mais eficiente as classes Battle e Pokemon, por exemplo, acederem aos moves que necessitam através da instância de MoveFactory.
 
 ---------------------------------------------------
 
