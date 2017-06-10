@@ -3,7 +3,6 @@
 **Setup e instalação**
 
 
-
 ---------------------------------------------------
 
 **UserManual**
@@ -58,7 +57,31 @@ novos pokémons no menu Edit Party.
 
 ---------------------------------------------------
 
-**Documentação de desenvolvimento**
+**Design Patterns**
+
+  Durante o desenvolvimento deste projeto fizemos uso de pelo menos dois design patterns, sendo eles os padrões Singleton e Factory.
+Analisando o package graphics, para garantir que existe apenas uma instância da classe Engine a que todos os objetos podem aceder, utilizámos o padrão Singleton. Deve existir apenas um objeto desta classe durante toda a execução do jogo pois só é necessário
+haver um objeto que trate de gerir os sound effects, músicas de fundo e volume do jogo.
+
+  A classe Engine possui ainda duas váriaveis privadas, uma da classe Trainer que representa o jogador em si (utilizador) e outra de InfoBattleAI, que contém informações sobre as equipas dos adversários e um índice que indica o adversário atual. No desenvolvimento do projeto, começámos por considerar que estas classes usariam também o padrão Singleton, isto porque existe um único jogador e as informações sobre os adversários são sempre as mesmas, necessitanto apenas de um objeto. No entanto, apercebemo-nos das complicações que essa opção traria ao efetuar testes unitários à lógica. Assim, decicimos associar estas classes ao Engine como variáveis privadas mas com
+construtores públicos. Esta decisão permitiu criar vários objectos Trainer e InfoBattleAI para os testes unitários mas ao mesmo tempo
+ter apenas, na prática, 2 objetos durante a execução do jogo.
+  Também a classe ScreenFactory implementa o padrão de desenho Singleton, sendo a sua função definir o screen atual do jogo.
+
+  Em relação ao package logic, a classe MoveFactory faz uso, simultaneamente, dos design patterns Singleton e Factory.
+Esta solução foi adotada pois permite ter uma única "fábrica" de moves, contendo um ArrayList com todos os moves
+já carregados, que é acessível de forma global. Assim torna-se mais fácil as classes Battle e Pokemon, por exemplo,
+acederem aos moves que necessitam através da instância de MoveFactory.
+
+---------------------------------------------------
+
+**Diagram UML**
+
+![Alt text](/UMLDiagram.PNG?raw=true "Ecrã de batalha")
+
+---------------------------------------------------
+
+**Observações finais**
 
 Durante o desenvolvimento deste projeto tivemos que tomar decisões face aos desafios que foram surgindo,
 tendo sempre em conta os objetivos com que nos tinhamos comprometido.
