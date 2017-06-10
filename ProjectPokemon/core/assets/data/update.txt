@@ -1,0 +1,31 @@
+//Project Pokemon Updater
+//Update 1
+//Pokemon URL
+https://pastebin.com/raw/LumpvE5A
+//Moves URL
+https://pastebin.com/raw/qGc2k33k
+//Sprites URLs
+150_b
+http://i.imgur.com/nEXJBto.png
+150_f
+http://i.imgur.com/Sd7MHvl.png
+145_b
+http://i.imgur.com/eIKJ0rh.png
+145_f
+http://i.imgur.com/g8LqUkT.png
+144_b
+http://i.imgur.com/WHUKFmf.png
+144_f
+http://i.imgur.com/zDbnPsp.png
+3_b
+http://i.imgur.com/x5z7YKu.png
+3_f
+http://i.imgur.com/wTotOdH.png
+26_b
+http://i.imgur.com/aVluSU3.png
+26_f
+http://i.imgur.com/ffI6xXz.png
+383_b
+http://i.imgur.com/chf3c38.png
+383_f
+http://i.imgur.com/u3SzJrK.png
