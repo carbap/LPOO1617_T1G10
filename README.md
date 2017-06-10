@@ -24,19 +24,19 @@ A informação de cada move (ataque) é mostrada junto aos botões correspondent
 Quando as escolhas tiverem sido feitas, o botão Main Menu guarda as alterações e volta ao menu principal. Neste
 menu a equipa mostrada estará já atualizada.
 
-![Alt text](/editParty.png?raw=true "Edit Party")
+![Alt text](/editParty.PNG?raw=true "Edit Party")
 
 Carregando em Battle AI o jogo direciona-nos para um ecrã de preparação de batalha, em que é mostrada a equipa do 
 adversário. A partir daqui, é possível dar início à batalha ou voltar ao menu principal.
 
-![Alt text](/battleAI.png?raw=true "Ecrã de preparação de batalha")
+![Alt text](/battleAI.PNG?raw=true "Ecrã de preparação de batalha")
 
 Durante a batalha é possível escolher um dos quatro ataques do nosso pokémon ou então trocá-lo por outro, através do
 botão switch. É também possível desistir da batalha, voltando ao menu principal. O sprite do nosso pokémon, a sua barra
 de vida e nível estão representados em baixo, estando os do adversário em cima. De notar que o adversário tenderá a fazer boas jogadas,
 quer seja escolhendo o melhor ataque ou trocar em alturas apropriadas.
 
-![Alt text](/battle.png?raw=true "Ecrã de batalha")
+![Alt text](/battle.PNG?raw=true "Ecrã de batalha")
 
 O menu de troca pode ser acedido de duas formas: através do botão Switch ou quando o pokémon que estava em batalha morre (troca forçada).
 Os pokémons à direita, com as respetivas barras de vida, são as opções existentes para substituir o pokémon representado mais
@@ -45,7 +45,7 @@ dos pokémons sem vida estarão desativados.
 Caso a troca não tenha sido seja forçada, é possível cancelá-la através do botão Cancel em cima, caso contrário é necessário escolher
 um pokémon para prosseguir a batalha.
 
-![Alt text](/switch.png?raw=true "Ecrã de batalha")
+![Alt text](/switch.PNG?raw=true "Ecrã de batalha")
 
 Caso o jogador vença a batalha, derrotando todos os pokémos do oponente, aparecerá o ecrã de apresentação do novo adversário. Caso perca o jogo retornará ao menu principal.
 Antes de enfrentar um novo adversário a vida dos pokémons será completamente restaurada.
