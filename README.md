@@ -2,6 +2,9 @@
 
 **Setup e instalação**
 
+Para ambiente de desenvolvimento será necessário o Eclipse Neon 3 com Graddle, bastando escolher a opção de importar um Graddle Project.
+Para correr o jogo basta incluir o ficheiro pokemon.jar na pasta assets do projeto e executá-lo. Poderá ser necessário correr
+o jogo a partir da linha de comandos, usando "java -jar pokemon.jar".
 
 ---------------------------------------------------
 
